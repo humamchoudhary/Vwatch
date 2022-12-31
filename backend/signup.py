@@ -18,6 +18,7 @@ class Signup:
         self.password = password
         self.tree = self.Register()
         
+        
 
     def Register(self):
         self.email = self.email.lower()
@@ -40,7 +41,7 @@ class Signup:
         else:
             self.table.insert(
                 {"username": self.username, "token": f"{account}"})
-            return UserTree(account)
+            return UserTree(account,self.username)
 
     def Print_Account_Details(self):
         print(self.table.all())

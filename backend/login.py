@@ -2,7 +2,7 @@ from tinydb import TinyDB, Query
 import hashlib
 import pickle
 from Exceptions import *
-# from signup import *
+from signup import *
 from Essentials.UserTree import *
 
 
@@ -35,7 +35,7 @@ class Login:
         hash = hashlib.sha256(plaintext)
         hashhex = hash.hexdigest()
         if account.password == hashhex:
-            return account
+            return usertree
 
         else:
             raise InvalidPasswordError("Invalid password!")
@@ -45,10 +45,12 @@ class Login:
 
     def test(self):
         return self.table.all()
+    
+    
 
 
 if __name__ == "__main__":
-    # for user in Login("123", "312").test():
+    # for user in Login("123", "312"):
     #     token = user["token"]
     #     file = open(f'{token}.pkl', 'rb')
     #     Usertree = pickle.load(file)
@@ -56,6 +58,13 @@ if __name__ == "__main__":
     #     for i in data:
     #         print(i.username)
     account = Login("humam02","12345678")
-    print(account.username)
+    account = account.account
+    account.create_Profile("humam1")
+    account.save_user()
+    # print(account.Get_Profiles())
+    # print(account.account.get_all_profiles())
+    # account_data = account.account.get_all_profiles()
+    # for data in account_data:
+    #     print(data.username)
 
 
