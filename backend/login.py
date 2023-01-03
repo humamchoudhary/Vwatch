@@ -59,9 +59,9 @@ if __name__ == "__main__":
     #         print(i.username)
     account = Login("humam02","12345678")
     account = account.account
-    account.create_Profile("humam1")
-    account.save_user()
-    # print(account.Get_Profiles())
+    # account.create_Profile("humam1")
+    # account.save_user()
+    print(account.get_all_profiles())
     # print(account.account.get_all_profiles())
     # account_data = account.account.get_all_profiles()
     # for data in account_data:

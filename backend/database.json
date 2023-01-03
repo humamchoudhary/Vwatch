@@ -1,1 +1,48 @@
-{"User_Data": {"1": {"username": "humam02", "token": "f532f97a-88d6-11ed-b708-088fc321660a"}}}
+{
+    "User_Data": {
+        "1": {
+            "username": "humam02",
+            "token": "f532f97a-88d6-11ed-b708-088fc321660a"
+        }
+    },
+    "Anime_data": {
+        "1": {
+            "animeID": "initial-d-fourth-stage",
+            "title": "Initial D: Fourth Stage",
+            "coverImg": "https://gogocdn.net/images/anime/I/Initial-D-Fourth-Stage.jpg",
+            "desc": "Takumi Fujiwara\u00a0and brothers\u00a0Keisuke\u00a0and\u00a0Ryousuke\u00a0Takahashi have formed \"Project D\", a racing team aimed at bringing their driving skills to their full potential outside their prefecture. Using the internet, Project D issues challenges to other racing teams and posts results of their races.\n\nManaged by Ryousuke, the team has Takumi engaging in downhill battles with his AE86, while Keisuke challenges opponents uphill. Among their rivals are the Seven-Star Leaf (SSR) and Todo-juku.Meanwhile, Takumi is caught off-guard on Mount Akina when he encounters his father\u00a0Bunta\u00a0and his newly acquired Subaru Impreza WRX Type R Version V.",
+            "genres": [
+                "Cars",
+                "Seinen",
+                "Sports"
+            ],
+            "totalEps": 24,
+            "eps": [
+                "./file/Initial D - 4x01 - Project D   [DarkDream].mkv",
+                "./file/Initial D - 4x02 - Full Throttle! Downhill Battle   [DarkDream].mkv",
+                "./file/Initial D - 4x03 - The Most Powerful Man Of The Toudou School   [DarkDream].mkv",
+                "./file/Initial D - 4x04 - Two Pieces Of Advice   [DarkDream].mkv",
+                "./file/Initial D - 4x05 - The Starting Line To Victory   [DarkDream].mkv",
+                "./file/Initial D - 4x06 - Blind Attack   [DarkDream].mkv",
+                "./file/Initial D - 4x07 - The Stormy 85 Turbo   [DarkDream].mkv",
+                "./file/Initial D - 4x08 - Fateful Battle Of FDs   [DarkDream].mkv",
+                "./file/Initial D - 4x09 - Kyoko's Confession   [DarkDream].mkv",
+                "./file/Initial D - 4x10 - The Saitama's Area Ultimate Weapon   [DarkDream].mkv",
+                "./file/Initial D - 4x11 - Rainy Downhill Battle   [DarkDream].mkv",
+                "./file/Initial D - 4x12 - Straightaway Of Struggles   [DarkDream].mkv",
+                "./file/Initial D - 4x13 - Motivation   [DarkDream].mkv",
+                "./file/Initial D - 4x14 - Sad Lonely Driver   [DarkDream].mkv",
+                "./file/Initial D - 4x15 - 4WD Complex   [DarkDream].mkv",
+                "./file/Initial D - 4x16 - Hillclimb Of Fury   [DarkDream].mkv",
+                "./file/Initial D - 4x17 - The Saitama Area's Final Battle   [DarkDream].mkv",
+                "./file/Initial D - 4x18 - Last Drive   [DarkDream].mkv",
+                "./file/Initial D - 4x19 - God Foot And God Arm   [DarkDream].mkv",
+                "./file/Initial D - 4x20 - The Unmatched GT-R!   [DarkDream].mkv",
+                "./file/Initial D - 4x21 - Dogfight   [DarkDream].mkv",
+                "./file/Initial D - 4x22 - The Sorcerer Of The Single-Handed Steer   [DarkDream].mkv",
+                "./file/Initial D - 4x23 - Endless Battle   [DarkDream].mkv",
+                "./file/Initial D - 4x24 - Never-Ending Challenge   [DarkDream].mkv"
+            ]
+        }
+    }
+}

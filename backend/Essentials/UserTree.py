@@ -73,7 +73,6 @@ class UserTree:
                 "history":profile.data.watch_history,
                 "watchlist":profile.data.watch_list,
                 "img":profile.data.img
-
                 })
         return profiles
 
