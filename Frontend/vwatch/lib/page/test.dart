@@ -27,7 +27,7 @@ class _MytestState extends State<Mytest> {
 
   @override
   void initState() {
-    _get_data();
+    // _get_data();
     super.initState();
   }
 
@@ -37,12 +37,11 @@ class _MytestState extends State<Mytest> {
         backgroundColor: Colors.black,
         body: AspectRatio(
           aspectRatio: 16 / 9,
-          child: url.isNotEmpty
-              ? const VideoPlayer(
-                  url:
-                      "https://movietrailers.apple.com/movies/fox/thefantasticfour/fantasticfour-tlr2_h480p.mov",
-                )
-              : Container(),
+          // child: const VideoPlayer(
+          //   url:
+          //       "https://movietrailers.apple.com/movies/fox/thefantasticfour/fantasticfour-tlr2_h480p.mov",
+          // ),
+          child: SamplePlayer()
         ));
   }
 }
