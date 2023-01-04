@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/windows/flutter/ephemeral/.plugin_symlinks/modal_progress_hud_nsn/build" />
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/windows/flutter/ephemeral/.plugin_symlinks/modal_progress_hud_nsn/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/windows/flutter/ephemeral/.plugin_symlinks/modal_progress_hud_nsn/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/windows/flutter/ephemeral/.plugin_symlinks/path_provider_windows/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/windows/flutter/ephemeral/.plugin_symlinks/path_provider_windows/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/windows/flutter/ephemeral/.plugin_symlinks/path_provider_windows/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/build" />
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux/build" />
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/windows/flutter/ephemeral/.plugin_symlinks/path_provider_windows/build" />
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/windows/flutter/ephemeral/.plugin_symlinks/path_provider_windows/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/windows/flutter/ephemeral/.plugin_symlinks/path_provider_windows/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/linux/flutter/ephemeral/.plugin_symlinks/path_provider_linux/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/windows/flutter/ephemeral/.plugin_symlinks/modal_progress_hud_nsn/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/windows/flutter/ephemeral/.plugin_symlinks/modal_progress_hud_nsn/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/windows/flutter/ephemeral/.plugin_symlinks/modal_progress_hud_nsn/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/linux/flutter/ephemeral/.plugin_symlinks/modal_progress_hud_nsn/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/linux/flutter/ephemeral/.plugin_symlinks/modal_progress_hud_nsn/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/linux/flutter/ephemeral/.plugin_symlinks/modal_progress_hud_nsn/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/linux/flutter/ephemeral/.plugin_symlinks/modal_progress_hud_nsn/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/linux/flutter/ephemeral/.plugin_symlinks/modal_progress_hud_nsn/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/linux/flutter/ephemeral/.plugin_symlinks/modal_progress_hud_nsn/build" />
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/windows/flutter/ephemeral/.plugin_symlinks/url_launcher_windows/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/windows/flutter/ephemeral/.plugin_symlinks/url_launcher_windows/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/windows/flutter/ephemeral/.plugin_symlinks/url_launcher_windows/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/windows/flutter/ephemeral/.plugin_symlinks/url_launcher_windows/build" />
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/windows/flutter/ephemeral/.plugin_symlinks/url_launcher_windows/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/windows/flutter/ephemeral/.plugin_symlinks/url_launcher_windows/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/linux/flutter/ephemeral/.plugin_symlinks/url_launcher_linux/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/linux/flutter/ephemeral/.plugin_symlinks/url_launcher_linux/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/linux/flutter/ephemeral/.plugin_symlinks/url_launcher_linux/build" />
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/linux/flutter/ephemeral/.plugin_symlinks/url_launcher_linux/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/linux/flutter/ephemeral/.plugin_symlinks/url_launcher_linux/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/vwatch/linux/flutter/ephemeral/.plugin_symlinks/url_launcher_linux/example/build" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

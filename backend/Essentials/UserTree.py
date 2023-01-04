@@ -1,5 +1,5 @@
 from Exceptions import *
-import random 
+import random
 import pickle
 imgs = ['randimage0.png', 'randimage1.png', 'randimage2.png', 'randimage3.png', 'randimage4.png', 'randimage5.png',
         'randimage6.png', 'randimage7.png', 'randimage8.png', 'randimage9.png', 'randimage10.png', 'randimage11.png']
@@ -8,7 +8,10 @@ imgs = ['randimage0.png', 'randimage1.png', 'randimage2.png', 'randimage3.png', 
 class UserProfile:
     def __init__(self, username):
         self.username = username
-        self.watch_history = []  # Replace with stack later
+        self.watch_history = [
+
+        ]  # Replace with stack later
+        self.watched = [{"animeid":[True, False,] }]
         self.watch_list = []
 
     def add_to_watch_history(self, content_id):
@@ -61,19 +64,19 @@ class UserTree:
     def get_all_profiles(self):
         profiles = []
         profiles.append({
-                "username":self.root.data.username,
-                "history":self.root.data.watch_history,
-                "watchlist":self.root.data.watch_list,
-                "img":self.root.data.img
-                })
+            "username": self.root.data.username,
+            "history": self.root.data.watch_history,
+            "watchlist": self.root.data.watch_list,
+            "img": self.root.data.img
+        })
         for profile in self.root.children:
             print(profile.data.username)
             profiles.append({
-                "username":profile.data.username,
-                "history":profile.data.watch_history,
-                "watchlist":profile.data.watch_list,
-                "img":profile.data.img
-                })
+                "username": profile.data.username,
+                "history": profile.data.watch_history,
+                "watchlist": profile.data.watch_list,
+                "img": profile.data.img
+            })
         return profiles
 
     def delete_profile(self, username):

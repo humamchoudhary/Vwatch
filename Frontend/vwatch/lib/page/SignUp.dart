@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:vwatch/main.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:modal_progress_hud_alt/modal_progress_hud_alt.dart';
 
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+// import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 // import 'package:modal_progress_hud/modal_progress_hud.dart';
+
 
 class SignUp extends StatefulWidget {
   @override

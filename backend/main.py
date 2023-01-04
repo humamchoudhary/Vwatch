@@ -1,10 +1,12 @@
-from flask import Flask, jsonify, make_response, request, send_file, render_template
+import urllib
+from flask import Flask, jsonify, make_response, request, send_file, render_template,Response
 import json
+import requests
+from tinydb import TinyDB, Query
 from login import Login
 from Essentials.UserTree import *
 from Essentials.Account import *
 from signup import Signup
-import requests
 import os
 
 response = ''
@@ -26,7 +28,7 @@ def LoginRoute():
 
         username = request_data['username']
         password = request_data['password']
-        
+
         try:
             account = Login(username, password)
             account = account.account
@@ -68,27 +70,6 @@ def SignUpRoute():
         return response
 
 
-@app.route('/test')
-def test():
-
-    import requests
-
-    url = "https://anime-db.p.rapidapi.com/anime"
-
-    querystring = {"page": "1", "size": "300"}
-
-    headers = {
-        "X-RapidAPI-Key": "5b11e8593fmshab74d27adfcb675p191bcajsn8b872311e950",
-        "X-RapidAPI-Host": "anime-db.p.rapidapi.com"
-    }
-
-    response = requests.request(
-        "GET", url, headers=headers, params=querystring)
-
-    print(response.text)
-    return response.json()
-
-
 @app.route('/getimages')
 def get_image():
     img = request.args.get('img')
@@ -96,23 +77,68 @@ def get_image():
     return send_file(filename, mimetype='image/gif')
 
 
-@app.route('/getimages')
-def get_next_eps():
-    data = {
-        "epsName": "Eps 1",
-        "epsid": "eps1",
-        "url": "www.streaming-url.com/abc.mp4",
-        "epsNumber": 1
-    }
-    response = jsonify(data)
+# @app.route('/getimages')
+# def get_next_eps():
+#     data = {
+#         "epsName": "Eps 1",
+#         "epsid": "eps1",
+#         "url": "www.streaming-url.com/abc.mp4",
+#         "epsNumber": 1
+#     }
+#     response = jsonify(data)
 
-    return make_response(response,200)
+#     return make_response(response,200)
+
+
+db = TinyDB("database.json")
+query = Query()
+
+
+@app.route('/get_eps')
+def get_eps():
+    epsno = request.args.get('epsno')
+    id = request.args.get('id')
+    file = open(f'{id}.pkl', 'rb')
+    animelist = pickle.load(file)
+    file.close()
+    result = animelist[id].next(epsno)
+    response = jsonify(requests)
+    return make_response(response)
+
+# {
+#     "indidick":LinkList,
+# }
 
 
 @app.route('/stream')
 def stream():
-    return send_file('./files/Initial D - 4x01 - Project D   [DarkDream].mkv', mimetype='application/x-mpegURL')
+    table = db.table("Movie_data")
+    data = table.search(query.title == "Poltergeist")
+
+    response = jsonify(data[0])
+    return make_response(response)
+
+
+@app.route('/download_video')
+def download_video():
+    table = db.table("Movie_data")
+    data = table.search(query.title == "Poltergeist")
+    url = "https://movietrailers.apple.com/movies/fox/thefantasticfour/fantasticfour-tlr2_h480p.mov"
+    print(url)
+    response = requests.get(url)
+    if response.status_code == 200:
+        return Response(response.content, mimetype='video/mp4')
+    else:
+        return "Error"
+
+def stream():
+    table = db.table("Movie_data")
+    data = table.search(query.title == "Poltergeist")
+
+    response = jsonify(data[0])
+    return make_response(response)
 
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")
+
