@@ -29,7 +29,7 @@ class LinkedList:
         pass
 
     def nextep(self):
-        return self.head.next.data["url"]  
+        return self.head.next.data["url"]  #ik its wrong just checking if the func ca be called
 
     def complete(self):
         pass          
