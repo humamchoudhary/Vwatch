@@ -34,14 +34,25 @@ class _MytestState extends State<Mytest> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          title: Text("Movie Name"),
+          leading: IconButton(
+            icon: Icon(Icons.close),
+            onPressed: () {
+              Navigator.pop(context); 
+            },
+          ),
+        ),
         backgroundColor: Colors.black,
-        body: AspectRatio(
-          aspectRatio: 16 / 9,
-          // child: const VideoPlayer(
-          //   url:
-          //       "https://movietrailers.apple.com/movies/fox/thefantasticfour/fantasticfour-tlr2_h480p.mov",
-          // ),
-          child: SamplePlayer()
+        body: SafeArea(
+          child: AspectRatio(
+            aspectRatio: 16 / 9,
+            // child: const VideoPlayer(
+            //   url:
+            //       "https://movietrailers.apple.com/movies/fox/thefantasticfour/fantasticfour-tlr2_h480p.mov",
+            // ),
+            child: SamplePlayer()
+          ),
         ));
   }
 }

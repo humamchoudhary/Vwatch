@@ -6,7 +6,7 @@ import 'package:vwatch/page/test.dart';
 
 // const URL = "http://172.24.7.96:5000";
 // const URL = "http://10.4.72.136:5000";
-const URL = "http://192.168.8.128:5000";
+const URL = "http://192.168.249.108:5000";
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const MainApp());

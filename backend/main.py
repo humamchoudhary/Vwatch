@@ -13,6 +13,9 @@ response = ''
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = os.path.join("")
 
+db = TinyDB("database.json")
+query = Query()
+movie_table = db.table("Movie_data")
 
 @app.route('/login', methods=['POST'])
 def LoginRoute():
@@ -34,13 +37,14 @@ def LoginRoute():
             account = account.account
             response = jsonify({"error": "Logged in", "account": {
                                "username": account.account.username, "profiles": account.get_all_profiles()}})
-            return make_response(response, 200)
+            return make_response(response)
         except Exception as e:
 
             response = jsonify({"error": str(e), "account": 'None'})
-            return make_response(response, 400)
+            return make_response(response)
     else:
         return response
+
 
 
 @app.route('/signup', methods=['POST'])
@@ -61,16 +65,16 @@ def SignUpRoute():
             signup = Signup(name, email, username, password)
             response = jsonify({"error": "None"})
             signup.Print_Account_Details()
-            return make_response(response, 200)
+            return make_response(response)
         except Exception as e:
             response = jsonify({"error": str(e)})
-            return make_response(response, 400)
+            return make_response(response)
     else:
 
         return response
 
 
-@app.route('/getimages')
+@app.route('/getimages',methods=['GET'])
 def get_image():
     img = request.args.get('img')
     filename = f"images/{img}"
@@ -90,8 +94,6 @@ def get_image():
 #     return make_response(response,200)
 
 
-db = TinyDB("database.json")
-query = Query()
 
 
 @app.route('/get_eps')
@@ -112,8 +114,8 @@ def get_eps():
 
 @app.route('/stream')
 def stream():
-    table = db.table("Movie_data")
-    data = table.search(query.title == "Poltergeist")
+    
+    data = movie_table.search(query.title == "Poltergeist")
 
     response = jsonify(data[0])
     return make_response(response)
@@ -121,8 +123,8 @@ def stream():
 
 @app.route('/download_video')
 def download_video():
-    table = db.table("Movie_data")
-    data = table.search(query.title == "Poltergeist")
+    
+    data = movie_table.search(query.title == "Poltergeist")
     url = "https://movietrailers.apple.com/movies/fox/thefantasticfour/fantasticfour-tlr2_h480p.mov"
     print(url)
     response = requests.get(url)
@@ -138,6 +140,13 @@ def stream():
     response = jsonify(data[0])
     return make_response(response)
 
+
+@app.route("/getMovies",methods=['GET'])
+def AllMovies():
+    data = movie_table.all()
+    response = jsonify(data)
+    return make_response(response)
+    
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")
