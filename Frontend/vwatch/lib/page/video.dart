@@ -20,19 +20,19 @@
 
 //   @override
 //   void initState() {
-    
+
 //     if (widget.url.isNotEmpty) {
 //       videoPlayerController = VideoPlayerController.network(widget.url);
 //       chewieController = ChewieController(
 //         customControls: Column(children: [
-          
+
 //           AppBar(
 //             title: Text("hello"),
 //           ),
-          
+
 //         ],),
 //           autoInitialize: true,
-          
+
 //           videoPlayerController: videoPlayerController!,
 //           autoPlay: true,
 //           allowFullScreen: false,
@@ -58,7 +58,7 @@
 //     print(chewieController!.videoPlayerController.position);
 //     chewieController!.pause();
 //     chewieController!.dispose();
-    
+
 //     super.dispose();
 //   }
 
@@ -74,7 +74,8 @@ import 'package:flick_video_player/flick_video_player.dart';
 import 'package:video_player/video_player.dart';
 
 class SamplePlayer extends StatefulWidget {
-  SamplePlayer({Key? key}) : super(key: key);
+  final String url;
+  const SamplePlayer({Key? key, required this.url}) : super(key: key);
 
   @override
   _SamplePlayerState createState() => _SamplePlayerState();
@@ -86,8 +87,8 @@ class _SamplePlayerState extends State<SamplePlayer> {
   void initState() {
     super.initState();
     flickManager = FlickManager(
-      videoPlayerController:
-          VideoPlayerController.network("https://movietrailers.apple.com/movies/fox/thefantasticfour/fantasticfour-tlr2_h480p.mov"),
+      videoPlayerController: VideoPlayerController.network(
+          widget.url),
     );
     flickManager!.flickControlManager!.enterFullscreen();
   }
@@ -101,9 +102,7 @@ class _SamplePlayerState extends State<SamplePlayer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: FlickVideoPlayer(
-        flickManager: flickManager!
-      ),
+      child: FlickVideoPlayer(flickManager: flickManager!),
     );
   }
 }
