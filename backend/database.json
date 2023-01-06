@@ -140,7 +140,6 @@
         }
     },
     "Movie_data": {
-        "Movie_data": {
             "1": {
                 "id": "movie/watch-avengers-age-of-ultron-19729",
                 "title": "Avengers: Age of Ultron",
@@ -674,10 +673,11 @@
                     }
                 ]
             }
-        }
     },
     "show_data": {
         "1": {
+            "id":"tv/watch-vincenzo-67955",
+            "title":"Vincenzo",
             "desc": "\n        At age of 8, Park Joo-Hyung went to Italy after he was adopted. He is now an adult and has the name of Vincenzo Cassano. He is lawyer, who works for the Mafia as a consigliere. Because of a war between mafia groups, he flies to South Korea. In Korea, he gets involved with lawyer Hong Cha-Young. She is the type of attorney who will do anything to win a case. Vincenzo Cassano falls in love with her. He also achieves social justice by his own way.\n    ",
             "genres": [
                 "Action",
@@ -828,81 +828,111 @@
                 }
             ]
         },
-        "12": {
+        "2": {
             "id": "tv/watch-fantastic-35850",
             "title": "Fantastic",
-            "coverImg": "https://img.flixhq.to/xxrz/250x400/379/88/02/880291a221f69b94c5fd7304c979b113/880291a221f69b94c5fd7304c979b113.jpg",
             "desc": "\n        It tells the story of a successful drama writer whose life turns upside down after she discovers that she has a terminal illness and a famous actor who can't act.\n    ",
             "genres": [
                 "Comedy",
                 "Drama"
             ],
-            "url": "http://movietrailers.apple.com/movies/fox/thefantasticfour/fantasticfour-tlr2_h480p.mov",
             "rating": 7.3,
             "episodes": [
                 {
                     "id": "385398",
+                    "season": 1,
+                    "epNo": 1,
                     "url": "https://t-ca-1.dokicloud.one/_v9/51a93896019f80031d427f60758d28cc4b541002a091a91e1b7d988b83a65bb77fa0102095f44ccdd4b00569bb66d00ac9909eefe6ed7bc3e88fbc3c4f37614a61f983c5d0098e9995d343b14bda3a7427f1eb404552398c1cf7576cb2f53304f8daee5e57b6a923346ac3fd40a677e21deec24dd6eb1bac5972761f4b7550f6/720/index.m3u8"
                 },
                 {
                     "id": "385399",
+                    "season": 1,
+                    "epNo": 2,
                     "url": "https://t-eu-1.artdesigncdn.net/_v9/ffd6a76e6174af343a5c7c5938c3ee70c6344b752ee54b82b01818994527b9e7221d5749091991ff0db5202b53f6ce613a0fdede1d9fe474ecd2a246fcddf1d5b655151002c53dae873af013f652f7fc61a1fcf61c0f3bea2f412028fc1851569fd3b75fdd418f2f1810f33842afadcb6e283f011ad00287a00fa923eec214c1/720/index.m3u8"
                 },
                 {
                     "id": "385400",
-                    "url": "https://t-ca-2.24hoursuptodatecdn.net/_v9/a241e0fe7960973eb7e62e2935cb6211f7a10f1a1d9dea4a9700e7d6a237c574a0c73de49dd3999dde68ea7b7a8b7b6adc64859e2dfe1ad43c405e685b817f7e3065b9e6ac60ec0d42c5d103631930398bced3e0b62143ddb74cf1dd6f99938eef4e5a550d3c5369945342abd82fcc732a121e18c907b58493f422d740848852/720/index.m3u8"
+                    "season": 1,
+                    "epNo": 3,
+                    "url": "https://t-eu-2.magnewscontent.org/_v9/a241e0fe7960973eb7e62e2935cb6211f7a10f1a1d9dea4a9700e7d6a237c574a0c73de49dd3999dde68ea7b7a8b7b6adc64859e2dfe1ad43c405e685b817f7e3065b9e6ac60ec0d42c5d103631930391ffb9fe7f5d726ee3b4b6e356e019e63cced77f15ca0f5f361a84c22396ac80edc5cff97f3b9d540662dda0406fd022b/720/index.m3u8"
                 },
                 {
                     "id": "385401",
-                    "url": "https://t-ca-1.dokicloud.one/_v9/b5cf38447e562b39eb391018b8430ea7de9624ea0c0960a5555a048b46550b12a50bc335b0943064dba021efbd913c97d28ffd97a309040380a169f0cb2410e62e784a6e6303594a2cdb988d9c025114cb760337a10397dd9a857ddb25038654a979f2e0d4db2de65c2d22f68e2dedf3939eb529136a4138a12a9da1ba396803/720/index.m3u8"
+                    "season": 1,
+                    "epNo": 4,
+                    "url": "https://t-ca-2.24hoursuptodatecdn.net/_v9/b5cf38447e562b39eb391018b8430ea7de9624ea0c0960a5555a048b46550b12a50bc335b0943064dba021efbd913c97d28ffd97a309040380a169f0cb2410e62e784a6e6303594a2cdb988d9c025114cb760337a10397dd9a857ddb25038654a979f2e0d4db2de65c2d22f68e2dedf3939eb529136a4138a12a9da1ba396803/720/index.m3u8"
                 },
                 {
                     "id": "385402",
-                    "url": "https://t-ca-1.dokicloud.one/_v9/76256f465d90b75401d3915a8e7aa271865f26db95aabd80d9c77d18e72ad684ee97a7e9ab19e12ce13f1b0f3ab442870e843751a86fe7e41426f3e9cfc47d182c46fd07f2aaa80110b81a1af48c718da9bd9128a29ec4b493f3f7ad58492619d4df49a90705e8c5b34db0f602b116777c149d493461f379f4a93499be8a8b96/720/index.m3u8"
+                    "season": 1,
+                    "epNo": 5,
+                    "url": "https://t-eu-2.magnewscontent.org/_v9/76256f465d90b75401d3915a8e7aa271865f26db95aabd80d9c77d18e72ad684ee97a7e9ab19e12ce13f1b0f3ab442870e843751a86fe7e41426f3e9cfc47d182c46fd07f2aaa80110b81a1af48c718d7e37db79fa061258967713715ae554b489e01ec8cf367e90d6a5d67ba65b281b69e0dc04028736e5944cce1b1ddc6782/720/index.m3u8"
                 },
                 {
                     "id": "385403",
-                    "url": "https://t-ca-1.dokicloud.one/_v9/24c93bd16ee508f84f8d9e28079522104c2e1e9cc14e0db32205251c3c14e439c279cedeeaa138b2ab9c539019476c5870dd7d9c4ca105d3d0bb56a60e3bec72ebc49aca3a7f0844c7250985a62c9590e480be048eaecdcf7dc496afe0524855365f2504c2fb5e0af20a9ae5795c909db668b013062d9d730ebfa2a6b4cc4704/720/index.m3u8"
+                    "season": 1,
+                    "epNo": 6,
+                    "url": "https://t-eu-2.magnewscontent.org/_v9/24c93bd16ee508f84f8d9e28079522104c2e1e9cc14e0db32205251c3c14e439c279cedeeaa138b2ab9c539019476c5870dd7d9c4ca105d3d0bb56a60e3bec72ebc49aca3a7f0844c7250985a62c9590d5075ce6cbd78d2a3bf8e6d68650cdf612e680f4e5c2bf44b9614b6ee4ca91807dde735c8f1eaf4eb413cd9956d736af/720/index.m3u8"
                 },
                 {
                     "id": "385404",
-                    "url": "https://t-eu-3.onthecloudcdn.com/_v9/30f1b187f6d027a885e9a6c47097ba45db0665ffe4d3002933fdf228adcbeaac827d20f06e084cf073e7a01fc917522de31b9f89d59646bb1c30ab681670c9737c8def9c2dbd233c74bd9a78ad0193157f69d8234a4d835da5e0dd01588ca9021324aeedbf123d34762c4018a442f3240c75ee1481d91e95ff3934bcca011983/720/index.m3u8"
+                    "season": 1,
+                    "epNo": 7,
+                    "url": "https://t-eu-2.magnewscontent.org/_v9/30f1b187f6d027a885e9a6c47097ba45db0665ffe4d3002933fdf228adcbeaac827d20f06e084cf073e7a01fc917522de31b9f89d59646bb1c30ab681670c9737c8def9c2dbd233c74bd9a78ad0193157f69d8234a4d835da5e0dd01588ca9021324aeedbf123d34762c4018a442f3240c75ee1481d91e95ff3934bcca011983/720/index.m3u8"
                 },
                 {
                     "id": "385405",
-                    "url": "https://t-eu-3.onthecloudcdn.com/_v9/88f1b2eaafb9d36dc92d3cb1bd5afd7bcf2d2479f9c357632aa5a6d327afb6a9cfadb80cc2030ac4bd4897487bd5602ffa5a6575ced25f297dba607948190f02e19c36629a5b61a133134233530ada1488c03af12ef36fbb69a90815724005c22825b1df50bc649368f3bc2603f488351a72b72509da2d0b217571ea160c2118/720/index.m3u8"
+                    "season": 1,
+                    "epNo": 8,
+                    "url": "https://t-eu-2.magnewscontent.org/_v9/88f1b2eaafb9d36dc92d3cb1bd5afd7bcf2d2479f9c357632aa5a6d327afb6a9cfadb80cc2030ac4bd4897487bd5602ffa5a6575ced25f297dba607948190f02e19c36629a5b61a133134233530ada1488c03af12ef36fbb69a90815724005c22825b1df50bc649368f3bc2603f488351a72b72509da2d0b217571ea160c2118/720/index.m3u8"
                 },
                 {
                     "id": "385407",
-                    "url": "https://t-eu-1.artdesigncdn.net/_v9/2d7a352d84a1d9cbfce11a4e236a6aaf362a76d8120e25261d7e62ca0f14c553a34505ed821e41c78aa5f4a4b92b47cec39bd3e124bccd520369c9dd6fb6b19f91fa5ccfe86ff7973416c6d83f95fdba00018520dd496e22eb2972259e9689660c9e926936d59d6bd140f551980f24dad79c3c97fa36a977f701e1a2726b4591/720/index.m3u8"
+                    "season": 1,
+                    "epNo": 9,
+                    "url": "https://t-eu-2.magnewscontent.org/_v9/2d7a352d84a1d9cbfce11a4e236a6aaf362a76d8120e25261d7e62ca0f14c553a34505ed821e41c78aa5f4a4b92b47cec39bd3e124bccd520369c9dd6fb6b19f91fa5ccfe86ff7973416c6d83f95fdba00018520dd496e22eb2972259e9689660c9e926936d59d6bd140f551980f24dad79c3c97fa36a977f701e1a2726b4591/720/index.m3u8"
                 },
                 {
                     "id": "385406",
-                    "url": "https://t-eu-2.magnewscontent.org/_v9/8942f8fc049c9ecbec3327ca80ad4640e3a99925abf7d9874d53ed0bf3dae224235f1ea438a3f0c8c773e257fbf1e700f4912e415f5e07859b1551746a802d2b074a972eb9bc090cd23e892166277f9e3f64301b0bd8ca598f1a0efecfe2aea04b026ad482d0734395cf605483c8dd03db8967ce05314b08802875c1536ceafe/720/index.m3u8"
+                    "season": 1,
+                    "epNo": 10,
+                    "url": "https://t-eu-1.artdesigncdn.net/_v9/8942f8fc049c9ecbec3327ca80ad4640e3a99925abf7d9874d53ed0bf3dae224235f1ea438a3f0c8c773e257fbf1e700f4912e415f5e07859b1551746a802d2b074a972eb9bc090cd23e892166277f9e3f64301b0bd8ca598f1a0efecfe2aea04b026ad482d0734395cf605483c8dd03db8967ce05314b08802875c1536ceafe/720/index.m3u8"
                 },
                 {
                     "id": "385408",
-                    "url": "https://t-ca-2.24hoursuptodatecdn.net/_v9/4c666004605dec6326c32906df02744f8a90f2d500a03e4b0d4e31e0e8b689804579e4c9afb7477b54084783aa62431f31a7c678985771babd1dd9af0f7ce1a8cb381e8a30584b055545c8d86f432995b7b9072f95305402335bcfe226493290e5d88653c8d5a31d2c865ac57599bcb9ed1196ad610e65decf3bddb75bcb55d9/720/index.m3u8"
+                    "season": 1,
+                    "epNo": 11,
+                    "url": "https://t-ca-1.dokicloud.one/_v9/4c666004605dec6326c32906df02744f8a90f2d500a03e4b0d4e31e0e8b689804579e4c9afb7477b54084783aa62431f31a7c678985771babd1dd9af0f7ce1a8cb381e8a30584b055545c8d86f432995b7b9072f95305402335bcfe226493290e5d88653c8d5a31d2c865ac57599bcb9ed1196ad610e65decf3bddb75bcb55d9/720/index.m3u8"
                 },
                 {
                     "id": "385409",
-                    "url": "https://t-eu-3.onthecloudcdn.com/_v9/4e89876f5d13b9fb20c797c445807fd749767e376f0769090e5cd6e7bd75e6fa734271a4b1cc534c92e875553aca2a1804768b5a65f555396cdb38a18e0c8209e8409473a3d00e8bdd5b8d34b0c01472d6efc4d8aa711f1e75c0eb3402fd2e18deb056e383754964faf6d962cb714ccf25199aa33d1b7ab5dd79d8b5a8f47fe3/720/index.m3u8"
+                    "season": 1,
+                    "epNo": 12,
+                    "url": "https://t-ca-1.dokicloud.one/_v9/4e89876f5d13b9fb20c797c445807fd749767e376f0769090e5cd6e7bd75e6fa734271a4b1cc534c92e875553aca2a1804768b5a65f555396cdb38a18e0c8209e8409473a3d00e8bdd5b8d34b0c01472db90874f2a2aa634c519858afd87bf858fc1dba903769fc34d7a5842bb9ee0b664d352ddcab3fbd5a27d93f071c9ad80/720/index.m3u8"
                 },
                 {
                     "id": "385410",
-                    "url": "https://t-ca-2.24hoursuptodatecdn.net/_v9/25ed0b54277574c9761b24f908b312c2913637723c11dab42f2c5cfd7185ed718fe191034f7292441b9c0b632556a0780370d7dc69c7f7b45b1b9999c1dcbefb27d4558743b0892884639178b1ad7a9df861ceabe4401fb0ed650ba16f9e753965d2b5a1816227ebfde4cda1df3c442bc7e3f5a6a0210a8c29e81429037bb9aa/720/index.m3u8"
+                    "season": 1,
+                    "epNo": 13,
+                    "url": "https://t-eu-2.magnewscontent.org/_v9/25ed0b54277574c9761b24f908b312c2913637723c11dab42f2c5cfd7185ed718fe191034f7292441b9c0b632556a0780370d7dc69c7f7b45b1b9999c1dcbefb27d4558743b0892884639178b1ad7a9dd3ba8eb05b600ffad5984da6a93e29d86ceddd44141caadf12cc52b5d8855f28d11c7ae9443b7f24d398c8121fa3f630/720/index.m3u8"
                 },
                 {
                     "id": "385411",
-                    "url": "https://t-eu-1.artdesigncdn.net/_v9/c956157d2a18abc03f84b5f7340965a512e353360ddf7f50065d01817fbf3e026dcfb38825d62e8003b2b1564197d0c48cd148730cf42ff68abec94edd8cc773c6d16767678e365fc12622bf9cbfd7e881a8339d2dfd02a0f35e845afee33b91b98d426519af14d9929229fb6c1ec5c0fde0169c1f58db5528e5f4e9f43e07d3/720/index.m3u8"
+                    "season": 1,
+                    "epNo": 14,
+                    "url": "https://t-ca-2.24hoursuptodatecdn.net/_v9/c956157d2a18abc03f84b5f7340965a512e353360ddf7f50065d01817fbf3e026dcfb38825d62e8003b2b1564197d0c48cd148730cf42ff68abec94edd8cc773c6d16767678e365fc12622bf9cbfd7e8b824dfca78116901637e3328dd963aa82bd369a51874ea78107ba09f221a9d2c224456d6abec66e6f26c1a24eb4b6570/720/index.m3u8"
                 },
                 {
                     "id": "385412",
-                    "url": "https://t-ca-2.24hoursuptodatecdn.net/_v9/469357af52bc3a3c20784319d853594e8bb9792afe1c070bb096658f64e1399e6db9dd4ce6eecc7ed04074abda5f889557b3472b7942c49a04d6516cbc50946d110d938d6e0ddcd0c3002bbf86564ce6e8d0905d484aed68977e157bf915dec1da33bbaa4d55afca3c28281c92a271e3822ed95e62923ff7fa2689d1540b3ddd/720/index.m3u8"
+                    "season": 1,
+                    "epNo": 15,
+                    "url": "https://t-ca-1.dokicloud.one/_v9/469357af52bc3a3c20784319d853594e8bb9792afe1c070bb096658f64e1399e6db9dd4ce6eecc7ed04074abda5f889557b3472b7942c49a04d6516cbc50946d110d938d6e0ddcd0c3002bbf86564ce6e8d0905d484aed68977e157bf915dec1da33bbaa4d55afca3c28281c92a271e3822ed95e62923ff7fa2689d1540b3ddd/720/index.m3u8"
                 },
                 {
                     "id": "385413",
-                    "url": "https://t-eu-1.artdesigncdn.net/_v9/a533946c27fedc8f009ca8296754df17b0122152c70defab5165dca8d28997036e2f40b65914804cd7a76aba43100386546590ded22ce5dc9ddf3e134d0fa936dec42df9f10e9efb32b78b2b61317e9700f9d22665dd1fa610769f69be474411fc2f11d0563f1aa2f6a45ce54f828a79638b21377bad222a80edb8acde85caa8/720/index.m3u8"
+                    "season": 1,
+                    "epNo": 16,
+                    "url": "https://t-ca-2.24hoursuptodatecdn.net/_v9/a533946c27fedc8f009ca8296754df17b0122152c70defab5165dca8d28997036e2f40b65914804cd7a76aba43100386546590ded22ce5dc9ddf3e134d0fa936dec42df9f10e9efb32b78b2b61317e9744ebb6a6830da2772c0a817cb4364b0348fd808f8af64761aba627fd1aef3018310e3b6125ab3ebc1c17bd0b56485f9f/720/index.m3u8"
                 }
             ]
         }

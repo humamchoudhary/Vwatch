@@ -130,7 +130,10 @@ def get_history():
     response = jsonify({"data": player.get_all()})
     return make_response(response)  # prints "video3.mp4"
 
-app.route("/getMovies", methods=["GET"])
+@app.route("/", methods=["GET"])
+def main():
+    return render_template("index.html")
+@app.route("/getMovies", methods=["GET"])
 def getMovies():
     response = jsonify({"result": movies_table.all()})
     return make_response(response)
