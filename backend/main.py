@@ -1,5 +1,5 @@
 import urllib
-from flask import Flask, jsonify, make_response, request, send_file, render_template,Response
+from flask import Flask, jsonify, make_response, request, send_file, render_template, Response
 import json
 import requests
 from tinydb import TinyDB, Query
@@ -16,6 +16,7 @@ app.config['UPLOAD_FOLDER'] = os.path.join("")
 db = TinyDB("database.json")
 query = Query()
 movie_table = db.table("Movie_data")
+
 
 @app.route('/login', methods=['POST'])
 def LoginRoute():
@@ -46,7 +47,6 @@ def LoginRoute():
         return response
 
 
-
 @app.route('/signup', methods=['POST'])
 def SignUpRoute():
     global response
@@ -74,7 +74,7 @@ def SignUpRoute():
         return response
 
 
-@app.route('/getimages',methods=['GET'])
+@app.route('/getimages', methods=['GET'])
 def get_image():
     img = request.args.get('img')
     filename = f"images/{img}"
@@ -92,8 +92,6 @@ def get_image():
 #     response = jsonify(data)
 
 #     return make_response(response,200)
-
-
 
 
 @app.route('/get_eps')
@@ -114,7 +112,7 @@ def get_eps():
 
 @app.route('/stream')
 def stream():
-    
+
     data = movie_table.search(query.title == "Poltergeist")
 
     response = jsonify(data[0])
@@ -123,7 +121,7 @@ def stream():
 
 @app.route('/download_video')
 def download_video():
-    
+
     data = movie_table.search(query.title == "Poltergeist")
     url = "https://movietrailers.apple.com/movies/fox/thefantasticfour/fantasticfour-tlr2_h480p.mov"
     print(url)
@@ -133,6 +131,7 @@ def download_video():
     else:
         return "Error"
 
+
 def stream():
     table = db.table("Movie_data")
     data = table.search(query.title == "Poltergeist")
@@ -141,13 +140,12 @@ def stream():
     return make_response(response)
 
 
-@app.route("/getMovies",methods=['GET'])
+@app.route("/getMovies", methods=['GET'])
 def AllMovies():
     data = movie_table.all()
     response = jsonify(data)
     return make_response(response)
-    
+
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")
-
