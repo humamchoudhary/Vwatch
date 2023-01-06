@@ -78,19 +78,6 @@ def get_image():
     return send_file(filename, mimetype='image/gif')
 
 
-# @app.route('/getimages')
-# def get_next_eps():
-#     data = {
-#         "epsName": "Eps 1",
-#         "epsid": "eps1",
-#         "url": "www.streaming-url.com/abc.mp4",
-#         "epsNumber": 1
-#     }
-#     response = jsonify(data)
-
-#     return make_response(response,200)
-
-
 db = TinyDB("database.json")
 query = Query()
 
@@ -106,31 +93,7 @@ def get_eps():
     response = jsonify(requests)
     return make_response(response)
 
-# {
-#     "indidick":LinkList,
-# }
 
-
-@app.route('/stream')
-def stream():
-    table = db.table("Movie_data")
-    data = table.search(query.title == "Poltergeist")
-
-    response = jsonify(data[0])
-    return make_response(response)
-
-
-@app.route('/download_video')
-def download_video():
-    table = db.table("Movie_data")
-    data = table.search(query.title == "Poltergeist")
-    url = "https://movietrailers.apple.com/movies/fox/thefantasticfour/fantasticfour-tlr2_h480p.mov"
-    print(url)
-    response = requests.get(url)
-    if response.status_code == 200:
-        return Response(response.content, mimetype='video/mp4')
-    else:
-        return "Error"
 @app.route("/get_history")
 def get_history():
     player = Watch_history()
@@ -166,12 +129,6 @@ def get_history():
     response= jsonify({"data":player.get_all()})
     return make_response(response)  # prints "video3.mp4"
 
-def stream():
-    table = db.table("Movie_data")
-    data = table.search(query.title == "Poltergeist")
-
-    response = jsonify(data[0])
-    return make_response(response)
 
 
 if __name__ == "__main__":
