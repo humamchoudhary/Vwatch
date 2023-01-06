@@ -1,5 +1,5 @@
 import urllib
-from flask import Flask, jsonify, make_response, request, send_file, render_template, Response
+from flask import Flask, jsonify, make_response, request, send_file, render_template,Response
 import json
 import requests
 from tinydb import TinyDB, Query
@@ -7,16 +7,12 @@ from login import Login
 from Essentials.UserTree import *
 from Essentials.Account import *
 from signup import Signup
+from rafay.history import *
 import os
-import gdown
 
 response = ''
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = os.path.join("")
-
-db = TinyDB("database.json")
-query = Query()
-movie_table = db.table("Movie_data")
 
 
 @app.route('/login', methods=['POST'])
@@ -39,11 +35,11 @@ def LoginRoute():
             account = account.account
             response = jsonify({"error": "Logged in", "account": {
                                "username": account.account.username, "profiles": account.get_all_profiles()}})
-            return make_response(response)
+            return make_response(response, 200)
         except Exception as e:
 
             response = jsonify({"error": str(e), "account": 'None'})
-            return make_response(response)
+            return make_response(response, 400)
     else:
         return response
 
@@ -66,16 +62,16 @@ def SignUpRoute():
             signup = Signup(name, email, username, password)
             response = jsonify({"error": "None"})
             signup.Print_Account_Details()
-            return make_response(response)
+            return make_response(response, 200)
         except Exception as e:
             response = jsonify({"error": str(e)})
-            return make_response(response)
+            return make_response(response, 400)
     else:
 
         return response
 
 
-@app.route('/getimages', methods=['GET'])
+@app.route('/getimages')
 def get_image():
     img = request.args.get('img')
     filename = f"images/{img}"
@@ -95,6 +91,10 @@ def get_image():
 #     return make_response(response,200)
 
 
+db = TinyDB("database.json")
+query = Query()
+
+
 @app.route('/get_eps')
 def get_eps():
     epsno = request.args.get('epsno')
@@ -111,12 +111,19 @@ def get_eps():
 # }
 
 
+@app.route('/stream')
+def stream():
+    table = db.table("Movie_data")
+    data = table.search(query.title == "Poltergeist")
+
+    response = jsonify(data[0])
+    return make_response(response)
 
 
 @app.route('/download_video')
 def download_video():
-
-    data = movie_table.search(query.title == "Poltergeist")
+    table = db.table("Movie_data")
+    data = table.search(query.title == "Poltergeist")
     url = "https://movietrailers.apple.com/movies/fox/thefantasticfour/fantasticfour-tlr2_h480p.mov"
     print(url)
     response = requests.get(url)
@@ -124,7 +131,40 @@ def download_video():
         return Response(response.content, mimetype='video/mp4')
     else:
         return "Error"
-
+@app.route("/get_history")
+def get_history():
+    player = Watch_history()
+    player.Add_history({
+      "id": "movie/watch-avengers-age-of-ultron-19729",
+      "title": "Avengers: Age of Ultron",
+      "coverImg":
+          "https://img.flixhq.to/xxrz/250x400/379/76/e8/76e8bc195d6dff37d1fbbf815ce467e9/76e8bc195d6dff37d1fbbf815ce467e9.jpg",
+      "genres": ["Action", "Adventure", "Science Fiction"],
+    })
+    player.Add_history({
+      "id": "movie/watch-avengers-age-of-ultron-19729",
+      "title": "Avengers: Age of Ultron",
+      "coverImg":
+          "https://img.flixhq.to/xxrz/250x400/379/76/e8/76e8bc195d6dff37d1fbbf815ce467e9/76e8bc195d6dff37d1fbbf815ce467e9.jpg",
+      "genres": ["Action", "Adventure", "Science Fiction"],
+    })
+    player.Add_history({
+      "id": "movie/watch-avengers-age-of-ultron-19729",
+      "title": "Avengers: Age of Ultron",
+      "coverImg":
+          "https://img.flixhq.to/xxrz/250x400/379/76/e8/76e8bc195d6dff37d1fbbf815ce467e9/76e8bc195d6dff37d1fbbf815ce467e9.jpg",
+      "genres": ["Action", "Adventure", "Science Fiction"],
+    })
+    player.Add_history({
+      "id": "movie/watch-avengers-age-of-ultron-19729",
+      "title": "Avengers: Age of Ultron",
+      "coverImg":
+          "https://img.flixhq.to/xxrz/250x400/379/76/e8/76e8bc195d6dff37d1fbbf815ce467e9/76e8bc195d6dff37d1fbbf815ce467e9.jpg",
+      "genres": ["Action", "Adventure", "Science Fiction"],
+    })
+   
+    response= jsonify({"data":player.get_all()})
+    return make_response(response)  # prints "video3.mp4"
 
 def stream():
     table = db.table("Movie_data")
@@ -134,27 +174,6 @@ def stream():
     return make_response(response)
 
 
-@app.route("/getMovies", methods=['GET'])
-def AllMovies():
-    data = movie_table.all()
-    response = jsonify(data)
-    return make_response(response)
-
-
-@app.route("/download")
-def download():
-
-    url = "https://drive.google.com/file/d/1TxjKVkSx6PFl5Jlc3_PKVKBkeJQzse-w/view?usp=share_link"
-    if url.split('/')[-1] == '  ':
-        url = url.replace('?usp=sharing', '')
-
-    print(url)
-
-@app.route("/getfile")
-def get_file():
-    file = os.listdir("./")
-    for i in file:
-        print(i)
-    return "hello"
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")
+

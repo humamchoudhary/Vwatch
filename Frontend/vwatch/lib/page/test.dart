@@ -5,6 +5,9 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class Mytest extends StatefulWidget {
+  final String url;
+
+  const Mytest({super.key, required this.url});
   @override
   _MytestState createState() => _MytestState();
 }
@@ -13,7 +16,7 @@ class _MytestState extends State<Mytest> {
   String id = "";
   int epsno = 0;
 
-  String url = "";
+  
 
   _get_data() async {
     final repsonse = await http.get(
@@ -21,7 +24,7 @@ class _MytestState extends State<Mytest> {
     );
     final decode = json.decode(repsonse.body) as Map<String, dynamic>;
     setState(() {
-      url = decode["url"];
+     // url = decode["url"];
     });
   }
 
@@ -34,25 +37,14 @@ class _MytestState extends State<Mytest> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Movie Name"),
-          leading: IconButton(
-            icon: Icon(Icons.close),
-            onPressed: () {
-              Navigator.pop(context); 
-            },
-          ),
-        ),
         backgroundColor: Colors.black,
-        body: SafeArea(
-          child: AspectRatio(
-            aspectRatio: 16 / 9,
-            // child: const VideoPlayer(
-            //   url:
-            //       "https://movietrailers.apple.com/movies/fox/thefantasticfour/fantasticfour-tlr2_h480p.mov",
-            // ),
-            child: SamplePlayer()
-          ),
+        body: AspectRatio(
+          aspectRatio: 16 / 9,
+          // child: const VideoPlayer(
+          //   url:
+          //       "https://movietrailers.apple.com/movies/fox/thefantasticfour/fantasticfour-tlr2_h480p.mov",
+          // ),
+          child: SamplePlayer(url:widget.url)
         ));
   }
 }

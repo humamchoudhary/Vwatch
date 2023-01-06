@@ -20,19 +20,19 @@
 
 //   @override
 //   void initState() {
-    
+
 //     if (widget.url.isNotEmpty) {
 //       videoPlayerController = VideoPlayerController.network(widget.url);
 //       chewieController = ChewieController(
 //         customControls: Column(children: [
-          
+
 //           AppBar(
 //             title: Text("hello"),
 //           ),
-          
+
 //         ],),
 //           autoInitialize: true,
-          
+
 //           videoPlayerController: videoPlayerController!,
 //           autoPlay: true,
 //           allowFullScreen: false,
@@ -58,7 +58,7 @@
 //     print(chewieController!.videoPlayerController.position);
 //     chewieController!.pause();
 //     chewieController!.dispose();
-    
+
 //     super.dispose();
 //   }
 
@@ -74,7 +74,8 @@ import 'package:flick_video_player/flick_video_player.dart';
 import 'package:video_player/video_player.dart';
 
 class SamplePlayer extends StatefulWidget {
-  SamplePlayer({Key? key}) : super(key: key);
+  final String url;
+  const SamplePlayer({Key? key, required this.url}) : super(key: key);
 
   @override
   _SamplePlayerState createState() => _SamplePlayerState();
@@ -102,9 +103,7 @@ class _SamplePlayerState extends State<SamplePlayer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: FlickVideoPlayer(
-        flickManager: flickManager!
-      ),
+      child: FlickVideoPlayer(flickManager: flickManager!),
     );
   }
 }

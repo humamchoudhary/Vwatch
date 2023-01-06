@@ -70,13 +70,16 @@ class _HomePageState extends State<HomePage> {
               ),
 
               // const Rating(),
-              Center(
-                child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (context) => Mytest()));
-                    },
-                    child: const Text("player")),
+              // Center(
+              //   child: ElevatedButton(
+              //       onPressed: () {
+              //         Navigator.pushReplacement(context,
+              //             MaterialPageRoute(builder: (context) => Mytest()));
+              //       },
+              //       child: const Text("player")),
+              // ),
+              SizedBox(
+                height: 400,
               ),
               SizedBox(
                 width: screensize.width,
