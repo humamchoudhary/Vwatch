@@ -1,0 +1,35 @@
+{
+    "query": {
+        "format": [
+            {
+                "output": "advanced_hls",
+                "separate_audio": 1,
+                "segment_duration": 6,
+                "stream": [
+                    {
+                        "video_codec": "libx264",
+                        "height": 720,
+                        "audio_bitrate": 128,
+                        "bitrate": 3100
+                    },
+                    {
+                        "video_codec": "libx264",
+                        "height": 480,
+                        "audio_bitrate": 128,
+                        "bitrate": 1800
+                    },
+                    {
+                        "video_codec": "libx264",
+                        "height": 360,
+                        "audio_bitrate": 128,
+                        "bitrate": 950
+                    }
+                ],
+                "playlist_name": "test.m3u8",
+                "fmp4": 0
+            }
+        ],
+        "encoder_version": "2",
+        "source": "https://wwwx12.gofcdn.com/videos/hls/2jP7uT_0uaWN-ZL6IW2VPA/1673010415/184141/0789fd4f049c3ca2a49b860ea5d1f456/ep.1.1657688325.480.m3u8"
+    }
+}

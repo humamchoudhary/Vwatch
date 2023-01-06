@@ -8,6 +8,7 @@ from Essentials.UserTree import *
 from Essentials.Account import *
 from signup import Signup
 import os
+import gdown
 
 response = ''
 app = Flask(__name__)
@@ -110,13 +111,6 @@ def get_eps():
 # }
 
 
-@app.route('/stream')
-def stream():
-
-    data = movie_table.search(query.title == "Poltergeist")
-
-    response = jsonify(data[0])
-    return make_response(response)
 
 
 @app.route('/download_video')
@@ -147,5 +141,20 @@ def AllMovies():
     return make_response(response)
 
 
+@app.route("/download")
+def download():
+
+    url = "https://drive.google.com/file/d/1TxjKVkSx6PFl5Jlc3_PKVKBkeJQzse-w/view?usp=share_link"
+    if url.split('/')[-1] == '  ':
+        url = url.replace('?usp=sharing', '')
+
+    print(url)
+
+@app.route("/getfile")
+def get_file():
+    file = os.listdir("./")
+    for i in file:
+        print(i)
+    return "hello"
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")
