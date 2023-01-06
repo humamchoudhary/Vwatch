@@ -515,5 +515,158 @@
             ],
             "url": "http://movietrailers.apple.com/movies/fox_searchlight/meandearlandthedyinggirl/meandearlandthedyinggirl-tlr1_h480p.mov"
         }
+    },
+    "show_data": {
+        "1": {
+            "desc": "\n        At age of 8, Park Joo-Hyung went to Italy after he was adopted. He is now an adult and has the name of Vincenzo Cassano. He is lawyer, who works for the Mafia as a consigliere. Because of a war between mafia groups, he flies to South Korea. In Korea, he gets involved with lawyer Hong Cha-Young. She is the type of attorney who will do anything to win a case. Vincenzo Cassano falls in love with her. He also achieves social justice by his own way.\n    ",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Crime"
+            ],
+            "rating": 8.4,
+            "episodes": [
+                {
+                    "id": "1167571",
+                    "season": 1,
+                    "epNo": 1,
+                    "url": "https://t-ca-2.24hoursuptodatecdn.net/_v9/01b3e0bf48e643923f849702a32bd97a5c4360797759b0838c8f34597271ed8bf541e616b85a255a1320417863fe1980c9c6d12d471fb6d7961711321a2d9cb1be23897428798cbcc3b97d9d706357ecaf127160cd768dfb682e9ce7eb2b448fe4b666b1fc5140d0424780d130011176a68f498a71ec8324c681732255ce3d0a/720/index.m3u8",
+                    "sub": "https://cc.2cdns.com/26/7f/267fbca84e18437aa7c7df80179b0751/eng-2.vtt"
+                },
+                {
+                    "id": "1167624",
+                    "season": 1,
+                    "epNo": 2,
+                    "url": "https://t-ca-2.24hoursuptodatecdn.net/_v9/d46833bdaecfa54902e5c9678d7f2471ab1065338a3aab100de496877817823084c15996af1fa56311442b99de6f81b3546fa15c1644f6f18a58520a3655d51f1879f09df4dcb6587b62cdbf33bcf496b50526fb8d9b84e8c1252a566e36f7b572ef4871f667f0fa941761e9e594d42d4efc4c29ee5e5a61ef376a744986fa6f/720/index.m3u8",
+                    "sub": "https://cc.2cdns.com/cf/4c/cf4c07671d316d3a134daaca64bed48a/eng-2.vtt"
+                },
+                {
+                    "id": "1168337",
+                    "season": 1,
+                    "epNo": 3,
+                    "url": "https://t-ca-2.24hoursuptodatecdn.net/_v9/ca4c2031b039c6673e9665649689bcc173cc03183098211addef7a965580761c73fcbe65d5447e4494599631873e879f049ac2b6efdeabcd4835e4c38fdb95694a1fc386a1825fbaaab1eea1ebf2f99bd4cca1cad798e0ffa88b4556c129c8c1ca8fe6d2fd61ee44b273866bc328c9ee2202ff8c509269c51d2c0eb94ca163e9/720/index.m3u8",
+                    "sub": "https://cc.2cdns.com/6e/6c/6e6c0f8909bb7903dfb3fae7b95e718f/eng-2.vtt"
+                },
+                {
+                    "id": "1168391",
+                    "season": 1,
+                    "epNo": 4,
+                    "url": "https://t-eu-1.artdesigncdn.net/_v9/86ce5a9d8cc1667aae5aa9a2a7915e456859528ab99c91f09ed33b45371be9019e9195a64df138b750bb2c34eb88600ab2c597fd10f78591a8679bdda0c68df9bb2140010df508da921986a910d7bc8a41ca7c38d763f0f2fd9ae336a632784c2fdbaa03294b5debc683e08f6f296e5aa02abe961aab091279417b077af52568/720/index.m3u8",
+                    "sub": "https://cc.2cdns.com/91/e0/91e088bae24f8a8e24688bd4ae3af822/eng-2.vtt"
+                },
+                {
+                    "id": "1169276",
+                    "season": 1,
+                    "epNo": 5,
+                    "url": "https://t-ca-1.dokicloud.one/_v9/3dec8d89abeefbca06c63309b449bc4e8dac6fdfb14983524b9f9b2b43a5555085eebcc825baa3abf3379522e0de2d7a38033bae98d0c9a97968dff5b0aeb4c2d152f084a46f00ab9994b98dc396d8c9761058ec0f30590cb524c1244069db010ae7f2021291b12b6b187fc8d09d1cef5c84d62af75c99ef5c1172f4177c9104/720/index.m3u8",
+                    "sub": null
+                },
+                {
+                    "id": "1169311",
+                    "season": 1,
+                    "epNo": 6,
+                    "url": "https://t-ca-1.dokicloud.one/_v9/9a90b02d2a1ad0f1a7f96ff6ffc3e43036cc185c818ed275c0d5ef07f54eadb0bcb9187a3fa64324688d3ea16b8c055c0954ec7bef271b459824793848e75fabf6824470a11f652a76bbac588a1cb1f494d60481afaa800f084ccde2aaf36da535d55ba12065022b5c237043aadb6f233780d3f5fe157861f4983974d8d4b375/720/index.m3u8",
+                    "sub": "https://cc.2cdns.com/10/18/1018b2fdbadef605e2a5bbe2024b4b12/eng-2.vtt"
+                },
+                {
+                    "id": "1170229",
+                    "season": 1,
+                    "epNo": 7,
+                    "url": "https://t-ca-1.dokicloud.one/_v9/bf73b5c989cb7d635846d288ddaad7a9fff2087c66c4501affe1e63b91fba71d2af11001261f45cdb27d1cd8146409421d8d99d667ec75c5131be1b3269b0a98e45c58ed0e81bed72251385b8d4e6baca7e1fe68c3f8de2b92fada41f66a3bb277145a4eda5518008abd872f2e763e4e386427377013e61d49ffcd67016ea3d6/720/index.m3u8",
+                    "sub": "https://cc.2cdns.com/84/4f/844f86f0a470cc951977d05f4841bda3/eng-2.vtt"
+                },
+                {
+                    "id": "1170411",
+                    "season": 1,
+                    "epNo": 8,
+                    "url": "https://t-eu-2.magnewscontent.org/_v9/9e4f4cef3e8e329f411a39877e65370d5c727d6b84bdb7a1a7013220c1024ad71a538c4efa33ea08468ffcd166a758183d90aaa5d30f88925b7a43d673c935fbb29c1434058004218a0db565aa055c5cdd7ea016ff650809c0e5cf301d96798b386845898958c1cc63a1733ba50615f681a7dc642e4330d1fc699072f2dc1113/720/index.m3u8",
+                    "sub": "https://cc.2cdns.com/26/55/26558c76c9d0b0ea372905d3dd7ba78d/eng-2.vtt"
+                },
+                {
+                    "id": "1171100",
+                    "season": 1,
+                    "epNo": 9,
+                    "url": "https://t-eu-3.onthecloudcdn.com/_v9/752088bdec58beee0a3273d93bdad73920d0d82d0299585ee34d4ab64c393fe8371f83392ff060524dfea3f8b5eed6a8ea321b85940548e57fbd98ea4d4c59748e6423140f2e962c22f3edf6287548f2a35b811d00bb35a16972a8f5babbf40b7ec827a932fd75ce41f1d023295848f733fa08afd65130eff4ba45f8a28e5295/720/index.m3u8",
+                    "sub": "https://cc.2cdns.com/75/98/759826d3dd24d5403fcb77a5ecbe2f3b/eng-2.vtt"
+                },
+                {
+                    "id": "1171130",
+                    "season": 1,
+                    "epNo": 10,
+                    "url": "https://t-ca-1.dokicloud.one/_v9/2be4ab93b1152a33587c37972c12d64020b38fd8f2a3e6dfc1795964325b84ce4caab2987e85af5446e8a0a03637c1c8a7f65ef4a8c3478d31b77d4621287fd7dcb56d3cccb7610727a14050ceb0a210711f16be2b844c527c10e605e949f3d85e77736042be5ef35b231fbcd960e0e62a18f1995c82eaa98ffb93568f1fb0f0/720/index.m3u8",
+                    "sub": "https://cc.2cdns.com/1f/30/1f30f863b86cfe0a610cb2a39f8356fc/eng-2.vtt"
+                },
+                {
+                    "id": "1171873",
+                    "season": 1,
+                    "epNo": 11,
+                    "url": "https://t-eu-2.magnewscontent.org/_v9/5816df246f11f5c5b200068cddfdd3f16e12a6c02b99b3d7a11e22942ba9317ecee479cc09bf540d210071f898b3077ae0b5f9ad78d68e6c93c32d9b748d667ebf5a8190ace92bf602055a4764164bdf24dcbc74135a57d2060942863c5de2c737df5acd5959bf0933408facc70c13a9a27e04e7917af10174c5670112a07242/720/index.m3u8",
+                    "sub": "https://cc.2cdns.com/8f/cf/8fcfac87265abe1b2506d3ee61f3db66/eng-2.vtt"
+                },
+                {
+                    "id": "1171939",
+                    "season": 1,
+                    "epNo": 12,
+                    "url": "https://t-eu-2.magnewscontent.org/_v9/b40d7411f40d2c9bfa3725c303de2f56c7c6fa46cb07e785a5d97ab2139929f567b3b73cc46166cefb883df8f83b8648d5f0428bf4828a79e36e8858bafe996ada72bb222b037c85983568d290ce024bf2ee30e5cea0af51b597efad4b95bfde7fc127949b6ed6ccc849e893f020e4282b2750016067321f12e96526f321c11b/720/index.m3u8",
+                    "sub": "https://cc.2cdns.com/02/b9/02b914bf64a3986c39de8b9f93fcd095/eng-2.vtt"
+                },
+                {
+                    "id": "1173308",
+                    "season": 1,
+                    "epNo": 13,
+                    "url": "https://t-ca-2.24hoursuptodatecdn.net/_v9/6e32c81a96e4c03677c0c57cce791f1ba0a153b0ed0d0bd89518be627b5fb024559964c18276ff6194eecd66d822e38a15ebf12c3ed2f4619ae79bee4db24c943282511501a9010dc52a79b0a334b5238f1bb3d3af86ae66d3f9ed62434fc24f297c03f222d645fb2cb15142df68718b9f76ec24fde3f9f78bfcf369a1bbf840/720/index.m3u8",
+                    "sub": "https://cc.2cdns.com/12/de/12defad9d3bd3c03da47785129524f15/eng-2.vtt"
+                },
+                {
+                    "id": "1173327",
+                    "season": 1,
+                    "epNo": 14,
+                    "url": "https://t-eu-1.artdesigncdn.net/_v9/954559e1309d2dafe5ad100d9ea0576c9bc5030f0caca58432ab0dcf0c1a45dfd4536dff075d69a0a74c900e491e4c240612b142e30bc02aed17f3ee1148d8a5b71f02c7d8203a03e7d0ed7694755497a2610c3c33132ce6eb0d0bf61f31b727692d0698d73fad3c9e134aa9b2e9a97651244a035bc4082e1ab6fc9c167f89e6/720/index.m3u8",
+                    "sub": "https://cc.2cdns.com/81/9a/819a2cde8125593a616e734e6d950c3c/eng-2.vtt"
+                },
+                {
+                    "id": "1174090",
+                    "season": 1,
+                    "epNo": 15,
+                    "url": "https://t-eu-1.artdesigncdn.net/_v9/b8fa1d8e8243b3c0513be1ac9a664cdae83e5e10d54422e9eda183eb25a6cbfa40cded401e39a6dce9bf40e3efb945c0e8e6057357b304c5da94d523785b67aed0022980abc35aa4f89de81184b414dc72d59a460808a1d554d5e8e563fc9e8cc2e17d39efb290595f6113e7eef6e163c6c17aebe020c7fea9235164412853df/720/index.m3u8",
+                    "sub": "https://cc.2cdns.com/cd/33/cd336b0fb5b9760f153a93fb3713d594/eng-2.vtt"
+                },
+                {
+                    "id": "1174127",
+                    "season": 1,
+                    "epNo": 16,
+                    "url": "https://t-eu-1.artdesigncdn.net/_v9/c489bf0070b30a014acd8f7cf95bafa074d717ff419f541dbb95f8b12c7991cb9876c524cd259eb9ff2cc66cf632fef27d334a2d36da0e633ca699f32b88481cdb17ec77f3be6b858aa210181276e68e745f8b42eea5285774aaecb89e5dc53e94a91df890bdcf9bbfaf2eef029e4b1c477b18e90000da3d804f9acd282c58c6/720/index.m3u8",
+                    "sub": "https://cc.2cdns.com/db/55/db55c91a228b2b080f37d15071b889b7/eng-2.vtt"
+                },
+                {
+                    "id": "1176397",
+                    "season": 1,
+                    "epNo": 17,
+                    "url": "https://t-eu-1.artdesigncdn.net/_v9/83e72b9ccaba217707f24dc6c11f90f381fd6b32c2b6da5f0ef00ff1d3b5b8a2445bd4383c464b3f32fc40591b2c243fe8ddb84471fb56a21df14eddc8e1b49d0a4c93bb2949d12bf0325ea0dd9acc2ddcdcf8bd2311f71212cc93f7b3dc3aacdd63ad0dd86e69a37152780fcd7f62dcc68d737d50da2665a9049d037472f86a/720/index.m3u8",
+                    "sub": "https://cc.2cdns.com/12/b0/12b0f7455468533ad0d8362b84bdf435/eng-2.vtt"
+                },
+                {
+                    "id": "1176455",
+                    "season": 1,
+                    "epNo": 18,
+                    "url": "https://t-ca-1.dokicloud.one/_v9/b9cb4e7ef0e59c56359d48b723a6b9a29c685b4026515dfc92f547aee7a532d2c781e15bbfa9f27ee1d61672e67186cb6e9a0388232c32e80f46a3423aa224efdf02b7ef1c9ee88042333c664b33113453604c8f0647eda333de159a0c6cd147b2c8b2503e050831e426d559216428f11091e7f251ff820162053fecb2ef8de9/720/index.m3u8",
+                    "sub": "https://cc.2cdns.com/06/6c/066ca579a40e66091dc7b1f00a0a8924/eng-2.vtt"
+                },
+                {
+                    "id": "1177314",
+                    "season": 1,
+                    "epNo": 19,
+                    "url": "https://t-eu-3.onthecloudcdn.com/_v9/db4679a5b3a2e06770cf4ba6e635afe6aa50f10ce84788393bfac08fd29c0a2decab53cd8dfa94efd7b80c80f1d5c729c7d180408785991ffbd63f5b0a05ad06791d8e019ee8d92a3af3cba31f3cf16ed7f6fcc9d5c55f3cfaa1daae122cb910c129e54d8bae3c1322196cc4ae86f0c0b90b1e156ede15e6639f12603f58383f/720/index.m3u8",
+                    "sub": "https://cc.2cdns.com/69/b2/69b244b8adaf6546c6ba1b871fadf422/eng-2.vtt"
+                },
+                {
+                    "id": "1177434",
+                    "season": 1,
+                    "epNo": 20,
+                    "url": "https://t-ca-2.24hoursuptodatecdn.net/_v9/f8b6e7c281d840d4e50265e8c72ad356c9716a00938441e7d01e23bf3e2d1386bcda9d320f2f0c89f42c4ec0d7eca2b67b61832782f7d39cb17daec1ecb88c6add6b63db95bfa8e16bdf7adf5058824f5d3eeac2fd8ac189cc973434362b33b0a428345ff89aaa3b9d3ac1dca6db50a69b8438c2ab790ab5b2b743a432076a3d/720/index.m3u8",
+                    "sub": "https://cc.2cdns.com/c4/20/c420def507928285f001672742ce217a/eng-2.vtt"
+                }
+            ]
+        }
     }
 }

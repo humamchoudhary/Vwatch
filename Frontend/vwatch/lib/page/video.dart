@@ -86,7 +86,7 @@ class _SamplePlayerState extends State<SamplePlayer> {
   @override
   void initState() {
     super.initState();
-    print("c");x
+    print("c");
     flickManager = FlickManager(
       videoPlayerController:
           VideoPlayerController.network("https://t-ca-2.24hoursuptodatecdn.net/_v9/01b3e0bf48e643923f849702a32bd97a5c4360797759b0838c8f34597271ed8bf541e616b85a255a1320417863fe1980c9c6d12d471fb6d7961711321a2d9cb1be23897428798cbcc3b97d9d706357ecaf127160cd768dfb682e9ce7eb2b448fe4b666b1fc5140d0424780d130011176a68f498a71ec8324c681732255ce3d0a/720/index.m3u8"),
