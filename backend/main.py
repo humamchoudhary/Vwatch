@@ -1,5 +1,5 @@
 import urllib
-from flask import Flask, jsonify, make_response, request, send_file, render_template,Response
+from flask import Flask, jsonify, make_response, request, send_file, render_template, Response
 import json
 import requests
 from tinydb import TinyDB, Query
@@ -13,6 +13,11 @@ import os
 response = ''
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = os.path.join("")
+db = TinyDB("database.json")
+query = Query()
+movies_table = db.table("Movie_data")
+show_table = db.table("Show_data")
+anime_table = db.table("Anime_data")
 
 
 @app.route('/login', methods=['POST'])
@@ -78,10 +83,6 @@ def get_image():
     return send_file(filename, mimetype='image/gif')
 
 
-db = TinyDB("database.json")
-query = Query()
-
-
 @app.route('/get_eps')
 def get_eps():
     epsno = request.args.get('epsno')
@@ -98,39 +99,42 @@ def get_eps():
 def get_history():
     player = Watch_history()
     player.Add_history({
-      "id": "movie/watch-avengers-age-of-ultron-19729",
-      "title": "Avengers: Age of Ultron",
-      "coverImg":
-          "https://img.flixhq.to/xxrz/250x400/379/76/e8/76e8bc195d6dff37d1fbbf815ce467e9/76e8bc195d6dff37d1fbbf815ce467e9.jpg",
-      "genres": ["Action", "Adventure", "Science Fiction"],
+        "id": "movie/watch-avengers-age-of-ultron-19729",
+        "title": "Avengers: Age of Ultron",
+        "coverImg":
+        "https://img.flixhq.to/xxrz/250x400/379/76/e8/76e8bc195d6dff37d1fbbf815ce467e9/76e8bc195d6dff37d1fbbf815ce467e9.jpg",
+        "genres": ["Action", "Adventure", "Science Fiction"],
     })
     player.Add_history({
-      "id": "movie/watch-avengers-age-of-ultron-19729",
-      "title": "Avengers: Age of Ultron",
-      "coverImg":
-          "https://img.flixhq.to/xxrz/250x400/379/76/e8/76e8bc195d6dff37d1fbbf815ce467e9/76e8bc195d6dff37d1fbbf815ce467e9.jpg",
-      "genres": ["Action", "Adventure", "Science Fiction"],
+        "id": "movie/watch-avengers-age-of-ultron-19729",
+        "title": "Avengers: Age of Ultron",
+        "coverImg":
+        "https://img.flixhq.to/xxrz/250x400/379/76/e8/76e8bc195d6dff37d1fbbf815ce467e9/76e8bc195d6dff37d1fbbf815ce467e9.jpg",
+        "genres": ["Action", "Adventure", "Science Fiction"],
     })
     player.Add_history({
-      "id": "movie/watch-avengers-age-of-ultron-19729",
-      "title": "Avengers: Age of Ultron",
-      "coverImg":
-          "https://img.flixhq.to/xxrz/250x400/379/76/e8/76e8bc195d6dff37d1fbbf815ce467e9/76e8bc195d6dff37d1fbbf815ce467e9.jpg",
-      "genres": ["Action", "Adventure", "Science Fiction"],
+        "id": "movie/watch-avengers-age-of-ultron-19729",
+        "title": "Avengers: Age of Ultron",
+        "coverImg":
+        "https://img.flixhq.to/xxrz/250x400/379/76/e8/76e8bc195d6dff37d1fbbf815ce467e9/76e8bc195d6dff37d1fbbf815ce467e9.jpg",
+        "genres": ["Action", "Adventure", "Science Fiction"],
     })
     player.Add_history({
-      "id": "movie/watch-avengers-age-of-ultron-19729",
-      "title": "Avengers: Age of Ultron",
-      "coverImg":
-          "https://img.flixhq.to/xxrz/250x400/379/76/e8/76e8bc195d6dff37d1fbbf815ce467e9/76e8bc195d6dff37d1fbbf815ce467e9.jpg",
-      "genres": ["Action", "Adventure", "Science Fiction"],
+        "id": "movie/watch-avengers-age-of-ultron-19729",
+        "title": "Avengers: Age of Ultron",
+        "coverImg":
+        "https://img.flixhq.to/xxrz/250x400/379/76/e8/76e8bc195d6dff37d1fbbf815ce467e9/76e8bc195d6dff37d1fbbf815ce467e9.jpg",
+        "genres": ["Action", "Adventure", "Science Fiction"],
     })
-   
-    response= jsonify({"data":player.get_all()})
+
+    response = jsonify({"data": player.get_all()})
     return make_response(response)  # prints "video3.mp4"
 
+app.route("/getMovies", methods=["GET"])
+def getMovies():
+    response = jsonify({"result": movies_table.all()})
+    return make_response(response)
 
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")
-
