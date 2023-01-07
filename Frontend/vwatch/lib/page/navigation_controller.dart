@@ -1,6 +1,7 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:vwatch/main.dart';
+import 'package:vwatch/page/anime.dart';
 import 'package:vwatch/page/home.dart';
 import 'package:vwatch/page/movie.dart';
 
@@ -52,7 +53,7 @@ class NavigationPageState extends State<NavigationPage> {
               watchQueue: widget.watchQueue,
               img: widget.img,
             ),
-            const MoviePage(),
+            const AnimePage(),
             const MoviePage(),
             const MoviePage(),
           ],

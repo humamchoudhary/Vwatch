@@ -8,18 +8,18 @@ import 'package:vwatch/main.dart';
 
 import '../Components/color.dart';
 
-class MoviePage extends StatefulWidget {
-  const MoviePage({super.key});
+class AnimePage extends StatefulWidget {
+  const AnimePage({super.key});
 
   @override
-  State<MoviePage> createState() => _MoviePageState();
+  State<AnimePage> createState() => _AnimePageState();
 }
 
-class _MoviePageState extends State<MoviePage> {
+class _AnimePageState extends State<AnimePage> {
   List movie_data = [];
   _getData() async {
     print("$URL/getMovies");
-    final repsonse = await http.get(Uri.parse("$URL/getAllMovies"));
+    final repsonse = await http.get(Uri.parse("$URL/getAllAnime"));
     final decode = json.decode(repsonse.body);
     print(decode);
     setState(() {
@@ -74,7 +74,7 @@ class _MoviePageState extends State<MoviePage> {
               shrinkWrap: true,
               mainAxisSpacing: 0,
               crossAxisSpacing: 0,
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               crossAxisCount: 2,
               childAspectRatio: 0.65,
               children: List.generate(movie_data.length, (index) {
@@ -82,18 +82,24 @@ class _MoviePageState extends State<MoviePage> {
                 return Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Card(
-                      color: AccentColor,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      clipBehavior: Clip.antiAlias,
-                      child: Image.network(
-                        movie["coverImg"],
-                        fit: BoxFit.cover,
-                        filterQuality: FilterQuality.high,
-                        
-                        // height: 220,
-                        // width: 220 * 0.625,
+                    Container(
+                      constraints: const BoxConstraints(
+                          minHeight: 270,
+                          minWidth: 270 * 0.625,
+                          maxHeight: 280,
+                          maxWidth: 280 * 0.625),
+                      child: Card(
+                        color: AccentColor,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        clipBehavior: Clip.antiAlias,
+                        child: Image.network(
+                          movie["coverImg"],
+                          fit: BoxFit.cover,
+                          filterQuality: FilterQuality.high,
+                          height: 280,
+                          width: 280 * 0.625,
+                        ),
                       ),
                     ),
                   ],

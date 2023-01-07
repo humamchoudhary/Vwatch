@@ -14,6 +14,7 @@
                 "Animation"
             ],
             "rating": 8.2,
+            "coverImg": "https://img.flixhq.to/xxrz/250x400/379/b0/e4/b0e4780f952163abbfec3b614fb25a6e/b0e4780f952163abbfec3b614fb25a6e.jpg",
             "episodes": [
                 {
                     "id": "928225",
@@ -4188,60 +4189,6 @@
             ]
         },
         "7": {
-            "id": "tv/watch-wedding-season-87679",
-            "title": "Wedding Season",
-            "coverImg": "https://img.flixhq.to/xxrz/250x400/379/2b/9b/2b9beae18cb82f322f1a7ac42d7e1c25/2b9beae18cb82f322f1a7ac42d7e1c25.jpg",
-            "desc": "\n        Katie and Stefan fall for each other at a wedding and begin an affair, despite Katie already having a fianc\u00e9. Two months later at Katie\u2019s wedding, her new husband and his entire family are murdered. Stefan and Kate blame each other and the search for the truth begins.\n    ",
-            "genres": [
-                "Action",
-                "Adventure",
-                "Comedy"
-            ],
-            "rating": 6.6,
-            "episodes": [
-                {
-                    "id": "1291477",
-                    "epNo": 1,
-                    "url": "https://t-ca-2.24hoursuptodatecdn.net/_v9/248b98a7cf7fa85cb66c5050cb82c6d9aa25d9b5441916cfc5abf7be61dcffe14b3f3e4b624024d8459c3537e602c26670905e6acc1e7baf1b927ad22901aa58aabb5ffe6329dc84a1c0668c9577a17b35da5203392edca0e7f56aeb663d2679b4ddf0b122d59e6a01782f08f45f4dec7b7f08546b679095641bd999b07b64c2/720/index.m3u8"
-                },
-                {
-                    "id": "1291480",
-                    "epNo": 2,
-                    "url": "https://t-ca-1.dokicloud.one/_v9/df01041443366490c17c29fed869e06fad5602ea59ac03d3a84134e89601fc17cf08045ff42495a809ed250e05191a123d28c2e14625c98fa861bafa9ff90b4a81ecede87de50b45a008492e1b78f4ef76e6e1491b44e423a3b8b8f72dc284cf3ecc23da977bdda1cd76ae5c9558a48613e812e234fa85c828b141af16c6c37d/720/index.m3u8"
-                },
-                {
-                    "id": "1291483",
-                    "epNo": 3,
-                    "url": "https://t-ca-1.dokicloud.one/_v9/acfbc26fb86513a6055ca598c963510b0b949e071fc1d5693071d390086ffe62fbc67085961fecb071d830a615202c6dd18dff55d14105ef6c98d9d126bf9f900c758525c73e45f1b8cd84df3604b913e9cb57f04c62ac7987338826eb0f7d950677610ba830be48298f7b79765067ebe0ab951f13bcc5968e8ef48d7706ffee/720/index.m3u8"
-                },
-                {
-                    "id": "1291486",
-                    "epNo": 4,
-                    "url": "https://t-eu-3.onthecloudcdn.com/_v9/1ff8bac8257ddf1f3523107ca9593a1ab3190c1024ed2fa85485e75ad8a0923cb0c7d04c96fd2115855aa1dccfd0f603dee7a5b55e17e177aefe215191c4c88d122c503f794470c2f2c0cfeb76f5d1f722c6fac45b7a5c6b2a5248b139f74de3bf7e1186536d011f7b4dc4651e42c9a4dec0ec721d9ffc915f4be05d746a7fa9/720/index.m3u8"
-                },
-                {
-                    "id": "1291489",
-                    "epNo": 5,
-                    "url": "https://t-eu-3.onthecloudcdn.com/_v9/e989a115092bdc13afdac37b8e4b1cea2347899afe51d0a1113a754123830f990c3ea56fa1236357c3e14ccd2a3d18d291b6a2c327b8c490a0d5b55cd8dd5b295df1fe8b9a1f48561062218a47291b90633659ea7b65fc3ce2aef1ed44ec5074d1b95b36d335d60ed00eb050880e9e5e49e192acb297f539035a52a1958adccc/720/index.m3u8"
-                },
-                {
-                    "id": "1291492",
-                    "epNo": 6,
-                    "url": "https://t-ca-1.dokicloud.one/_v9/1466dc4ef8a0f82077e737b6127f0155c0b537c0fce30ab05c33a47e54c2224fca41459c06b87b95cdcd4f38f2a7f0b86b7d9a93b2acb610425c5c1b029ade379172ff0eba62558190276072b5c41d56b89144c6c13ab6525f5af77068dfd2a67fa3fbf1ec96acdec70651120971bf349690f2d6d57c682ac80cbf9a78b4d1a9/720/index.m3u8"
-                },
-                {
-                    "id": "1291495",
-                    "epNo": 7,
-                    "url": "https://t-eu-1.artdesigncdn.net/_v9/63ff81e26b83684dbab9231828bb6ce95366f1e80b764604435c4ce60dfded1dd28c1d38da96f5ec40052dbac0867001e9451a05440b42d5f41757946f634149f774819bb3b3cf015cc5555908988beae206b986937d89de6ad2292f1dfbd36bac265e7cce255f8f889204ccbd0622c9e5fb4c253975c6a0a5f0656eb3ea1aac/720/index.m3u8"
-                },
-                {
-                    "id": "1291498",
-                    "epNo": 8,
-                    "url": "https://t-eu-1.artdesigncdn.net/_v9/67eff7b80ec9a61eab6ca7ef7dafcba795c122dfc4aaab5da39ff6e873ff99675838b8c78f0659d7bab34a9de6701762dbf14828781badec9daca68a9cfaca5661df695b9aa791ce459d544ff3bb8910439745f06c9ab3cc67c18db97e2e0f3eb8d028cbb0599f4f835473e23e145f76fddc919e185536677c343aaddb866dc8/720/index.m3u8"
-                }
-            ]
-        },
-        "10": {
             "id": "tv/watch-hunter-x-hunter-36456",
             "title": "Hunter x Hunter",
             "coverImg": "https://img.flixhq.to/xxrz/250x400/379/f2/13/f213cf9d2e6d1e7d53a00bc5235db3f3/f213cf9d2e6d1e7d53a00bc5235db3f3.jpg",
@@ -5171,6 +5118,60 @@
                     "season": 1,
                     "epNo": 16,
                     "url": "https://t-ca-2.24hoursuptodatecdn.net/_v9/a533946c27fedc8f009ca8296754df17b0122152c70defab5165dca8d28997036e2f40b65914804cd7a76aba43100386546590ded22ce5dc9ddf3e134d0fa936dec42df9f10e9efb32b78b2b61317e9744ebb6a6830da2772c0a817cb4364b0348fd808f8af64761aba627fd1aef3018310e3b6125ab3ebc1c17bd0b56485f9f/720/index.m3u8"
+                }
+            ]
+        },
+        "3": {
+            "id": "tv/watch-wedding-season-87679",
+            "title": "Wedding Season",
+            "coverImg": "https://img.flixhq.to/xxrz/250x400/379/2b/9b/2b9beae18cb82f322f1a7ac42d7e1c25/2b9beae18cb82f322f1a7ac42d7e1c25.jpg",
+            "desc": "\n        Katie and Stefan fall for each other at a wedding and begin an affair, despite Katie already having a fianc\u00e9. Two months later at Katie\u2019s wedding, her new husband and his entire family are murdered. Stefan and Kate blame each other and the search for the truth begins.\n    ",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Comedy"
+            ],
+            "rating": 6.6,
+            "episodes": [
+                {
+                    "id": "1291477",
+                    "epNo": 1,
+                    "url": "https://t-ca-2.24hoursuptodatecdn.net/_v9/248b98a7cf7fa85cb66c5050cb82c6d9aa25d9b5441916cfc5abf7be61dcffe14b3f3e4b624024d8459c3537e602c26670905e6acc1e7baf1b927ad22901aa58aabb5ffe6329dc84a1c0668c9577a17b35da5203392edca0e7f56aeb663d2679b4ddf0b122d59e6a01782f08f45f4dec7b7f08546b679095641bd999b07b64c2/720/index.m3u8"
+                },
+                {
+                    "id": "1291480",
+                    "epNo": 2,
+                    "url": "https://t-ca-1.dokicloud.one/_v9/df01041443366490c17c29fed869e06fad5602ea59ac03d3a84134e89601fc17cf08045ff42495a809ed250e05191a123d28c2e14625c98fa861bafa9ff90b4a81ecede87de50b45a008492e1b78f4ef76e6e1491b44e423a3b8b8f72dc284cf3ecc23da977bdda1cd76ae5c9558a48613e812e234fa85c828b141af16c6c37d/720/index.m3u8"
+                },
+                {
+                    "id": "1291483",
+                    "epNo": 3,
+                    "url": "https://t-ca-1.dokicloud.one/_v9/acfbc26fb86513a6055ca598c963510b0b949e071fc1d5693071d390086ffe62fbc67085961fecb071d830a615202c6dd18dff55d14105ef6c98d9d126bf9f900c758525c73e45f1b8cd84df3604b913e9cb57f04c62ac7987338826eb0f7d950677610ba830be48298f7b79765067ebe0ab951f13bcc5968e8ef48d7706ffee/720/index.m3u8"
+                },
+                {
+                    "id": "1291486",
+                    "epNo": 4,
+                    "url": "https://t-eu-3.onthecloudcdn.com/_v9/1ff8bac8257ddf1f3523107ca9593a1ab3190c1024ed2fa85485e75ad8a0923cb0c7d04c96fd2115855aa1dccfd0f603dee7a5b55e17e177aefe215191c4c88d122c503f794470c2f2c0cfeb76f5d1f722c6fac45b7a5c6b2a5248b139f74de3bf7e1186536d011f7b4dc4651e42c9a4dec0ec721d9ffc915f4be05d746a7fa9/720/index.m3u8"
+                },
+                {
+                    "id": "1291489",
+                    "epNo": 5,
+                    "url": "https://t-eu-3.onthecloudcdn.com/_v9/e989a115092bdc13afdac37b8e4b1cea2347899afe51d0a1113a754123830f990c3ea56fa1236357c3e14ccd2a3d18d291b6a2c327b8c490a0d5b55cd8dd5b295df1fe8b9a1f48561062218a47291b90633659ea7b65fc3ce2aef1ed44ec5074d1b95b36d335d60ed00eb050880e9e5e49e192acb297f539035a52a1958adccc/720/index.m3u8"
+                },
+                {
+                    "id": "1291492",
+                    "epNo": 6,
+                    "url": "https://t-ca-1.dokicloud.one/_v9/1466dc4ef8a0f82077e737b6127f0155c0b537c0fce30ab05c33a47e54c2224fca41459c06b87b95cdcd4f38f2a7f0b86b7d9a93b2acb610425c5c1b029ade379172ff0eba62558190276072b5c41d56b89144c6c13ab6525f5af77068dfd2a67fa3fbf1ec96acdec70651120971bf349690f2d6d57c682ac80cbf9a78b4d1a9/720/index.m3u8"
+                },
+                {
+                    "id": "1291495",
+                    "epNo": 7,
+                    "url": "https://t-eu-1.artdesigncdn.net/_v9/63ff81e26b83684dbab9231828bb6ce95366f1e80b764604435c4ce60dfded1dd28c1d38da96f5ec40052dbac0867001e9451a05440b42d5f41757946f634149f774819bb3b3cf015cc5555908988beae206b986937d89de6ad2292f1dfbd36bac265e7cce255f8f889204ccbd0622c9e5fb4c253975c6a0a5f0656eb3ea1aac/720/index.m3u8"
+                },
+                {
+                    "id": "1291498",
+                    "epNo": 8,
+                    "url": "https://t-eu-1.artdesigncdn.net/_v9/67eff7b80ec9a61eab6ca7ef7dafcba795c122dfc4aaab5da39ff6e873ff99675838b8c78f0659d7bab34a9de6701762dbf14828781badec9daca68a9cfaca5661df695b9aa791ce459d544ff3bb8910439745f06c9ab3cc67c18db97e2e0f3eb8d028cbb0599f4f835473e23e145f76fddc919e185536677c343aaddb866dc8/720/index.m3u8"
                 }
             ]
         }

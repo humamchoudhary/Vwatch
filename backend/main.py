@@ -133,11 +133,17 @@ def get_history():
 @app.route("/", methods=["GET"])
 def main():
     return render_template("index.html")
-@app.route("/getMovies", methods=["GET"])
+
+
+@app.route("/getAllMovies", methods=["GET"])
 def getMovies():
     response = jsonify({"result": movies_table.all()})
     return make_response(response)
 
+@app.route("/getAllAnime",methods = ["GET"])
+def getAllAnime():
+    response = jsonify({"result": anime_table.all()})
+    return make_response(response)
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")
