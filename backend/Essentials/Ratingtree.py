@@ -59,7 +59,7 @@ class Binarytree():
             table = TinyDB("database.json").table("Show_data")
             q = Query()
             for data in table.search(q.rating == data):
-                self.root.ids.append(data["showid"])
+                self.root.ids.append(data["id"])
 
 
         elif data < self.root.data:
@@ -68,7 +68,7 @@ class Binarytree():
              table = TinyDB("database.json").table("Show_data")
              q = Query()
              for data in table.search(q.rating == data):
-                self.root.ids.append(data["showid"])
+                self.root.ids.append(data["id"])
 
             else:
                 self._insert(data, self.root.left)
@@ -79,7 +79,7 @@ class Binarytree():
              table = TinyDB("database.json").table("Show_data")
              q = Query()
              for data in table.search(q.rating == data):
-                self.root.ids.append(data["showid"])
+                self.root.ids.append(data["id"])
 
             else:
                 self._insert(data, self.root.right)
@@ -94,7 +94,7 @@ class Binarytree():
             table = TinyDB("database.json").table("Anime_data")
             q = Query()
             for data in table.search(q.rating == data):
-                self.root.ids.append(data["animeID"])
+                self.root.ids.append(data["id"])
 
 
         elif data < self.root.data:
@@ -103,7 +103,7 @@ class Binarytree():
              table = TinyDB("database.json").table("Anime_data")
              q = Query()
              for data in table.search(q.rating == data):
-                self.root.ids.append(data["animeID"])
+                self.root.ids.append(data["id"])
 
             else:
                 self._insert(data, self.root.left)
@@ -111,10 +111,10 @@ class Binarytree():
         elif data > self.root.data:
             if self.root.right is None:
              self.root.right = Node(data)
-             table = TinyDB("database.json").table("Movie_data")
+             table = TinyDB("database.json").table("Anime_data")
              q = Query()
              for data in table.search(q.rating == data):
-                self.root.ids.append(data["animeID"])
+                self.root.ids.append(data["id"])
 
             else:
                 self._insert(data, self.root.right)
@@ -129,7 +129,9 @@ class Binarytree():
     #     return json.dumps(serialize(tree.self.root))
 
 tree_mov = Binarytree()
-tree_mov.insert_mov(5.6)
+tree_show = Binarytree()
+tree_anime = Binarytree()
+tree_mov.insert_mov(8.4)
 
 print(tree_mov.root.ids)
 
