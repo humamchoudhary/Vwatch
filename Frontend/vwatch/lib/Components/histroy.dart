@@ -20,6 +20,11 @@ class _HistoryState extends State<History> {
     get_history();
     super.initState();
   }
+  @override
+  void dispose() {
+    
+    super.dispose();
+  }
 
   get_history() async {
     final repsonse = await http.get(
@@ -27,7 +32,7 @@ class _HistoryState extends State<History> {
     );
     final decode = json.decode(repsonse.body) as Map<String, dynamic>;
     setState(() {
-      print(decode);
+      // print(decode);
       history = decode["data"];
     });
   }

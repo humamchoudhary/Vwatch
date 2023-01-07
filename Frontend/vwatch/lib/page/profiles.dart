@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:vwatch/main.dart';
 import 'package:vwatch/page/home.dart';
+import 'package:vwatch/page/navigation_controller.dart';
 
 class ProfilesPage extends StatefulWidget {
   final List profiles;
@@ -57,7 +58,7 @@ class _ProfilesPageState extends State<ProfilesPage> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          HomePage(
+                                          NavigationPage(
                                             username: widget.profiles[index]["username"],
                                             history: widget.profiles[index]["history"],
                                             watchQueue: widget.profiles[index]["watchlist"],
