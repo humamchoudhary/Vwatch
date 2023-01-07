@@ -101,7 +101,8 @@ class _MoviePageState extends State<MoviePage> {
                                           trailer:movie["url"],
                                           genres:movie["genres"],
                                           cover:movie["coverImg"],
-                                          rating:movie["rating"]
+                                          rating:movie["rating"],
+                                          desc:movie["desc"],
                                          )
                                          ));
                         },

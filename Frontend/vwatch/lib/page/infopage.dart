@@ -5,6 +5,7 @@ import 'package:vwatch/main.dart';
 
 class InfoPage extends StatefulWidget {
   final String name;
+  final String desc;
   final String id;
   final List eps;
   final String trailer;
@@ -19,7 +20,8 @@ class InfoPage extends StatefulWidget {
       required this.trailer,
       required this.genres,
       required this.cover,
-      required this.rating});
+      required this.rating,
+      required this.desc});
 
   @override
   State<InfoPage> createState() => _InfoPageState();
@@ -33,17 +35,15 @@ class _InfoPageState extends State<InfoPage> {
       backgroundColor: BackgroundColor,
       appBar: AppBar(
         elevation: 0,
-        leading: Container(),
+        // leading: Container(),
         backgroundColor: BackgroundColor,
         centerTitle: true,
         title: Text(
-          "${widget.name}",
+          widget.name,
           textAlign: TextAlign.center,
           style: GoogleFonts.poppins(
             textStyle: TextStyle(
-                color: HexColor("#AAB1C2"),
-                fontSize: 18,
-                fontWeight: FontWeight.bold),
+                color: WhiteColor, fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ),
       ),
@@ -51,33 +51,96 @@ class _InfoPageState extends State<InfoPage> {
         child: Column(
           children: [
             Container(
-              color: Colors.amber,
+              color: AccentColor,
               width: screensize.width,
               height: 250,
               child: Padding(
-                padding: EdgeInsets.all(10),
-                child: Card(
-                  color: AccentColor,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  clipBehavior: Clip.antiAlias,
-                  child: SizedBox(
-                    height: 100,
-                    width: 100 * 0.625,
-                    child: Image.network(
-                      widget.cover,
-                      fit: BoxFit.contain,
-                      filterQuality: FilterQuality.high,
-                      height: 250,
-                      width: 250 * 0.625,
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Card(
+                      color: AccentColor,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5)),
+                      clipBehavior: Clip.antiAlias,
+                      child: SizedBox(
+                        child: Image.network(
+                          widget.cover,
+                          fit: BoxFit.contain,
+                          filterQuality: FilterQuality.high,
+                        ),
+                      ),
                     ),
-                  ),
+                    Center(
+                      child: SizedBox(
+                        width: screensize.width / 2,
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                widget.name,
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.poppins(
+                                  textStyle: TextStyle(
+                                      color: WhiteColor,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              Flexible(
+                                child: Text(
+                                  widget.desc,
+                                  softWrap: true,
+                                  textAlign: TextAlign.justify,
+                                  style: GoogleFonts.poppins(
+                                    textStyle: TextStyle(
+                                      color: WhiteColor,
+                                      fontSize: 10,
+                                    ),
+                                  ),
+                                  maxLines: 10,
+                                ),
+                              ),
+                            ]),
+                      ),
+                    )
+                  ],
                 ),
               ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left:8,right: 8),
+              child: Container(
+                  height: screensize.height - 250,
+                  child: ListView.separated(
+                    shrinkWrap: true,
+                    itemBuilder: itemBuilder,
+                    itemCount: widget.eps.length,
+                    separatorBuilder: (BuildContext context, int index) {
+                      return const Divider(height: 2,);
+                    },
+                  )),
             )
           ],
         ),
       ),
+    );
+  }
+
+  Widget itemBuilder(BuildContext context, int index) {
+    return ListTile(
+      tileColor: AccentColor,
+      title: Text(
+        widget.eps.length == 1 ? widget.name : "Episode $index",
+        style: GoogleFonts.poppins(
+          textStyle: TextStyle(
+              color: WhiteColor, fontSize: 14, fontWeight: FontWeight.w400),
+        ),
+      ),
+      trailing: IconButton(icon: const Icon(Icons.play_circle_outline_rounded), onPressed: () {  },color: CTAColor,),
     );
   }
 }
