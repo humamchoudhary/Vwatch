@@ -25,8 +25,17 @@ class LinkedList:
         itr.next = Node(data)
 
 
-    def prevep(self):
-        pass
+    def prevep(self,eps_no,token,profilename):
+        if self.head == None:
+            return "List is empty"
+            
+            
+        itr = self.head
+        while itr:
+            if itr.next.data['epNo'] == eps_no:
+                return itr.data["url"]
+                
+            itr = itr.next
 
     def nextep(self,eps_no,token,profilename):
 
@@ -36,7 +45,7 @@ class LinkedList:
             
         itr = self.head
         while itr:
-            if itr.data['number'] == eps_no:
+            if itr.data['epNo'] == eps_no:
                 print(itr.next.data["url"])
                 return self.complete(eps_no,token,profilename)
             itr = itr.next
@@ -48,8 +57,7 @@ class LinkedList:
             - Search next eps in database
             - Complete The current eps
         """
-        #return self.head.next.data["url"]  #ik its wrong just checking if the func ca be called
-
+        
     def complete(self,eps_no,token,profilename):
         with open(f'{token}.pkl', 'rb') as f:
             usertree = pickle.load(f)
