@@ -9,15 +9,7 @@ class Node():
         self.data = data
         self.left = None
         self.right = None
-        self.id = ['movie/watch-san-andreas-19601',
-                   'movie/watch-maggie-18119',
-                   'movie/watch-heaven-knows-mr-allison-2902',
-                   'movie/watch-the-little-death-9725',
-                   'movie/watch-san-andreas-19601',
-                   'movie/watch-heaven-knows-mr-allison-2902',
-                   'movie/watch-ricki-and-the-flash-11576',
-                   'tv/watch-freedom-26211',
-                   'movie/watch-maggie-18119']
+        self.ids  = []
 
 
 class Binarytree():
