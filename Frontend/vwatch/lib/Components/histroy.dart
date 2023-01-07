@@ -20,10 +20,17 @@ class _HistoryState extends State<History> {
     get_history();
     super.initState();
   }
+
   @override
   void dispose() {
-    
     super.dispose();
+  }
+
+  @override
+  void setState(fn) {
+    if (mounted) {
+      super.setState(fn);
+    }
   }
 
   get_history() async {

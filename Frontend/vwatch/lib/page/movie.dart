@@ -28,6 +28,18 @@ class _MoviePageState extends State<MoviePage> {
   }
 
   @override
+  void setState(fn) {
+    if (mounted) {
+      super.setState(fn);
+    }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   void initState() {
     _getData();
     // TODO: implement initState
@@ -57,11 +69,16 @@ class _MoviePageState extends State<MoviePage> {
               ),
             ),
             body: GridView.count(
+              shrinkWrap: true,
               mainAxisSpacing: 0,
+              crossAxisSpacing: 0,
+              padding: EdgeInsets.all(20),
               crossAxisCount: 2,
+              childAspectRatio: 0.65,
               children: List.generate(movie_data.length, (index) {
                 var movie = movie_data[index];
                 return Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Card(
                       color: Colors.transparent,
@@ -71,19 +88,12 @@ class _MoviePageState extends State<MoviePage> {
                       child: Image.network(
                         movie["coverImg"],
                         fit: BoxFit.cover,
+                        // height: 220,
+                        // width: 220 * 0.625,
                       ),
                     ),
-                    SizedBox(height: 10,),
-                    Text(
-                      movie["title"],
-                      style: GoogleFonts.poppins(
-                        textStyle: TextStyle(
-                            color: HexColor("#AAB1C2"),
-                            fontSize: 12,
-
-                            fontWeight: FontWeight.w500),
-                      ),
-                    )
+                    
+                    
                   ],
                 );
               }),
