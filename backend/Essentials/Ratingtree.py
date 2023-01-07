@@ -129,7 +129,7 @@ class Binarytree():
     #     return json.dumps(serialize(tree.self.root))
 
 tree_mov = Binarytree()
-tree_mov.insert(5.6)
+tree_mov.insert_mov(5.6)
 
 print(tree_mov.root.ids)
 
