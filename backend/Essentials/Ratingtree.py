@@ -16,12 +16,12 @@ class Binarytree():
     def __init__(self):
         self.root = None
 
-
-    def insert_mov(self, data):
+#-----------------------------------------------------------------------------------------------------------------------------------------
+    def insert_mov(self, rat):
 
 
         if self.root == None:
-            self.root = Node(data)
+            self.root = Node(rat)
             table = TinyDB("database.json").table("Movie_data")
             q = Query()
             for data in table.search(q.rating == data):
@@ -30,32 +30,44 @@ class Binarytree():
 
         elif data < self.root.data:
             if self.root.left is None:
-             self.root.left = Node(data)
+             self.root.left = Node(rat)
              table = TinyDB("database.json").table("Movie_data")
              q = Query()
              for data in table.search(q.rating == data):
                 self.root.ids.append(data["id"])
 
             else:
-                self._insert(data, self.root.left)
+                self._insert(rat, self.root.left)
 
         elif data > self.root.data:
             if self.root.right is None:
-             self.root.right = Node(data)
+             self.root.right = Node(rat)
              table = TinyDB("database.json").table("Movie_data")
              q = Query()
              for data in table.search(q.rating == data):
                 self.root.ids.append(data["id"])
 
             else:
-                self._insert(data, self.root.right)
+                self._insert(rat, self.root.right)
 
 
-    def insert_show(self, data):
+    def add_mov(self , ids):
+        
+        table = TinyDB("database.json").table("Movie_data")
+        q = Query()
+
+        for data in table.search(q.id == ids):
+            rating = data['rating']
+
+        
+
+        
+#-----------------------------------------------------------------------------------------------------------------------------------------
+    def insert_show(self, rat):
 
 
         if self.root == None:
-            self.root = Node(data)
+            self.root = Node(rat)
             table = TinyDB("database.json").table("Show_data")
             q = Query()
             for data in table.search(q.rating == data):
@@ -64,33 +76,33 @@ class Binarytree():
 
         elif data < self.root.data:
             if self.root.left is None:
-             self.root.left = Node(data)
+             self.root.left = Node(rat)
              table = TinyDB("database.json").table("Show_data")
              q = Query()
              for data in table.search(q.rating == data):
                 self.root.ids.append(data["id"])
 
             else:
-                self._insert(data, self.root.left)
+                self._insert(rat, self.root.left)
 
         elif data > self.root.data:
             if self.root.right is None:
-             self.root.right = Node(data)
+             self.root.right = Node(rat)
              table = TinyDB("database.json").table("Show_data")
              q = Query()
              for data in table.search(q.rating == data):
                 self.root.ids.append(data["id"])
 
             else:
-                self._insert(data, self.root.right)
+                self._insert(rat, self.root.right)
 
 
-
-    def insert_anime(self, data):
+#-----------------------------------------------------------------------------------------------------------------------------------------
+    def insert_anime(self, rat):
 
 
         if self.root == None:
-            self.root = Node(data)
+            self.root = Node(rat)
             table = TinyDB("database.json").table("Anime_data")
             q = Query()
             for data in table.search(q.rating == data):
@@ -99,25 +111,25 @@ class Binarytree():
 
         elif data < self.root.data:
             if self.root.left is None:
-             self.root.left = Node(data)
+             self.root.left = Node(rat)
              table = TinyDB("database.json").table("Anime_data")
              q = Query()
              for data in table.search(q.rating == data):
                 self.root.ids.append(data["id"])
 
             else:
-                self._insert(data, self.root.left)
+                self._insert(rat, self.root.left)
 
         elif data > self.root.data:
             if self.root.right is None:
-             self.root.right = Node(data)
+             self.root.right = Node(rat)
              table = TinyDB("database.json").table("Anime_data")
              q = Query()
              for data in table.search(q.rating == data):
                 self.root.ids.append(data["id"])
 
             else:
-                self._insert(data, self.root.right)
+                self._insert(rat, self.root.right)
 
     # def binary_tree_to_json(self, tree):
     #     """Convert a binary tree to a JSON string."""
