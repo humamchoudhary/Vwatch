@@ -4,6 +4,7 @@ import 'package:vwatch/main.dart';
 import 'package:vwatch/page/anime.dart';
 import 'package:vwatch/page/home.dart';
 import 'package:vwatch/page/movie.dart';
+import 'package:vwatch/page/show.dart';
 
 class NavigationPage extends StatefulWidget {
   final String username;
@@ -55,7 +56,7 @@ class NavigationPageState extends State<NavigationPage> {
             ),
             const AnimePage(),
             const MoviePage(),
-            const MoviePage(),
+            const ShowPage(),
           ],
         ),
         bottomNavigationBar: BottomNavyBar(

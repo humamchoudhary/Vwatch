@@ -26,6 +26,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
         routes: {
           "/signup": (context) => SignUp(),
+          
         },
         title: 'Flutter Demo',
         theme: ThemeData(),

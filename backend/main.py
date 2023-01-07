@@ -144,6 +144,11 @@ def getMovies():
 def getAllAnime():
     response = jsonify({"result": anime_table.all()})
     return make_response(response)
+    
+@app.route("/getAllShow",methods = ["GET"])
+def getAllShow():
+    response = jsonify({"result": show_table.all()})
+    return make_response(response)
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")
