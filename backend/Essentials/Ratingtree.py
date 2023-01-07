@@ -59,12 +59,46 @@ class Binarytree():
         for data in table.search(q.id == ids):
             rating = data['rating']
 
+        self._add_mov(rating , tree_mov.root , ids)
+
+    def _add_mov(self , data , root , ids):
+            
+        if data == root.data:
+            
+            self.root.ids.append(ids) 
+
+        elif data < root.data:
+
+    
+            self._add_mov(data , root.left)
+
+        elif data > root.data:
+
+    
+            self._add_mov(data , root.right)
         
 
-        
+
+    def find_mov(self , rating):
+        curr_mov = self.rating_based_mov(rating , tree_mov.root)
+        for i in curr_mov:
+            return i
+
+    def rating_based_mov(self , data , root):
+
+        if data == root.data:
+            
+            return self.root.ids
+           
+        elif data < root.data:
+    
+            self.rating_based_mov(data , root.left)
+
+        elif data > root.data:
+
+            self.rating_based_mov(data , root.right)
 #-----------------------------------------------------------------------------------------------------------------------------------------
     def insert_show(self, rat):
-
 
         if self.root == None:
             self.root = Node(rat)
@@ -95,6 +129,54 @@ class Binarytree():
 
             else:
                 self._insert(rat, self.root.right)
+
+
+    def add_show(self , ids):
+        
+        table = TinyDB("database.json").table("Show_data")
+        q = Query()
+
+        for data in table.search(q.id == ids):
+            rating = data['rating']
+
+        self._add_show(rating , tree_show.root , ids)
+
+    def _add_show(self , data , root , ids):
+            
+        if data == root.data:
+
+            self.root.ids.append(ids) 
+
+        elif data < root.data:
+
+    
+            self._add_show(data , root.left)
+
+        elif data > root.data:
+
+    
+            self._add_show(data , root.right)
+        
+
+    def find_show(self , rating):
+        curr_show = self.rating_based_mov(rating , tree_show.root)
+        for i in curr_show:
+            return i
+
+    def rating_based_show(self , data , root):
+
+        if data == root.data:
+            
+            return self.root.ids
+           
+        elif data < root.data:
+    
+            self.rating_based_show(data , root.left)
+
+        elif data > root.data:
+
+            self.rating_based_show(data , root.right)
+
 
 
 #-----------------------------------------------------------------------------------------------------------------------------------------
@@ -131,6 +213,57 @@ class Binarytree():
             else:
                 self._insert(rat, self.root.right)
 
+
+    def add_anime(self , ids):
+        
+        table = TinyDB("database.json").table("Movie_data")
+        q = Query()
+
+        for data in table.search(q.id == ids):
+            rating = data['rating']
+
+        self._add_anime(rating , tree_anime.root , ids)
+
+    def _add_anime(self , data , root , ids):
+         
+        if data == root.data:
+        
+            self.root.ids.append(ids) 
+
+        elif data < root.data:
+
+    
+            self._add_anime(data , root.left)
+
+        elif data > root.data:
+
+    
+            self._add_anime(data , root.right)
+        
+
+    def find_anime(self , rating):
+        curr_anime = self.rating_based_mov(rating , tree_anime.root)
+        for i in curr_anime:
+            return i
+
+    def rating_based_anime(self , data , root):
+
+        if data == root.data:
+            
+            return self.root.ids
+           
+        elif data < root.data:
+    
+            self.rating_based_anime(data , root.left)
+
+        elif data > root.data:
+
+            self.rating_based_anime(data , root.right)
+
+
+#-----------------------------------------------------------------------------------------------------------------------------------------
+
+
     # def binary_tree_to_json(self, tree):
     #     """Convert a binary tree to a JSON string."""
     #     def serialize(node):
@@ -143,31 +276,9 @@ class Binarytree():
 tree_mov = Binarytree()
 tree_show = Binarytree()
 tree_anime = Binarytree()
-tree_mov.insert_mov(8.4)
-
-print(tree_mov.root.ids)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+tree_mov.insert_mov(5.0)
+tree_show.insert_show(5.0)
+tree_anime.insert_anime(5.0)
 
 
 
@@ -180,11 +291,24 @@ rat_below_5 = [4.9, 4.8, 4.7, 4.6, 4.5, 4.4, 4.3, 4.2, 4.1, 4.0, 3.9, 3.8, 3.7, 
 rat_above_5=  [ 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8,5.9, 6.0, 6.1, 6.2, 6.3, 6.4, 6.5, 6.6, 6.7, 6.8, 6.9, 7.0, 7.1, 7.2, 7.3, 7.4, 7.5, 7.6, 7.7, 7.8, 7.9, 8.0, 8.1, 8.2, 8.3, 8.4, 8.5, 8.6, 8.7, 8.8, 8.9, 9.0, 9.1, 9.2, 9.3, 9.4, 9.5, 9.6, 9.7, 9.8, 9.9, 10]
 
 
-#for i in rat:
-#     tree.insert(i)
+for i in rat_above_5:
+    tree_mov.insert_mov(i)
+    tree_show.insert_show(i)
+    tree_anime.insert_anime(i)
+
+
+for i in rat_below_5:
+    tree_mov.insert_mov(i)
+    tree_show.insert_show(i)
+    tree_anime.insert_anime(i)
+    
 
 
 # tree_rep = tree.binary_tree_to_json(tree)
 
 # with open('rating_tree.json', 'w') as f:
 #     json.dump(tree_rep, f)
+
+
+
+#-----------------------------------------------------------------------------------------------------------------------------------------
