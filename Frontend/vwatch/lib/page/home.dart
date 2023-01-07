@@ -26,7 +26,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    final screensize = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: BackgroundColor,
       // ignore: prefer_const_literals_to_create_immutables
@@ -34,7 +33,9 @@ class _HomePageState extends State<HomePage> {
         child: Padding(
           padding: const EdgeInsets.only(top: 20, left: 10, right: 10),
           child: SingleChildScrollView(
-            child: Column(children: [
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
               Card(
                 clipBehavior: Clip.antiAlias,
                 elevation: 0,
@@ -81,11 +82,8 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 height: 400,
               ),
-              SizedBox(
-                width: screensize.width,
-                height: screensize.height,
-                child: const History(),
-              ),
+              
+              const History(),
             ]),
           ),
         ),

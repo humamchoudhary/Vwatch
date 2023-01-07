@@ -47,17 +47,38 @@ class _HistoryState extends State<History> {
   List history = [];
   @override
   Widget build(BuildContext context) {
+    final screensize = MediaQuery.of(context).size;
+
     return history.isNotEmpty
-        ? ListView.separated(
-            itemBuilder: historyBuilder,
-            // separatorBuilder: historyseparatorBuilder,
-            itemCount: history.length,
-            separatorBuilder: (BuildContext context, int index) {
-              return SizedBox(
-                height: 20,
-              );
-            },
-          )
+        ? Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Continue Watching",
+              textAlign: TextAlign.start,
+              style: GoogleFonts.poppins(
+                textStyle: TextStyle(
+                    color: HexColor("#AAB1C2"),
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            SizedBox(
+              width: screensize.width,
+            height: screensize.height,
+              child: ListView.separated(
+                itemBuilder: historyBuilder,
+                // separatorBuilder: historyseparatorBuilder,
+                itemCount: history.length,
+                separatorBuilder: (BuildContext context, int index) {
+                  return SizedBox(
+                    height: 20,
+                  );
+                },
+              ),
+            ),
+          ],
+        )
         : Container();
   }
 

@@ -57,13 +57,15 @@ class _MoviePageState extends State<MoviePage> {
         : Scaffold(
             backgroundColor: BackgroundColor,
             appBar: AppBar(
+              leading: Container(),
               backgroundColor: BackgroundColor,
               title: Text(
                 "Movies",
+                textAlign: TextAlign.center,
                 style: GoogleFonts.poppins(
                   textStyle: TextStyle(
                       color: HexColor("#AAB1C2"),
-                      fontSize: 14,
+                      fontSize: 18,
                       fontWeight: FontWeight.bold),
                 ),
               ),
@@ -81,19 +83,19 @@ class _MoviePageState extends State<MoviePage> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Card(
-                      color: Colors.transparent,
+                      color: AccentColor,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
                       clipBehavior: Clip.antiAlias,
                       child: Image.network(
                         movie["coverImg"],
                         fit: BoxFit.cover,
+                        filterQuality: FilterQuality.high,
+                        
                         // height: 220,
                         // width: 220 * 0.625,
                       ),
                     ),
-                    
-                    
                   ],
                 );
               }),

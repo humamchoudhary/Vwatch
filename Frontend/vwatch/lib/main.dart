@@ -14,6 +14,7 @@ void main() {
 
 Color BackgroundColor = HexColor("#020A27");
 Color AccentColor = HexColor("#12244A");
+Color AccentColor2 = HexColor("#AAB1C2");
 Color CTAColor = HexColor("#49D0EE");
 Color WhiteColor = HexColor("#FEFDFF");
 
