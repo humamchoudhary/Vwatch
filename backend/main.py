@@ -1,6 +1,5 @@
 from flask import Flask, jsonify, make_response, request, send_file, render_template, Response
 import json
-import requests
 from tinydb import TinyDB, Query
 from login import Login
 from Essentials.UserTree import *
@@ -92,7 +91,7 @@ def get_eps():
     animelist = pickle.load(file)
     file.close()
     result = animelist[id].next(epsno)
-    response = jsonify(requests)
+    response = jsonify(request)
     return make_response(response)
 
 
