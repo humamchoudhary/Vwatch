@@ -12,6 +12,7 @@ class Node:
 
         self.data = name
         self.parent = parent
+        self.lind = []
         
 
 
@@ -19,25 +20,31 @@ class Genre:
     
     def __init__(self):
         self.root = None
+        self.children = []
 
 
-    def make_genre_mov(self):
 
-        action = Node( "Action" , parent = mov_gen)
-        adventure = Node( "Adventure" , parent = mov_gen)
-        science_fiction = Node( "Science_Fiction" , parent = mov_gen)
-        fantasy = Node( "Fantasy" , parent = mov_gen)
-        drama = Node( "Drama" , parent = mov_gen)
-        thriller = Node( "Thriller" , parent = mov_gen)
-        horror = Node( "Horror" , parent = mov_gen)
-        mystery = Node( "Mystery" , parent = mov_gen)
-        family = Node( "Family" , parent = mov_gen)
-        war = Node( "War" , parent = mov_gen) 
-        comedy = Node( "Comedy" , parent = mov_gen)
-        romance = Node( "Romance" , parent = mov_gen)
-        music = Node( "Music" , parent = mov_gen)
-        animation = Node( "Animation" , parent = mov_gen)
         
 
 
-mov_gen = Node("Movies")
+movie_gen = Node("Movies")
+tv_gen = Node("Tv Shows")
+anime_gen = Node("Anime")
+
+
+def make_genre_mov(gen):
+
+    action = Node( "Action" , parent = gen)
+    adventure = Node( "Adventure" , parent = gen)
+    science_fiction = Node( "Science_Fiction" , parent = gen)
+    fantasy = Node( "Fantasy" , parent = gen)
+    drama = Node( "Drama" , parent = gen)
+    thriller = Node( "Thriller" , parent = gen)
+    horror = Node( "Horror" , parent = gen)
+    mystery = Node( "Mystery" , parent = gen)
+    family = Node( "Family" , parent = gen)
+    war = Node( "War" , parent = gen) 
+    comedy = Node( "Comedy" , parent = gen)
+    romance = Node( "Romance" , parent = gen)
+    music = Node( "Music" , parent = gen)
+    animation = Node( "Animation" , parent = gen)
