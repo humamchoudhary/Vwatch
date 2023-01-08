@@ -23,7 +23,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String searchText = "";
 
   @override
   Widget build(BuildContext context) {
@@ -81,50 +80,7 @@ class _HomePageState extends State<HomePage> {
               //       },
               //       child: const Text("player")),
               // ),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: AccentColor,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                  child: AnimatedSearchBar(
-                    label:
-                        "Search name of movie or tv show                        ",
-                    duration: Duration(microseconds: 0),
-                    labelStyle: GoogleFonts.poppins(
-                      textStyle: TextStyle(
-                          color: HexColor("#AAB1C2"),
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400),
-                    ),
-                    searchDecoration: InputDecoration(
-                      labelText: "Search",
-                      alignLabelWithHint: true,
-                      contentPadding: const EdgeInsets.symmetric(
-                          vertical: 8, horizontal: 8),
-                      border: const OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(8)),
-                          gapPadding: 4),
-                      fillColor: AccentColor,
-                    ),
-                    searchIcon: Icon(
-                      Icons.search,
-                      color: AccentColor2,
-                    ),
-                    closeIcon: Icon(
-                      Icons.close,
-                      color: AccentColor2,
-                    ),
-                    onChanged: (value) {
-                      print("value on Change");
-                      setState(() {
-                        searchText = value;
-                      });
-                    },
-                  ),
-                ),
-              ),
+              
 
               const SizedBox(
                 height: 400,

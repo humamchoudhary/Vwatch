@@ -22,7 +22,6 @@ class _AnimePageState extends State<AnimePage> {
     print("$URL/getMovies");
     final repsonse = await http.get(Uri.parse("$URL/getAllAnime"));
     final decode = json.decode(repsonse.body);
-    print(decode);
     setState(() {
       movie_data = decode["result"];
     });

@@ -22,7 +22,6 @@ class _MoviePageState extends State<MoviePage> {
     print("$URL/getMovies");
     final repsonse = await http.get(Uri.parse("$URL/getAllMovies"));
     final decode = json.decode(repsonse.body);
-    print(decode);
     setState(() {
       movie_data = decode["result"];
     });

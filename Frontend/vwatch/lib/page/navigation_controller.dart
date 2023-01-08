@@ -4,6 +4,7 @@ import 'package:vwatch/main.dart';
 import 'package:vwatch/page/anime.dart';
 import 'package:vwatch/page/home.dart';
 import 'package:vwatch/page/movie.dart';
+import 'package:vwatch/page/search.dart';
 import 'package:vwatch/page/show.dart';
 
 class NavigationPage extends StatefulWidget {
@@ -57,6 +58,7 @@ class NavigationPageState extends State<NavigationPage> {
             const AnimePage(),
             const MoviePage(),
             const ShowPage(),
+            const SearchPage(),
           ],
         ),
         bottomNavigationBar: BottomNavyBar(
@@ -89,6 +91,11 @@ class NavigationPageState extends State<NavigationPage> {
             BottomNavyBarItem(
                 icon: const Icon(Icons.live_tv_outlined),
                 title: const Text('TV shows'),
+                activeColor: CTAColor,
+                inactiveColor: AccentColor2),
+            BottomNavyBarItem(
+                icon: const Icon(Icons.search_rounded),
+                title: const Text('Search'),
                 activeColor: CTAColor,
                 inactiveColor: AccentColor2),
           ],

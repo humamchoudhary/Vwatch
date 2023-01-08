@@ -21,7 +21,6 @@ class _ShowPageState extends State<ShowPage> {
     print("$URL/getAllShow");
     final repsonse = await http.get(Uri.parse("$URL/getAllShow"));
     final decode = json.decode(repsonse.body);
-    print(decode);
     setState(() {
       movie_data = decode["result"];
     });
