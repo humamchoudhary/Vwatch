@@ -23,20 +23,20 @@ class Genre:
 
     def make_genre_mov(self):
 
-        Action = Node( "Action" , parent = mov_gen)
-        Adventure = Node( "Action" , parent = mov_gen)
-        Science_Fiction = Node( "Action" , parent = mov_gen)
-        Fantasy = Node( "Action" , parent = mov_gen)
-        Drama = Node( "Action" , parent = mov_gen)
-        Thriller = Node( "Action" , parent = mov_gen)
-        Horror = Node( "Action" , parent = mov_gen)
-        Mystery = Node( "Action" , parent = mov_gen)
-        Family = Node( "Action" , parent = mov_gen)
-        War = Node( "Action" , parent = mov_gen) 
-        Comedy = Node( "Action" , parent = mov_gen)
-        Romance = Node( "Action" , parent = mov_gen)
-        Music = Node( "Action" , parent = mov_gen)
-        Animation = Node( "Action" , parent = mov_gen)
+        action = Node( "Action" , parent = mov_gen)
+        adventure = Node( "Adventure" , parent = mov_gen)
+        science_fiction = Node( "Science_Fiction" , parent = mov_gen)
+        fantasy = Node( "Fantasy" , parent = mov_gen)
+        drama = Node( "Drama" , parent = mov_gen)
+        thriller = Node( "Thriller" , parent = mov_gen)
+        horror = Node( "Horror" , parent = mov_gen)
+        mystery = Node( "Mystery" , parent = mov_gen)
+        family = Node( "Family" , parent = mov_gen)
+        war = Node( "War" , parent = mov_gen) 
+        comedy = Node( "Comedy" , parent = mov_gen)
+        romance = Node( "Romance" , parent = mov_gen)
+        music = Node( "Music" , parent = mov_gen)
+        animation = Node( "Animation" , parent = mov_gen)
         
 
 
