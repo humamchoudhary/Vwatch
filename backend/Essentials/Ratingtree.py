@@ -17,6 +17,9 @@ class Binarytree():
         self.root = None
 
 #-----------------------------------------------------------------------------------------------------------------------------------------
+#                                                --- Movie funtionalities ---
+#-----------------------------------------------------------------------------------------------------------------------------------------
+
     def insert_mov(self, rat):
 
 
@@ -70,12 +73,12 @@ class Binarytree():
         elif data < root.data:
 
     
-            self._add_mov(data , root.left)
+            self._add_mov(data , root.left ,ids)
 
         elif data > root.data:
 
     
-            self._add_mov(data , root.right)
+            self._add_mov(data , root.right ,ids)
         
 
 
@@ -97,7 +100,40 @@ class Binarytree():
         elif data > root.data:
 
             self.rating_based_mov(data , root.right)
+
+
+    def remove_mov(self ,ids):
+
+        table = TinyDB("database.json").table("Movie_data")
+        q = Query()
+
+        for data in table.search(q.id == ids):
+            rating = data['rating']
+
+        self._remove_mov(rating , tree_mov.root , ids)
+
+
+    def _remove_mov(self , data , root , ids):
+
+        if data == root.data:
+            
+            if ids in self.root.ids:
+                self.root.ids.remove(ids)
+
+
+        elif data < root.data:
+
+    
+            self._remove_mov(data , root.left , ids)
+
+        elif data > root.data:
+
+    
+            self._remove_mov(data , root.right , ids)
 #-----------------------------------------------------------------------------------------------------------------------------------------
+#                                                     --- Tv Shows functionality ---
+#-----------------------------------------------------------------------------------------------------------------------------------------
+ 
     def insert_show(self, rat):
 
         if self.root == None:
@@ -150,12 +186,12 @@ class Binarytree():
         elif data < root.data:
 
     
-            self._add_show(data , root.left)
+            self._add_show(data , root.left , ids)
 
         elif data > root.data:
 
     
-            self._add_show(data , root.right)
+            self._add_show(data , root.right , ids)
         
 
     def find_show(self , rating):
@@ -178,7 +214,38 @@ class Binarytree():
             self.rating_based_show(data , root.right)
 
 
+    def remove_show(self ,ids):
 
+        table = TinyDB("database.json").table("Show_data")
+        q = Query()
+
+        for data in table.search(q.id == ids):
+            rating = data['rating']
+
+        self._remove_show(rating , tree_mov.root , ids)
+
+
+    def _remove_show(self , data , root , ids):
+
+        if data == root.data:
+            
+            if ids in self.root.ids:
+                self.root.ids.remove(ids)
+
+
+        elif data < root.data:
+
+    
+            self._remove_show(data , root.left , ids)
+
+        elif data > root.data:
+
+    
+            self._remove_show(data , root.right , ids)
+
+
+#-----------------------------------------------------------------------------------------------------------------------------------------
+#                                                    --- Anime functionalities ---
 #-----------------------------------------------------------------------------------------------------------------------------------------
     def insert_anime(self, rat):
 
@@ -216,7 +283,7 @@ class Binarytree():
 
     def add_anime(self , ids):
         
-        table = TinyDB("database.json").table("Movie_data")
+        table = TinyDB("database.json").table("Anime_data")
         q = Query()
 
         for data in table.search(q.id == ids):
@@ -233,12 +300,12 @@ class Binarytree():
         elif data < root.data:
 
     
-            self._add_anime(data , root.left)
+            self._add_anime(data , root.left , ids)
 
         elif data > root.data:
 
     
-            self._add_anime(data , root.right)
+            self._add_anime(data , root.right , ids)
         
 
     def find_anime(self , rating):
@@ -260,6 +327,34 @@ class Binarytree():
 
             self.rating_based_anime(data , root.right)
 
+    def remove_anime(self ,ids):
+
+        table = TinyDB("database.json").table("Anime_data")
+        q = Query()
+
+        for data in table.search(q.id == ids):
+            rating = data['rating']
+
+        self._remove_anime(rating , tree_mov.root , ids)
+
+
+    def _remove_anime(self , data , root , ids):
+
+        if data == root.data:
+            
+            if ids in self.root.ids:
+                self.root.ids.remove(ids)
+
+
+        elif data < root.data:
+
+    
+            self._remove_anime(data , root.left , ids)
+
+        elif data > root.data:
+
+    
+            self._remove_anime(data , root.right , ids)
 
 #-----------------------------------------------------------------------------------------------------------------------------------------
 
