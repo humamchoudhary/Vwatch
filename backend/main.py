@@ -1,4 +1,3 @@
-import urllib
 from flask import Flask, jsonify, make_response, request, send_file, render_template, Response
 import json
 import requests
@@ -9,6 +8,8 @@ from Essentials.Account import *
 from signup import Signup
 from rafay.history import *
 import os
+from string import punctuation
+import numpy as np
 
 response = ''
 app = Flask(__name__)
@@ -130,6 +131,7 @@ def get_history():
     response = jsonify({"data": player.get_all()})
     return make_response(response)  # prints "video3.mp4"
 
+
 @app.route("/", methods=["GET"])
 def main():
     return render_template("index.html")
@@ -140,15 +142,63 @@ def getMovies():
     response = jsonify({"result": movies_table.all()})
     return make_response(response)
 
-@app.route("/getAllAnime",methods = ["GET"])
+
+@app.route("/getAllAnime", methods=["GET"])
 def getAllAnime():
     response = jsonify({"result": anime_table.all()})
     return make_response(response)
-    
-@app.route("/getAllShow",methods = ["GET"])
+
+
+@app.route("/getAllShow", methods=["GET"])
 def getAllShow():
     response = jsonify({"result": show_table.all()})
     return make_response(response)
+
+
+@app.route("/search", methods=["POST"])
+def search():
+    request_data = request.args
+    print(request_data.keys())
+    if "name" in request_data.keys():
+        name = request_data["name"].lower()
+        searchs = [name]
+        for i in punctuation:
+            name = name.replace(i, "")
+        searchs.extend(name.split())
+        print(searchs)
+        result = []
+        # print(movies_table.all())
+        for data in movies_table.all():
+            title = data["title"].lower()
+            for i in punctuation:
+                title = title.replace(i, "")
+            [result.append(data) for i in searchs if i in title and data not in result]
+        
+        for data in anime_table.all():
+            title = data["title"].lower()
+            for i in punctuation:
+                title = title.replace(i, "")
+            [result.append(data) for i in searchs if i in title and data not in result]
+
+        for data in show_table.all():
+            title = data["title"].lower()
+            for i in punctuation:
+                title = title.replace(i, "")
+            [result.append(data) for i in searchs if i in title and data not in result]
+
+       
+        if result:
+            return make_response(jsonify(result))
+        else:
+            return make_response(jsonify({"msg": "no data found!"}), 400)
+
+
+    if "id" in request_data.keys():
+        print(request_data["id"])
+    if "id" not in request_data.keys() and "name" not in request_data.keys():
+        return make_response(jsonify({"msg": "id or name is required"}), 400)
+    return "search"
+
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")
