@@ -83,10 +83,8 @@ class Binarytree():
 
 
     def find_mov(self , rating):
-        curr_mov = self.rating_based_mov(rating , tree_mov.root)
-        for i in curr_mov:
-            return i
-
+        return self.rating_based_mov(rating , tree_mov.root)
+         
     def rating_based_mov(self , data , root):
 
         if data == root.data:
@@ -195,9 +193,8 @@ class Binarytree():
         
 
     def find_show(self , rating):
-        curr_show = self.rating_based_mov(rating , tree_show.root)
-        for i in curr_show:
-            return i
+        return self.rating_based_mov(rating , tree_show.root)
+        
 
     def rating_based_show(self , data , root):
 
@@ -309,9 +306,8 @@ class Binarytree():
         
 
     def find_anime(self , rating):
-        curr_anime = self.rating_based_mov(rating , tree_anime.root)
-        for i in curr_anime:
-            return i
+        return self.rating_based_mov(rating , tree_anime.root)
+   
 
     def rating_based_anime(self , data , root):
 
