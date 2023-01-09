@@ -40,7 +40,7 @@ class _HistoryState extends State<History> {
     final decode = json.decode(repsonse.body) as Map<String, dynamic>;
     setState(() {
       // print(decode);
-      history = decode["data"];
+      decode["data"];
     });
   }
 
@@ -51,40 +51,40 @@ class _HistoryState extends State<History> {
 
     return history.isNotEmpty
         ? Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          
-          children: [
-            Container(
-              width: screensize.width,
-              child: Text(
-                "Continue Watching",
-                textAlign: TextAlign.start,
-                style: GoogleFonts.poppins(
-                  textStyle: TextStyle(
-                      color: HexColor("#AAB1C2"),
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold),
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Container(
+                width: screensize.width,
+                child: Text(
+                  "Continue Watching",
+                  textAlign: TextAlign.start,
+                  style: GoogleFonts.poppins(
+                    textStyle: TextStyle(
+                        color: HexColor("#AAB1C2"),
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
-            ),
-            SizedBox(height: 20,),
-            SizedBox(
-              width: screensize.width,
-            height: screensize.height,
-              child: ListView.separated(
-                
-                itemBuilder: historyBuilder,
-                // separatorBuilder: historyseparatorBuilder,
-                itemCount: history.length,
-                separatorBuilder: (BuildContext context, int index) {
-                  return SizedBox(
-                    height: 20,
-                  );
-                },
+              SizedBox(
+                height: 20,
               ),
-            ),
-          ],
-        )
+              SizedBox(
+                width: screensize.width,
+                height: screensize.height,
+                child: ListView.separated(
+                  itemBuilder: historyBuilder,
+                  // separatorBuilder: historyseparatorBuilder,
+                  itemCount: history.length,
+                  separatorBuilder: (BuildContext context, int index) {
+                    return SizedBox(
+                      height: 20,
+                    );
+                  },
+                ),
+              ),
+            ],
+          )
         : Container();
   }
 
