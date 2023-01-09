@@ -1,15 +1,15 @@
-# # # # from randimage import get_random_image, show_array
-# # # # import matplotlib
+from randimage import get_random_image, show_array
+import matplotlib
 
-# # # # img_size = (64,64)
-# # # # for i in range(12):
-# # # #     img = get_random_image(img_size)  #returns numpy array
-# # # #     # show_array(img) #shows the image
-# # # #     matplotlib.image.imsave(f"randimage{i}.png", img)
-# # # # x = []
-# # # # for i in range(12):
-# # # #     x.append(f"randimage{i}.png")
-# # # # # print(x)
+img_size = (128,128)
+for i in range(12):
+    img = get_random_image(img_size)  #returns numpy array
+    # show_array(img) #shows the image
+    matplotlib.image.imsave(f"randimage{i}.png", img)
+x = []
+for i in range(12):
+    x.append(f"randimage2{i}.png")
+# print(x)
 # # # # import m3u8_To_MP4
 
 # # # # if __name__ == '__main__':
@@ -74,18 +74,18 @@
 # print(len(list))
 # from Essentials.EpsLinkedList import *
 
-from tinydb import TinyDB, Query
-import pickle
-import requests
-table = TinyDB("testbase.json").table("Anime_data")
-q = Query()
-# print("Action" in q.genres)
-list = []
-for data in table.all():
-    # print(data)
-    for eps in data["episodes"]:
-        # print(eps)
-        if eps["url"] == None:
-            list.append({data['id']:eps['id']})
+# from tinydb import TinyDB, Query
+# import pickle
+# import requests
+# table = TinyDB("testbase.json").table("Anime_data")
+# q = Query()
+# # print("Action" in q.genres)
+# list = []
+# for data in table.all():
+#     # print(data)
+#     for eps in data["episodes"]:
+#         # print(eps)
+#         if eps["url"] == None:
+#             list.append({data['id']:eps['id']})
 
-print(list)
+# print(list)
