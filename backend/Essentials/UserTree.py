@@ -88,7 +88,7 @@ class UserTree:
                     self.root.children.pop(index)
                     del profile
 
-    def save_tree(self):
+    def save_user(self):
         
         with open(f'{self.account}.pkl', 'wb') as enc_file:
             pickle.dump(self, enc_file, None)
