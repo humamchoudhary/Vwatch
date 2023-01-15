@@ -205,24 +205,35 @@ class Genre:
 
 
 #-----------------------------------------------------------------------------------------------------------------------------------------
+#                                                            --- Pickling ---
+#-----------------------------------------------------------------------------------------------------------------------------------------
+
+    def save(self):
+        with open(f'{self.root.data}.pkl', 'wb') as enc_file:
+                pickle.dump(self, enc_file, None)
+
+
+
+#-----------------------------------------------------------------------------------------------------------------------------------------
 #                                                            --- crisis ---
 #-----------------------------------------------------------------------------------------------------------------------------------------
 
 
+if __name__ == "__main__":
 
+    movie_gen = Genre("Movies")
+    movie_gen.make_genre(movie_gen)
+    movie_gen.gen_add_mov()
+    print(movie_gen.choose_by_gen_mov("Music"))
+    print(movie_gen.choose_by_gen_mov_2("Thriller","Action"))
 
-# movie_gen = Genre("Movies")
-# movie_gen.make_genre(movie_gen)
-# movie_gen.gen_add_mov()
-# print(movie_gen.choose_by_gen_mov("Music"))
-# print(movie_gen.choose_by_gen_mov_2("Thriller","Action"))
-
-# movie_gen.gen_add_mov1("movie/watch-mission-impossible-rogue-nation-19603")
-
-
-# anime_gen = Genre("Anime")
-# anime_gen.make_genre(anime_gen)
-# anime_gen.gen_add_anime()
+    movie_gen.gen_add_mov_1("movie/watch-mission-impossible-rogue-nation-19603")
+    movie_gen.save()
+    
+    
+    # anime_gen = Genre("Anime")
+    # anime_gen.make_genre(anime_gen)
+    # anime_gen.gen_add_anime()
 
 
 
