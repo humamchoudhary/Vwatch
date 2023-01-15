@@ -8,7 +8,6 @@ from signup import Signup
 from rafay.history import *
 import os
 from string import punctuation
-import numpy as np
 
 response = ''
 app = Flask(__name__)
