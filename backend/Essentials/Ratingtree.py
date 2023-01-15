@@ -128,6 +128,7 @@ class Binarytree():
 
     
             self._remove_mov(data , root.right , ids)
+
 #-----------------------------------------------------------------------------------------------------------------------------------------
 #                                                     --- Tv Shows functionality ---
 #-----------------------------------------------------------------------------------------------------------------------------------------
@@ -356,15 +357,6 @@ class Binarytree():
 #-----------------------------------------------------------------------------------------------------------------------------------------
 
 
-    # def binary_tree_to_json(self, tree):
-    #     """Convert a binary tree to a JSON string."""
-    #     def serialize(node):
-    #         if not node:
-    #             return None
-    #         return {'val': node.data, 'left': serialize(node.left), 'right': serialize(node.right)}
-
-    #     return json.dumps(serialize(tree.self.root))
-
 tree_mov = Binarytree()
 tree_show = Binarytree()
 tree_anime = Binarytree()
@@ -394,20 +386,6 @@ def reverse_crisis(tree):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #-----------------------------------------------------------------------------------------------------------------------------------------
 # Ratings tree data
 
@@ -433,10 +411,7 @@ print(reverse_crisis(tree_mov.root))
 print(reverse_crisis(tree_show.root))
 print(reverse_crisis(tree_anime.root))
 
-# tree_rep = tree.binary_tree_to_json(tree)
 
-# with open('rating_tree.json', 'w') as f:
-#     json.dump(tree_rep, f)
 
 
 
