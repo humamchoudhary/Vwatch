@@ -19,7 +19,7 @@ class AnimePage extends StatefulWidget {
 class _AnimePageState extends State<AnimePage> {
   List movie_data = [];
   _getData() async {
-    print("$URL/getMovies");
+    
     final repsonse = await http.get(Uri.parse("$URL/getAllAnime"));
     final decode = json.decode(repsonse.body);
     setState(() {
@@ -60,7 +60,7 @@ class _AnimePageState extends State<AnimePage> {
               leading: Container(),
               backgroundColor: BackgroundColor,
               title: Text(
-                "Movies",
+                "Anime",
                 textAlign: TextAlign.center,
                 style: GoogleFonts.poppins(
                   textStyle: TextStyle(
