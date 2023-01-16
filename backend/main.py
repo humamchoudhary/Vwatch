@@ -24,7 +24,7 @@ def LoginRoute():
 
     # fetching the global response variable to manipulate inside the function
     global response
-
+    
     if (request.method == 'POST'):
         request_data = request.data
         request_data = json.loads(request_data.decode('utf-8'))

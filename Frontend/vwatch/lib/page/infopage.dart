@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:vwatch/Components/color.dart';
 import 'package:vwatch/main.dart';
+import 'package:vwatch/page/video.dart';
 
 class InfoPage extends StatefulWidget {
   final String name;
@@ -112,7 +113,7 @@ class _InfoPageState extends State<InfoPage> {
               height: 20,
             ),
             Padding(
-              padding: const EdgeInsets.only(left:8,right: 8),
+              padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
               child: Container(
                   height: screensize.height - 250,
                   child: ListView.separated(
@@ -120,9 +121,14 @@ class _InfoPageState extends State<InfoPage> {
                     itemBuilder: itemBuilder,
                     itemCount: widget.eps.length,
                     separatorBuilder: (BuildContext context, int index) {
-                      return const Divider(height: 2,);
+                      return const Divider(
+                        height: 2,
+                      );
                     },
                   )),
+            ),
+            SizedBox(
+              height: 10,
             )
           ],
         ),
@@ -133,14 +139,26 @@ class _InfoPageState extends State<InfoPage> {
   Widget itemBuilder(BuildContext context, int index) {
     return ListTile(
       tileColor: AccentColor,
-      title: Text(
-        widget.eps.length == 1 ? widget.name : "Episode $index",
-        style: GoogleFonts.poppins(
-          textStyle: TextStyle(
-              color: WhiteColor, fontSize: 14, fontWeight: FontWeight.w400),
+      title: Padding(
+        padding: const EdgeInsets.only(top: 20, bottom: 20),
+        child: Text(
+          widget.eps.length == 1 ? widget.name : "Episode $index",
+          style: GoogleFonts.poppins(
+            textStyle: TextStyle(
+                color: WhiteColor, fontSize: 14, fontWeight: FontWeight.w400),
+          ),
         ),
       ),
-      trailing: IconButton(icon: const Icon(Icons.play_circle_outline_rounded), onPressed: () {  },color: CTAColor,),
+      trailing: IconButton(
+        icon: const Icon(Icons.play_circle_outline_rounded),
+        onPressed: () {
+          print(widget.eps[index]["url"]);
+          VideoPlayer(
+            url: widget.eps[index]["url"],
+          );
+        },
+        color: CTAColor,
+      ),
     );
   }
 }

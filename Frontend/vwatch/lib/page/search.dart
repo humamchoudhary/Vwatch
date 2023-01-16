@@ -42,93 +42,90 @@ class _SearchPageState extends State<SearchPage> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
-          child: SingleChildScrollView(
-            child: SizedBox(
-              height: screensize.height,
-              child: Column(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: AccentColor,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                      child: AnimatedSearchBar(
-                        label:
-                            "Search name of movie or tv show                              ",
-                        duration: const Duration(microseconds: 0),
-                        onChanged: (_) {
-                          search(_);
-                        },
-                        searchStyle: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                              color: HexColor("#AAB1C2"),
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400),
-                        ),
-                        labelStyle: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                              color: HexColor("#AAB1C2"),
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400),
-                        ),
-                        searchDecoration: InputDecoration(
-                            labelText: "Search",
-                            labelStyle: GoogleFonts.poppins(
-                              textStyle: TextStyle(
-                                  color: HexColor("#AAB1C2"),
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400),
-                            ),
-                            alignLabelWithHint: true,
-                            contentPadding: const EdgeInsets.symmetric(
-                                vertical: 8, horizontal: 8),
-                            enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: AccentColor2, width: 2),
-                                borderRadius: const BorderRadius.all(Radius.circular(10)),
-                                gapPadding: 4),
-                            border: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: AccentColor2, width: 2),
-                                borderRadius: const BorderRadius.all(Radius.circular(10)),
-                                gapPadding: 4),
-                            fillColor: AccentColor,
-                            focusColor: AccentColor2),
-                        searchIcon: Icon(
-                          Icons.search,
-                          color: AccentColor2,
-                        ),
-                        closeIcon: Icon(
-                          Icons.close,
-                          color: AccentColor2,
-                        ),
+          child: SizedBox(
+            height: screensize.height,
+            child: Column(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: AccentColor,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                    child: AnimatedSearchBar(
+                      label:
+                          "Search name of movie or tv show                              ",
+                      duration: const Duration(microseconds: 0),
+                      onChanged: (_) {
+                        search(_);
+                      },
+                      searchStyle: GoogleFonts.poppins(
+                        textStyle: TextStyle(
+                            color: HexColor("#AAB1C2"),
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      labelStyle: GoogleFonts.poppins(
+                        textStyle: TextStyle(
+                            color: HexColor("#AAB1C2"),
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      searchDecoration: InputDecoration(
+                          labelText: "Search",
+                          labelStyle: GoogleFonts.poppins(
+                            textStyle: TextStyle(
+                                color: HexColor("#AAB1C2"),
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400),
+                          ),
+                          alignLabelWithHint: true,
+                          contentPadding: const EdgeInsets.symmetric(
+                              vertical: 8, horizontal: 8),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: AccentColor2, width: 2),
+                              borderRadius: const BorderRadius.all(Radius.circular(10)),
+                              gapPadding: 4),
+                          border: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: AccentColor2, width: 2),
+                              borderRadius: const BorderRadius.all(Radius.circular(10)),
+                              gapPadding: 4),
+                          fillColor: AccentColor,
+                          focusColor: AccentColor2),
+                      searchIcon: Icon(
+                        Icons.search,
+                        color: AccentColor2,
+                      ),
+                      closeIcon: Icon(
+                        Icons.close,
+                        color: AccentColor2,
                       ),
                     ),
                   ),
-                  tiles.length == 0
-                      ? SizedBox(
-                        height: screensize.height-200,
-                        child: Center(
-                          child: Text(
-                            "No data found",
-                            style: GoogleFonts.poppins(
-                              textStyle: TextStyle(
-                                  color: HexColor("#AAB1C2"),
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400),
-                            ),
-                          ),
+                ),
+                tiles.length == 0
+                    ? Center(
+                      child: Text(
+                        "No data found",
+                        style: GoogleFonts.poppins(
+                          textStyle: TextStyle(
+                              color: HexColor("#AAB1C2"),
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400),
                         ),
-                      )
-                      : GridView.count(
+                      ),
+                    )
+                    : Expanded(
+                      child: GridView.count(
                         shrinkWrap: true,
-                        mainAxisSpacing: 0,
-                        crossAxisSpacing: 0,
+                        mainAxisSpacing: 5,
+                        crossAxisSpacing: 5,
                         padding: const EdgeInsets.all(20),
                         crossAxisCount: 2,
-                        childAspectRatio: 0.65,
+                        childAspectRatio: 0.60,
                         children: List.generate(tiles.length, (index) {
                           var movie = tiles[index];
                           return Column(
@@ -165,8 +162,8 @@ class _SearchPageState extends State<SearchPage> {
                                       movie["coverImg"],
                                       fit: BoxFit.cover,
                                       filterQuality: FilterQuality.high,
-                                      height: 280,
-                                      width: 280 * 0.625,
+                                      // height: 280,
+                                      // width: 280 * 0.625,
                                     ),
                                   ),
                                 ),
@@ -175,8 +172,8 @@ class _SearchPageState extends State<SearchPage> {
                           );
                         }),
                       ),
-                ],
-              ),
+                    ),
+              ],
             ),
           ),
         ),

@@ -48,7 +48,6 @@ class _AnimePageState extends State<AnimePage> {
 
   @override
   Widget build(BuildContext context) {
-    print(".");
     return movie_data.isEmpty
         ? ModalProgressHUD(
             inAsyncCall: true,

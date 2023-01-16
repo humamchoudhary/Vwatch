@@ -44,7 +44,7 @@ class _MytestState extends State<Mytest> {
           //   url:
           //       "https://movietrailers.apple.com/movies/fox/thefantasticfour/fantasticfour-tlr2_h480p.mov",
           // ),
-          child: SamplePlayer(url:widget.url)
+          child: VideoPlayer(url:widget.url)
         ));
   }
 }
