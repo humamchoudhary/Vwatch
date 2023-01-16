@@ -10,6 +10,7 @@ class Signup:
     DB = TinyDB("./database.json")
     User = Query()
     table = DB.table("User_Data")
+    
 
     def __init__(self, name, email, username, password):
         self.name = name
