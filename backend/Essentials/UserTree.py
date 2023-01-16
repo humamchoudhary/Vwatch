@@ -13,7 +13,6 @@ class UserProfile:
         ]  # Replace with stack later
         self.watched = [{"animeID": [True, False, ]}]
         self.watch_list = []
-
     def add_to_watch_history(self, content_id):
         self.watch_history.append(content_id)
 
