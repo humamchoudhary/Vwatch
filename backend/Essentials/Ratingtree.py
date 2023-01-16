@@ -14,11 +14,7 @@ class Node():
 
 class Binarytree():
     def __init__(self , rat):
-        self.root = Node(rat)
-        table = TinyDB("database.json").table("Movie_data")
-        q = Query()
-        for data in table.search(q.rating == rat):
-            self.root.ids.append(data["id"])
+        self.root = None
 
 #-----------------------------------------------------------------------------------------------------------------------------------------
 #                                                --- Movie funtionalities ---
@@ -26,14 +22,24 @@ class Binarytree():
 
     def insert_mov(self, rat , tree):
 
+        
+        if self.root == None:
+            self.root = Node(rat)
+            table = TinyDB("database.json").table("Movie_data")
+            q = Query()
+            for data in table.search(q.rating == rat):
+                self.root.ids.append(data["id"])
 
-        if rat < tree.data:
+
+
+
+        elif rat < tree.data:
             if tree.left is None:
              tree.left = Node(rat)
              table = TinyDB("database.json").table("Movie_data")
              q = Query()
              for data in table.search(q.rating == rat):
-                tree.ids.append(data["id"])
+                tree.left.ids.append(data["id"])
 
             else:
                 self.insert_mov(rat, tree.left)
@@ -44,7 +50,7 @@ class Binarytree():
              table = TinyDB("database.json").table("Movie_data")
              q = Query()
              for data in table.search(q.rating == rat):
-                tree.ids.append(data["id"])
+                tree.right.ids.append(data["id"])
 
             else:
                 self.insert_mov(rat, tree.right)
@@ -64,7 +70,7 @@ class Binarytree():
             
         if data == root.data:
             
-            self.root.ids.append(ids) 
+            root.ids.append(ids) 
 
         elif data < root.data:
 
@@ -90,11 +96,11 @@ class Binarytree():
            
         elif data < root.data:
             
-            self.rating_based_mov(data , root.left)
+            return self.rating_based_mov(data , root.left)
 
         elif data > root.data:
 
-            self.rating_based_mov(data , root.right)
+            return self.rating_based_mov(data , root.right)
 
 
     def remove_mov(self ,ids):
@@ -112,8 +118,11 @@ class Binarytree():
 
         if data == root.data:
             
-            if ids in self.root.ids:
-                self.root.ids.remove(ids)
+            if ids in root.ids:
+                print(f"{data}-----{root.data}")
+                print(root.ids)
+                root.ids.remove(ids)
+                print(root.ids)
 
 
         elif data < root.data:
@@ -225,8 +234,10 @@ class Binarytree():
 
         if data == root.data:
             
-            if ids in self.root.ids:
-                self.root.ids.remove(ids)
+            if ids in root.ids:
+                print(root.ids)
+                root.ids.remove(ids)
+                print(root.ids)
 
 
         elif data < root.data:
@@ -397,24 +408,27 @@ rat_above_5=  [ 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8,5.9, 6.0, 6.1, 6.2, 6.3, 
 
 for i in rat_above_5:
     tree_mov.insert_mov(i , tree_mov.root)
-    tree_show.insert_show(i , tree_show.root)
-    tree_anime.insert_anime(i , tree_anime.root)
+    # tree_show.insert_show(i , tree_show.root)
+    # tree_anime.insert_anime(i , tree_anime.root)
 
 
 for i in rat_below_5:
     tree_mov.insert_mov(i , tree_mov.root)
-    tree_show.insert_show(i , tree_show.root)
-    tree_anime.insert_anime(i , tree_anime.root)
+    # tree_show.insert_show(i , tree_show.root)
+    # tree_anime.insert_anime(i , tree_anime.root)
     
 
 print(reverse_crisis(tree_mov.root))
-print(reverse_crisis(tree_show.root))
-print(reverse_crisis(tree_anime.root))
+# print(reverse_crisis(tree_show.root))
+# print(reverse_crisis(tree_anime.root))
 
 
-print(tree_mov.rating_based_mov(5.0 , tree_mov.root))
+print(tree_mov.find_mov(6.4))
+tree_mov.remove_mov("movie/watch-ricki-and-the-flash-11576")
+print(reverse_crisis(tree_mov.root))
+tree_mov.add_mov("movie/watch-ricki-and-the-flash-11576")
+print(reverse_crisis(tree_mov.root))
 
-print(tree_show.rating_based_show(8.3 , tree_mov.root))
 
 
 
