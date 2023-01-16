@@ -13,7 +13,8 @@ class Node():
 
 
 class Binarytree():
-    def __init__(self):
+    def __init__(self,name):
+        self.name = name
         self.root = None
 
 #-----------------------------------------------------------------------------------------------------------------------------------------
@@ -353,13 +354,18 @@ class Binarytree():
 
     
             self._remove_anime(data , root.right , ids)
+    
+    def save_tree(self):
+        
+        with open(f'{self.name}.pkl', 'wb') as enc_file:
+            pickle.dump(self, enc_file, None)
 
 #-----------------------------------------------------------------------------------------------------------------------------------------
 
 
-tree_mov = Binarytree()
-tree_show = Binarytree()
-tree_anime = Binarytree()
+tree_mov = Binarytree("movies")
+tree_show = Binarytree("tv_show")
+tree_anime = Binarytree("anime")
 tree_mov.insert_mov(5.0 , tree_mov.root)
 tree_show.insert_show(5.0 , tree_show.root)
 tree_anime.insert_anime(5.0 , tree_anime.root)
