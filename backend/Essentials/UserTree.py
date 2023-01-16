@@ -89,6 +89,6 @@ class UserTree:
                     del profile
 
     def save_user(self):
-        print(f'{self.account}.pkl')
+        
         with open(f'{self.account}.pkl', 'wb') as enc_file:
             pickle.dump(self, enc_file, None)
