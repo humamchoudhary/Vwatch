@@ -13,8 +13,12 @@ class Node():
 
 
 class Binarytree():
-    def __init__(self):
-        self.root = None
+    def __init__(self , rat):
+        self.root = Node(rat)
+        table = TinyDB("database.json").table("Movie_data")
+        q = Query()
+        for data in table.search(q.rating == rat):
+            self.root.ids.append(data["id"])
 
 #-----------------------------------------------------------------------------------------------------------------------------------------
 #                                                --- Movie funtionalities ---
@@ -23,15 +27,7 @@ class Binarytree():
     def insert_mov(self, rat , tree):
 
 
-        if self.root == None:
-            self.root = Node(rat)
-            table = TinyDB("database.json").table("Movie_data")
-            q = Query()
-            for data in table.search(q.rating == rat):
-                self.root.ids.append(data["id"])
-
-
-        elif rat < tree.data:
+        if rat < tree.data:
             if tree.left is None:
              tree.left = Node(rat)
              table = TinyDB("database.json").table("Movie_data")
@@ -89,10 +85,11 @@ class Binarytree():
 
         if data == root.data:
             
-            return self.root.ids
+            print(f"{data}-----{root.data}")
+            return root.ids
            
         elif data < root.data:
-    
+            
             self.rating_based_mov(data , root.left)
 
         elif data > root.data:
@@ -357,12 +354,10 @@ class Binarytree():
 #-----------------------------------------------------------------------------------------------------------------------------------------
 
 
-tree_mov = Binarytree()
-tree_show = Binarytree()
-tree_anime = Binarytree()
-tree_mov.insert_mov(5.0 , tree_mov.root)
-tree_show.insert_show(5.0 , tree_show.root)
-tree_anime.insert_anime(5.0 , tree_anime.root)
+tree_mov = Binarytree(5.0)
+tree_show = Binarytree(5.0)
+tree_anime = Binarytree(5.0)
+
 
 
 
@@ -379,7 +374,7 @@ def reverse_crisis(tree):
     if tree:
         trav += reverse_crisis(tree.right)
         for i in tree.ids:
-            trav.append(i)
+            trav.append(f"{tree.data}--{i}")
         trav += reverse_crisis(tree.left)
 
     return trav
@@ -410,6 +405,11 @@ for i in rat_below_5:
 print(reverse_crisis(tree_mov.root))
 print(reverse_crisis(tree_show.root))
 print(reverse_crisis(tree_anime.root))
+
+
+print(tree_mov.rating_based_mov(5.0 , tree_mov.root))
+
+print(tree_show.rating_based_show(8.3 , tree_mov.root))
 
 
 
