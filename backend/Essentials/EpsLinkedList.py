@@ -71,7 +71,8 @@ class LinkedList:
 
         return 
               
-
+def nexteps(type,token,profilename,id,eps_no):
+    pass
 
 
 # if __name__=="__main__":
