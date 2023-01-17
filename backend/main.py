@@ -206,8 +206,11 @@ def getlink():
     request_data = request.args
     s_id = request_data["id"]
     eps_id = request_data["epsid"]
+    token = request_data["token"]
+    profile = request_data["profile"]
+    anime_data = anime_table.all()
     r = requests.get(f"https://api.consumet.org/movies/flixhq/watch?episodeId={eps_id}&mediaId={s_id}")
-    
+    create_watched(anime_data,token,profile,s_id)
     return make_response(r.json()["sources"][0])
     
 
