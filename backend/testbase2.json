@@ -1,10 +1,4 @@
 {
-    "User_Data": {
-        "1": {
-            "username": "humam02",
-            "token": "9d228589-8dfd-11ed-a1bc-507b9d7ca8a6"
-        }
-    },
     "Anime_data": {
         "1": {
             "id": "tv/watch-initial-d-fourth-stage-project-d-20269",
@@ -162,7 +156,6 @@
                 }
             ]
         },
-        
         "3": {
             "id": "tv/watch-fullmetal-alchemist-38185",
             "title": "Fullmetal Alchemist",
@@ -696,7 +689,6 @@
                 }
             ]
         },
-       
         "7": {
             "id": "tv/watch-hunter-x-hunter-36456",
             "title": "Hunter x Hunter",
@@ -1365,8 +1357,6 @@
                 }
             ]
         }
-
-
     },
     "Show_data": {
         "1": {

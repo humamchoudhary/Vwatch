@@ -73,24 +73,26 @@ import 'package:flutter/material.dart';
 import 'package:flick_video_player/flick_video_player.dart';
 import 'package:video_player/video_player.dart';
 
-class SamplePlayer extends StatefulWidget {
+class VideoPlayer extends StatefulWidget {
   final String url;
-  const SamplePlayer({Key? key, required this.url}) : super(key: key);
+  const VideoPlayer({Key? key, required this.url}) : super(key: key);
 
   @override
-  _SamplePlayerState createState() => _SamplePlayerState();
+  _VideoPlayerState createState() => _VideoPlayerState();
 }
 
-class _SamplePlayerState extends State<SamplePlayer> {
+class _VideoPlayerState extends State<VideoPlayer> {
   FlickManager? flickManager;
   @override
   void initState() {
     super.initState();
-    print("c");
+    print(widget.url);
+
     flickManager = FlickManager(
-      videoPlayerController:
-          VideoPlayerController.network("https://t-ca-2.24hoursuptodatecdn.net/_v9/01b3e0bf48e643923f849702a32bd97a5c4360797759b0838c8f34597271ed8bf541e616b85a255a1320417863fe1980c9c6d12d471fb6d7961711321a2d9cb1be23897428798cbcc3b97d9d706357ecaf127160cd768dfb682e9ce7eb2b448fe4b666b1fc5140d0424780d130011176a68f498a71ec8324c681732255ce3d0a/720/index.m3u8"),
-    );
+      videoPlayerController: VideoPlayerController.network(
+        widget.url
+          // "https://t-ca-2.24hoursuptodatecdn.net/_v9/01b3e0bf48e643923f849702a32bd97a5c4360797759b0838c8f34597271ed8bf541e616b85a255a1320417863fe1980c9c6d12d471fb6d7961711321a2d9cb1be23897428798cbcc3b97d9d706357ecaf127160cd768dfb682e9ce7eb2b448fe4b666b1fc5140d0424780d130011176a68f498a71ec8324c681732255ce3d0a/720/index.m3u8"),
+    ));
     flickManager!.flickControlManager!.enterFullscreen();
   }
 
@@ -102,7 +104,8 @@ class _SamplePlayerState extends State<SamplePlayer> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AspectRatio(
+      aspectRatio: 16 / 9,
       child: FlickVideoPlayer(flickManager: flickManager!),
     );
   }

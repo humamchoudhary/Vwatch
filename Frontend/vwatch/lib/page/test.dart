@@ -36,6 +36,7 @@ class _MytestState extends State<Mytest> {
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
         backgroundColor: Colors.black,
         body: AspectRatio(
@@ -44,7 +45,7 @@ class _MytestState extends State<Mytest> {
           //   url:
           //       "https://movietrailers.apple.com/movies/fox/thefantasticfour/fantasticfour-tlr2_h480p.mov",
           // ),
-          child: SamplePlayer(url:widget.url)
+          child: VideoPlayer(url:"http://192.168.178.249:5000/files?file=test.m3u8")
         ));
   }
 }

@@ -5,6 +5,7 @@ import 'package:vwatch/Components/histroy.dart';
 import 'package:vwatch/Components/ratings.dart';
 import 'package:vwatch/main.dart';
 import 'package:animated_search_bar/animated_search_bar.dart';
+import 'package:vwatch/page/test.dart';
 
 class HomePage extends StatefulWidget {
   final String username;

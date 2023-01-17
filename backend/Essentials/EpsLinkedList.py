@@ -37,7 +37,7 @@ class LinkedList:
                 
             itr = itr.next
 
-    def nextep(self,eps_no,token,profilename):
+    def nextep(self,token,profilename,id,eps_no):
 
         if self.head == None:
             return "List is empty"
@@ -46,8 +46,8 @@ class LinkedList:
         itr = self.head
         while itr:
             if itr.data['epNo'] == eps_no:
-                print(itr.next.data["url"])
-                return self.complete(eps_no,token,profilename)
+                # print(itr.next.data["id"])
+                return self.complete(token,profilename,id,eps_no)
             itr = itr.next
             
         return "Episode doesn't exist"
@@ -58,12 +58,12 @@ class LinkedList:
             - Complete The current eps
         """
         
-    def complete(self,eps_no,token,profilename):
+    def complete(self,token,profilename,id,eps_no):
         with open(f'{token}.pkl', 'rb') as f:
             usertree = pickle.load(f)
 
         userprofile = usertree.load_profile(profilename)
-        userprofile.watched[0]["animeID"][eps_no-1] = True
+        userprofile.watched[id][eps_no-1] = True
 
 
         with open(f'{token}.pkl', 'wb') as w:
@@ -71,6 +71,15 @@ class LinkedList:
 
         return 
               
+def nextepisode(type,token,profilename,id,eps_no):
+    
+    with open(f'{type}.pkl', 'rb') as f:
+        Llist = pickle.load(f)
+
+    obj = Llist[id]
+    obj.nextep(token,profilename,id,eps_no)
+    return id
+
 
 
 

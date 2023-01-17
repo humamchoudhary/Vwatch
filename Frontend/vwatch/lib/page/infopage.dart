@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:vwatch/Components/color.dart';
 import 'package:vwatch/main.dart';
+import 'package:vwatch/page/video.dart';
+import 'package:http/http.dart' as http;
 
 class InfoPage extends StatefulWidget {
   final String name;
@@ -28,6 +32,9 @@ class InfoPage extends StatefulWidget {
 }
 
 class _InfoPageState extends State<InfoPage> {
+  late String url;
+  bool player = false;
+
   @override
   Widget build(BuildContext context) {
     final screensize = MediaQuery.of(context).size;
@@ -50,6 +57,7 @@ class _InfoPageState extends State<InfoPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            !player?
             Container(
               color: AccentColor,
               width: screensize.width,
@@ -107,12 +115,14 @@ class _InfoPageState extends State<InfoPage> {
                   ],
                 ),
               ),
-            ),
+            ):VideoPlayer(
+            url: url,
+          ),
             const SizedBox(
               height: 20,
             ),
             Padding(
-              padding: const EdgeInsets.only(left:8,right: 8),
+              padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
               child: Container(
                   height: screensize.height - 250,
                   child: ListView.separated(
@@ -120,9 +130,14 @@ class _InfoPageState extends State<InfoPage> {
                     itemBuilder: itemBuilder,
                     itemCount: widget.eps.length,
                     separatorBuilder: (BuildContext context, int index) {
-                      return const Divider(height: 2,);
+                      return const Divider(
+                        height: 2,
+                      );
                     },
                   )),
+            ),
+            SizedBox(
+              height: 10,
             )
           ],
         ),
@@ -133,14 +148,31 @@ class _InfoPageState extends State<InfoPage> {
   Widget itemBuilder(BuildContext context, int index) {
     return ListTile(
       tileColor: AccentColor,
-      title: Text(
-        widget.eps.length == 1 ? widget.name : "Episode $index",
-        style: GoogleFonts.poppins(
-          textStyle: TextStyle(
-              color: WhiteColor, fontSize: 14, fontWeight: FontWeight.w400),
+      title: Padding(
+        padding: const EdgeInsets.only(top: 20, bottom: 20),
+        child: Text(
+          widget.eps.length == 1 ? widget.name : "Episode ${index+1}",
+          style: GoogleFonts.poppins(
+            textStyle: TextStyle(
+                color: WhiteColor, fontSize: 14, fontWeight: FontWeight.w400),
+          ),
         ),
       ),
-      trailing: IconButton(icon: const Icon(Icons.play_circle_outline_rounded), onPressed: () {  },color: CTAColor,),
+      trailing: IconButton(
+        icon: const Icon(Icons.play_circle_outline_rounded),
+        onPressed: ()async{
+          print("$URL/getlink?epsid=${widget.eps[index]['id']}&id=${widget.id}");
+          final repsonse = await http.get(Uri.parse("$URL/getlink?epsid=${widget.eps[index]['id']}&id=${widget.id}"));
+        final decode = json.decode(repsonse.body);
+
+          setState(() {
+            url = decode["url"];
+            print(url);
+            player = true;
+          });
+        },
+        color: CTAColor,
+      ),
     );
   }
 }

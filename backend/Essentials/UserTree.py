@@ -1,4 +1,5 @@
 from Exceptions import *
+from collections import defaultdict
 import random
 import pickle
 imgs = ['randimage0.png', 'randimage1.png', 'randimage2.png', 'randimage3.png', 'randimage4.png', 'randimage5.png',
@@ -11,9 +12,8 @@ class UserProfile:
         self.watch_history = [
 
         ]  # Replace with stack later
-        self.watched = [{"animeID": [True, False, ]}]
+        self.watched = defaultdict(list)
         self.watch_list = []
-
     def add_to_watch_history(self, content_id):
         self.watch_history.append(content_id)
 
@@ -92,3 +92,26 @@ class UserTree:
         
         with open(f'{self.account}.pkl', 'wb') as enc_file:
             pickle.dump(self, enc_file, None)
+
+
+#---Func for creating list for watched eps
+def create_watched(data,token,profilename,id):
+
+    with open(f'{token}.pkl', 'rb') as f:
+        usertree = pickle.load(f)
+
+    userprofile = usertree.load_profile(profilename)
+    
+    if id in userprofile.watched:
+        return
+
+    for show in data:
+        if show["id"] == id:
+            totaleps = len(show["episodes"])
+
+    [userprofile.watched[id].append(False) for x in range(totaleps)]            
+    
+    with open(f'{token}.pkl', 'wb') as w:
+        pickle.dump(usertree,w)
+
+    return    

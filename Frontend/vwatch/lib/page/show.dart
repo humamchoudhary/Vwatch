@@ -5,6 +5,7 @@ import 'package:modal_progress_hud_alt/modal_progress_hud_alt.dart';
 import 'dart:convert';
 
 import 'package:vwatch/main.dart';
+import 'package:vwatch/page/infopage.dart';
 
 import '../Components/color.dart';
 
@@ -18,7 +19,6 @@ class ShowPage extends StatefulWidget {
 class _ShowPageState extends State<ShowPage> {
   List movie_data = [];
   _getData() async {
-    print("$URL/getAllShow");
     final repsonse = await http.get(Uri.parse("$URL/getAllShow"));
     final decode = json.decode(repsonse.body);
     setState(() {
@@ -47,7 +47,6 @@ class _ShowPageState extends State<ShowPage> {
 
   @override
   Widget build(BuildContext context) {
-    print(".");
     return movie_data.isEmpty
         ? ModalProgressHUD(
             inAsyncCall: true,
@@ -92,12 +91,42 @@ class _ShowPageState extends State<ShowPage> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)),
                         clipBehavior: Clip.antiAlias,
-                        child: Image.network(
-                          movie["coverImg"],
-                          fit: BoxFit.cover,
-                          filterQuality: FilterQuality.high,
-                          height: 280,
-                          width: 280 * 0.625,
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => InfoPage(
+                                          name: movie["title"],
+                                          id: movie["id"],
+                                          eps: movie["episodes"],
+                                          trailer: "hello",
+                                          genres: movie["genres"],
+                                          cover: movie["coverImg"],
+                                          rating: movie["rating"],
+                                          desc: movie["desc"],
+                                        )));
+                          },
+                          child: Image.network(
+                            movie["coverImg"],
+                            fit: BoxFit.cover,
+                            filterQuality: FilterQuality.high,
+                            frameBuilder: (context, child, frame,
+                                wasSynchronouslyLoaded) {
+                              return child;
+                            },
+                            loadingBuilder: (context, child, loadingProgress) {
+                              if (loadingProgress == null) {
+                                return child;
+                              } else {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                            },
+                            height: 280,
+                            width: 280 * 0.625,
+                          ),
                         ),
                       ),
                     ),
