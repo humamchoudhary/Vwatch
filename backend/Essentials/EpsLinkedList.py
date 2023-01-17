@@ -46,7 +46,7 @@ class LinkedList:
         itr = self.head
         while itr:
             if itr.data['epNo'] == eps_no:
-                print(itr.next.data["url"])
+                # print(itr.next.data["url"])
                 return self.complete(token,profilename,id,eps_no)
             itr = itr.next
             

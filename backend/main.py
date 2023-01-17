@@ -83,8 +83,8 @@ def get_image():
     return send_file(filename, mimetype='image/gif')
 
 
-@app.route('/get_eps')
-def get_eps():
+@app.route('/')
+def next_eps():
     epsno = request.args.get('epsno')
     id = request.args.get('id')
     file = open(f'{id}.pkl', 'rb')
