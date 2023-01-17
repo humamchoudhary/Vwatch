@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
@@ -19,7 +21,6 @@ class MoviePage extends StatefulWidget {
 class _MoviePageState extends State<MoviePage> {
   List movie_data = [];
   _getData() async {
-    print("$URL/getMovies");
     final repsonse = await http.get(Uri.parse("$URL/getAllMovies"));
     final decode = json.decode(repsonse.body);
     setState(() {
@@ -73,7 +74,7 @@ class _MoviePageState extends State<MoviePage> {
               shrinkWrap: true,
               mainAxisSpacing: 0,
               crossAxisSpacing: 0,
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               crossAxisCount: 2,
               childAspectRatio: 0.65,
               children: List.generate(movie_data.length, (index) {
@@ -108,7 +109,19 @@ class _MoviePageState extends State<MoviePage> {
                           movie["coverImg"],
                           fit: BoxFit.cover,
                           filterQuality: FilterQuality.high,
-                          
+                          frameBuilder: (context, child, frame,
+                                wasSynchronouslyLoaded) {
+                              return child;
+                            },
+                            loadingBuilder: (context, child, loadingProgress) {
+                              if (loadingProgress == null) {
+                                return child;
+                              } else {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                            },
                           // height: 220,
                           // width: 220 * 0.625,
                         ),

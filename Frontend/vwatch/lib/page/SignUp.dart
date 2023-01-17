@@ -131,7 +131,6 @@ class SignUpScreenstate extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    // print(screenWidth);
     if (screenWidth <= 450) {
       setState(() {
         _finalwidth = screenWidth - 50;
@@ -258,9 +257,7 @@ class SignUpScreenstate extends State<SignUp> {
                                           Navigator.pop(context, '/signup');
                                         });
                                       }
-                                      print(decode);
                                     } else {
-                                      print("lol");
                                     }
                                     setState(() {
                                       Loading = false;

@@ -19,7 +19,6 @@ class ShowPage extends StatefulWidget {
 class _ShowPageState extends State<ShowPage> {
   List movie_data = [];
   _getData() async {
-    print("$URL/getAllShow");
     final repsonse = await http.get(Uri.parse("$URL/getAllShow"));
     final decode = json.decode(repsonse.body);
     setState(() {
@@ -48,7 +47,6 @@ class _ShowPageState extends State<ShowPage> {
 
   @override
   Widget build(BuildContext context) {
-    print(".");
     return movie_data.isEmpty
         ? ModalProgressHUD(
             inAsyncCall: true,
