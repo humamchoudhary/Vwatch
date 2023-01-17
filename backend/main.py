@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, make_response, request, send_file, render_template, Response
+from flask import Flask, jsonify, make_response, request, send_file, render_template,redirect, Response
 import json
 import requests
 from tinydb import TinyDB, Query
@@ -17,6 +17,7 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = os.path.join("")
 db = TinyDB("database.json")
 query = Query()
+admin_table = db.table("Admin_Data")
 movies_table = db.table("Movie_data")
 show_table = db.table("Show_data")
 anime_table = db.table("Anime_data")
@@ -275,6 +276,41 @@ def rat_get_anime():
     result += tree_anime.find_anime(8.2)
     
     return make_response(jsonify(result))
+
+@app.route("/adminlogin",methods=["GET","POST"])
+def adminlogin():
+
+    error = None
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+
+        if admin_table.search(query.username == username):
+            data = admin_table.search(query.username == username).pop()
+            if data["password"] == password:
+                return redirect("/add")
+            else:
+                error = "Invalid Password"
+        else:
+            error = "Invalid Username"
+
+
+    return render_template("adminlogin.html",error=error)
+
+
+@app.route("/add",methods=["GET","POST"])
+def add():
+
+    error = None
+    if request.method == "POST":
+        type = request.form["type"]
+        id = request.form["id"]
+        epsid = request.form["epsid"]
+        epsno = request.form["epsno"]
+        pass
+
+
+    return render_template("add.html",error=error)
 
 
 if __name__ == "__main__":
