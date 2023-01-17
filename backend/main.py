@@ -213,9 +213,10 @@ def getlink():
 
 @app.route("/files")
 def fileget():
-    request_data = request.args
-    file = request_data["file"]
-    return send_file(f"files/{file}",mimetype='application/x-mpegURL')
+    # request_data = request.args
+    # file = request_data["file"]
+    return "sda"
+    # return send_file(f"files/{file}",mimetype='application/x-mpegURL')
 
 
 if __name__ == "__main__":
