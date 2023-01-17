@@ -19,7 +19,6 @@ class AnimePage extends StatefulWidget {
 class _AnimePageState extends State<AnimePage> {
   List movie_data = [];
   _getData() async {
-    
     final repsonse = await http.get(Uri.parse("$URL/getAllAnime"));
     final decode = json.decode(repsonse.body);
     setState(() {
@@ -112,6 +111,19 @@ class _AnimePageState extends State<AnimePage> {
                             movie["coverImg"],
                             fit: BoxFit.cover,
                             filterQuality: FilterQuality.high,
+                            frameBuilder: (context, child, frame,
+                                wasSynchronouslyLoaded) {
+                              return child;
+                            },
+                            loadingBuilder: (context, child, loadingProgress) {
+                              if (loadingProgress == null) {
+                                return child;
+                              } else {
+                                return Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                            },
                             height: 280,
                             width: 280 * 0.625,
                           ),
