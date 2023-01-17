@@ -119,7 +119,7 @@ class _AnimePageState extends State<AnimePage> {
                               if (loadingProgress == null) {
                                 return child;
                               } else {
-                                return Center(
+                                return const Center(
                                   child: CircularProgressIndicator(),
                                 );
                               }

@@ -113,6 +113,19 @@ class _ShowPageState extends State<ShowPage> {
                             movie["coverImg"],
                             fit: BoxFit.cover,
                             filterQuality: FilterQuality.high,
+                            frameBuilder: (context, child, frame,
+                                wasSynchronouslyLoaded) {
+                              return child;
+                            },
+                            loadingBuilder: (context, child, loadingProgress) {
+                              if (loadingProgress == null) {
+                                return child;
+                              } else {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                            },
                             height: 280,
                             width: 280 * 0.625,
                           ),
