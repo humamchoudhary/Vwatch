@@ -1,4 +1,5 @@
 from Exceptions import *
+from collections import defaultdict
 import random
 import pickle
 imgs = ['randimage0.png', 'randimage1.png', 'randimage2.png', 'randimage3.png', 'randimage4.png', 'randimage5.png',
@@ -11,7 +12,7 @@ class UserProfile:
         self.watch_history = [
 
         ]  # Replace with stack later
-        self.watched = [{"animeID": [True, False, ]}]
+        self.watched = defaultdict(list)
         self.watch_list = []
     def add_to_watch_history(self, content_id):
         self.watch_history.append(content_id)
