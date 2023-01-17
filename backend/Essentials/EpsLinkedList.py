@@ -46,7 +46,7 @@ class LinkedList:
         itr = self.head
         while itr:
             if itr.data['epNo'] == eps_no:
-                # print(itr.next.data["url"])
+                # print(itr.next.data["id"])
                 return self.complete(token,profilename,id,eps_no)
             itr = itr.next
             
@@ -71,8 +71,16 @@ class LinkedList:
 
         return 
               
-def nexteps(type,token,profilename,id,eps_no):
-    pass
+def nextepisode(type,token,profilename,id,eps_no):
+    
+    with open(f'{type}.pkl', 'rb') as f:
+        Llist = pickle.load(f)
+
+    obj = Llist[id]
+    obj.nextep(token,profilename,id,eps_no)
+    return id
+
+
 
 
 # if __name__=="__main__":
