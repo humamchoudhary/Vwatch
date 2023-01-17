@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:vwatch/Components/color.dart';
 import 'package:vwatch/Components/histroy.dart';
+import 'package:vwatch/Components/ratings.dart';
 import 'package:vwatch/main.dart';
 import 'package:animated_search_bar/animated_search_bar.dart';
 
@@ -23,7 +24,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   @override
   Widget build(BuildContext context) {
     final screensize = MediaQuery.of(context).size;
@@ -70,8 +70,14 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
+              SizedBox(height: 45),
+              SizedBox(height: 140, child: const Rating()),
 
-              // const Rating(),
+              SizedBox(height: 45),
+              SizedBox(height: 140, child: const Rating()),
+
+              SizedBox(height: 45),
+              SizedBox(height: 140, child: const Rating()),
               // Center(
               //   child: ElevatedButton(
               //       onPressed: () {
@@ -80,7 +86,6 @@ class _HomePageState extends State<HomePage> {
               //       },
               //       child: const Text("player")),
               // ),
-              
 
               const SizedBox(
                 height: 400,
