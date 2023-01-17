@@ -10,6 +10,7 @@ from signup import Signup
 from rafay.history import *
 import os
 from string import punctuation
+from Essentials.Ratingtree import Binarytree
 
 response = ''
 app = Flask(__name__)
@@ -225,6 +226,55 @@ def fileget():
     # file = request_data["file"]
     return "sda"
     # return send_file(f"files/{file}",mimetype='application/x-mpegURL')
+
+@app.route("/get_rating_movie")
+def rat_get_mov():
+    # request_data = request.args
+    # rat = request_data["rating"]
+    result = []
+    with open(f'Movies.pkl', 'rb') as enc_file:
+        tree_mov = pickle.load(enc_file)
+
+    
+    result += tree_mov.find_mov(8.1)
+    result += tree_mov.find_mov(7.8)
+    result += tree_mov.find_mov(7.4)
+    result += tree_mov.find_mov(7.3)
+    
+    return make_response(jsonify(result))
+
+@app.route("/get_rating_show")
+def rat_get_show():
+    # request_data = request.args
+    # rat = request_data["rating"]
+    result = []
+    with open(f'Tv Show.pkl', 'rb') as enc_file:
+        tree_show = pickle.load(enc_file)
+
+    
+    result += tree_show.find_show(8.4)
+    result += tree_show.find_show(7.3)
+    result += tree_show.find_show(6.6)
+  
+    
+    return make_response(jsonify(result))
+    
+
+@app.route("/get_rating_anime")
+def rat_get_anime():
+    # request_data = request.args
+    # rat = request_data["rating"]
+    result = []
+    with open(f'Animation.pkl', 'rb') as enc_file:
+        tree_anime = pickle.load(enc_file)
+
+    
+    result += tree_anime.find_anime(8.8)
+    result += tree_anime.find_anime(8.6)
+    result += tree_anime.find_anime(8.5)
+    result += tree_anime.find_anime(8.2)
+    
+    return make_response(jsonify(result))
 
 
 if __name__ == "__main__":
