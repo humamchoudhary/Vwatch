@@ -4,6 +4,7 @@ import 'package:vwatch/Components/color.dart';
 import 'package:vwatch/Components/histroy.dart';
 import 'package:vwatch/main.dart';
 import 'package:animated_search_bar/animated_search_bar.dart';
+import 'package:vwatch/page/test.dart';
 
 class HomePage extends StatefulWidget {
   final String username;
@@ -71,15 +72,14 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
 
-              // const Rating(),
-              // Center(
-              //   child: ElevatedButton(
-              //       onPressed: () {
-              //         Navigator.pushReplacement(context,
-              //             MaterialPageRoute(builder: (context) => Mytest()));
-              //       },
-              //       child: const Text("player")),
-              // ),
+              Center(
+                child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) => Mytest( url: '',)));
+                    },
+                    child: const Text("player")),
+              ),
               
 
               const SizedBox(

@@ -5,6 +5,7 @@ import 'package:modal_progress_hud_alt/modal_progress_hud_alt.dart';
 import 'dart:convert';
 
 import 'package:vwatch/main.dart';
+import 'package:vwatch/page/infopage.dart';
 
 import '../Components/color.dart';
 
@@ -92,12 +93,29 @@ class _ShowPageState extends State<ShowPage> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)),
                         clipBehavior: Clip.antiAlias,
-                        child: Image.network(
-                          movie["coverImg"],
-                          fit: BoxFit.cover,
-                          filterQuality: FilterQuality.high,
-                          height: 280,
-                          width: 280 * 0.625,
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => InfoPage(
+                                          name: movie["title"],
+                                          id: movie["id"],
+                                          eps: movie["episodes"],
+                                          trailer: "hello",
+                                          genres: movie["genres"],
+                                          cover: movie["coverImg"],
+                                          rating: movie["rating"],
+                                          desc: movie["desc"],
+                                        )));
+                          },
+                          child: Image.network(
+                            movie["coverImg"],
+                            fit: BoxFit.cover,
+                            filterQuality: FilterQuality.high,
+                            height: 280,
+                            width: 280 * 0.625,
+                          ),
                         ),
                       ),
                     ),

@@ -86,6 +86,8 @@ class _VideoPlayerState extends State<VideoPlayer> {
   @override
   void initState() {
     super.initState();
+    print(widget.url);
+
     flickManager = FlickManager(
       videoPlayerController: VideoPlayerController.network(
         widget.url

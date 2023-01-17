@@ -44,7 +44,7 @@ class _ProfilesPageState extends State<ProfilesPage> {
                   return Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Card(
+                      Card( 
                         clipBehavior: Clip.antiAlias,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)),

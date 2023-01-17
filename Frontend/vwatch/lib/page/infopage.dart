@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:vwatch/Components/color.dart';
 import 'package:vwatch/main.dart';
 import 'package:vwatch/page/video.dart';
+import 'package:http/http.dart' as http;
 
 class InfoPage extends StatefulWidget {
   final String name;
@@ -29,6 +32,9 @@ class InfoPage extends StatefulWidget {
 }
 
 class _InfoPageState extends State<InfoPage> {
+  late String url;
+  bool player = false;
+
   @override
   Widget build(BuildContext context) {
     final screensize = MediaQuery.of(context).size;
@@ -51,6 +57,7 @@ class _InfoPageState extends State<InfoPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            !player?
             Container(
               color: AccentColor,
               width: screensize.width,
@@ -108,7 +115,9 @@ class _InfoPageState extends State<InfoPage> {
                   ],
                 ),
               ),
-            ),
+            ):VideoPlayer(
+            url: url,
+          ),
             const SizedBox(
               height: 20,
             ),
@@ -142,7 +151,7 @@ class _InfoPageState extends State<InfoPage> {
       title: Padding(
         padding: const EdgeInsets.only(top: 20, bottom: 20),
         child: Text(
-          widget.eps.length == 1 ? widget.name : "Episode $index",
+          widget.eps.length == 1 ? widget.name : "Episode ${index+1}",
           style: GoogleFonts.poppins(
             textStyle: TextStyle(
                 color: WhiteColor, fontSize: 14, fontWeight: FontWeight.w400),
@@ -151,11 +160,16 @@ class _InfoPageState extends State<InfoPage> {
       ),
       trailing: IconButton(
         icon: const Icon(Icons.play_circle_outline_rounded),
-        onPressed: () {
-          print(widget.eps[index]["url"]);
-          VideoPlayer(
-            url: widget.eps[index]["url"],
-          );
+        onPressed: ()async{
+          print("$URL/getlink?epsid=${widget.eps[index]['id']}&id=${widget.id}");
+          final repsonse = await http.get(Uri.parse("$URL/getlink?epsid=${widget.eps[index]['id']}&id=${widget.id}"));
+        final decode = json.decode(repsonse.body);
+
+          setState(() {
+            url = decode["url"];
+            print(url);
+            player = true;
+          });
         },
         color: CTAColor,
       ),

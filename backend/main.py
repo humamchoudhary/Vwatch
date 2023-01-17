@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, make_response, request, send_file, render_template, Response
 import json
+import requests
 from tinydb import TinyDB, Query
 from login import Login
 from Essentials.UserTree import *
@@ -24,7 +25,7 @@ def LoginRoute():
 
     # fetching the global response variable to manipulate inside the function
     global response
-    
+
     if (request.method == 'POST'):
         request_data = request.data
         request_data = json.loads(request_data.decode('utf-8'))
@@ -170,32 +171,51 @@ def search():
             title = data["title"].lower()
             for i in punctuation:
                 title = title.replace(i, "")
-            [result.append(data) for i in searchs if i in title and data not in result]
-        
+            [result.append(data)
+             for i in searchs if i in title and data not in result]
+
         for data in anime_table.all():
             title = data["title"].lower()
             for i in punctuation:
                 title = title.replace(i, "")
-            [result.append(data) for i in searchs if i in title and data not in result]
+            [result.append(data)
+             for i in searchs if i in title and data not in result]
 
         for data in show_table.all():
             title = data["title"].lower()
             for i in punctuation:
                 title = title.replace(i, "")
-            [result.append(data) for i in searchs if i in title and data not in result]
+            [result.append(data)
+             for i in searchs if i in title and data not in result]
 
-       
         if result:
             return make_response(jsonify(result))
         else:
             return make_response(jsonify({"msg": "no data found!"}), 400)
-
 
     if "id" in request_data.keys():
         print(request_data["id"])
     if "id" not in request_data.keys() and "name" not in request_data.keys():
         return make_response(jsonify({"msg": "id or name is required"}), 400)
     return "search"
+
+@app.route("/getlink")
+def getlink():
+    # https://api.consumet.org/movies/flixhq/watch?episodeId=928225&mediaId=tv/watch-initial-d-fourth-stage-project-d-20269
+
+    request_data = request.args
+    s_id = request_data["id"]
+    eps_id = request_data["epsid"]
+    r = requests.get(f"https://api.consumet.org/movies/flixhq/watch?episodeId={eps_id}&mediaId={s_id}")
+    
+    return make_response(r.json()["sources"][0])
+    
+
+@app.route("/files")
+def fileget():
+    request_data = request.args
+    file = request_data["file"]
+    return send_file(f"files/{file}",mimetype='application/x-mpegURL')
 
 
 if __name__ == "__main__":
