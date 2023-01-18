@@ -97,6 +97,7 @@ class _AnimePageState extends State<AnimePage> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => InfoPage(
+                                          content_type : "anime",
                                           name: movie["title"],
                                           id: movie["id"],
                                           eps: movie["episodes"],

@@ -8,6 +8,7 @@ import 'package:vwatch/page/video.dart';
 import 'package:http/http.dart' as http;
 
 class InfoPage extends StatefulWidget {
+  final String? content_type;
   final String name;
   final String desc;
   final String id;
@@ -18,6 +19,7 @@ class InfoPage extends StatefulWidget {
   final double rating;
   const InfoPage(
       {super.key,
+      this.content_type,
       required this.name,
       required this.id,
       required this.eps,
@@ -34,6 +36,7 @@ class InfoPage extends StatefulWidget {
 class _InfoPageState extends State<InfoPage> {
   late String url;
   bool player = false;
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -116,54 +119,10 @@ class _InfoPageState extends State<InfoPage> {
                       ),
                     ),
                   )
-                : Column(
-                    children: [
-                      VideoPlayer(
-                        url: url,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        
-                        children: [
-                          ElevatedButton(
-                            onPressed: () {
+                : VideoPlayer(
+                  url: url, id: widget.id,
 
-                            },
-                            child: Text(
-                              "Prev",
-                              softWrap: true,
-                              textAlign: TextAlign.justify,
-                              style: GoogleFonts.poppins(
-                                textStyle: TextStyle(
-                                  color: WhiteColor,
-                                  fontSize: 10,
-                                ),
-                              ),
-                              maxLines: 10,
-                            ),
-                          ),
-                          SizedBox(width: 20,),
-                          ElevatedButton(
-                            onPressed: () {},
-                            child: Text(
-                              "Next",
-                              softWrap: true,
-                              textAlign: TextAlign.justify,
-                              style: GoogleFonts.poppins(
-                                textStyle: TextStyle(
-                                  color: WhiteColor,
-                                  fontSize: 10,
-                                ),
-                              ),
-                              maxLines: 10,
-                            ),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
+                ),
             const SizedBox(
               height: 20,
             ),
@@ -214,8 +173,10 @@ class _InfoPageState extends State<InfoPage> {
           final decode = json.decode(repsonse.body);
 
           setState(() {
+            
             url = decode["url"];
             print(url);
+
             player = true;
           });
         },

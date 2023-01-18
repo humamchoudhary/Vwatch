@@ -94,6 +94,7 @@ class _MoviePageState extends State<MoviePage> {
                                   MaterialPageRoute(
                                       builder: (context) =>
                                          InfoPage(
+                                          content_type : "movie",
                                           name:movie["title"],
                                           id:movie["id"],
                                           eps:movie["episodes"],

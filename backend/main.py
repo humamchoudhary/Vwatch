@@ -90,18 +90,20 @@ def get_image():
 
 @app.route('/nexteps')
 def next_eps():
-    # token = request.args.get('token')
-    # profile = request.args.get('profile')
-    # epsno = request.args.get('epsno')
-    # id = request.args.get('id')
-    type = "anime"
-    token = "9d228589-8dfd-11ed-a1bc-507b9d7ca8a6"
-    profile = "humam02"
-    id = "tv/watch-initial-d-fourth-stage-project-d-20269"
-    epsno = 3
+    request_data = request.args
+    content_type = request_data["content_type"]
+    token = request_data['token']
+    profile = request_data['profile']
+    epsno = int(request_data['epsno'])
+    id = request_data['id']
+    # type = "anime"
+    # token = "9d228589-8dfd-11ed-a1bc-507b9d7ca8a6"
+    # profile = "humam02"
+    # id = "tv/watch-initial-d-fourth-stage-project-d-20269"
+    # epsno = 3
 
     response = jsonify(
-        {"result": nextepisode(type, token, profile, id, epsno)})
+        {"result": nextepisode(content_type, token, profile, id, epsno)})
     return make_response(response)
 
 
