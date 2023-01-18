@@ -57,6 +57,7 @@ class _HistoryState extends State<History> {
   }
 
   Widget historyBuilder(BuildContext context, int index) {
+    final screensize = MediaQuery.of(context).size;
     return ListTile(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       tileColor: AccentColor,
@@ -93,18 +94,24 @@ class _HistoryState extends State<History> {
                           fontWeight: FontWeight.bold),
                     ),
                   ),
-                  Row(children: [
-                    for (var i in history[index]["genres"])
-                      Text(
-                        " $i ",
-                        style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                              color: HexColor("#AAB1C2"),
-                              fontSize: 10,
-                              fontWeight: FontWeight.w300),
-                        ),
-                      )
-                  ]),
+                  SizedBox(
+                    width: screensize.width - 70,
+                    child: Row(children: [
+                      // for (var i in history[index]["genres"])
+                        Flexible(
+                          child: Text(
+                            " ${history[index]["genres"].join(" | ")}",
+                            overflow: TextOverflow.ellipsis,
+                            style: GoogleFonts.poppins(
+                              textStyle: TextStyle(
+                                  color: HexColor("#AAB1C2"),
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w300),
+                            ),
+                          ),
+                        )
+                    ]),
+                  ),
                 ],
               ),
             ]),
