@@ -1,8 +1,6 @@
-import 'dart:io';
-
+// ignore_for_file: non_constant_identifier_names
 import 'package:flutter/material.dart';
 import 'package:vwatch/main.dart';
-import 'package:vwatch/page/infopage.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
@@ -23,7 +21,6 @@ class _RatingState extends State<Rating> {
     decode.forEach((val) async {
       var data = await http.post(Uri.parse("$URL/search?id=$val"));
       setState(() {
-        print(json.decode(data.body));
         rating_data.add(json.decode(data.body)[0]);
       });
     });
@@ -49,8 +46,9 @@ class _RatingState extends State<Rating> {
                     borderRadius: BorderRadius.circular(10)),
                 clipBehavior: Clip.antiAlias,
                 child: InkWell(
-                  child: Image.network(
-               "https://img.flixhq.to/xxrz/250x400/379/b0/e4/b0e4780f952163abbfec3b614fb25a6e/b0e4780f952163abbfec3b614fb25a6e.jpg",
+                  child: Image.network( 
+                    // "https://img.flixhq.to/xxrz/250x400/379/b0/e4/b0e4780f952163abbfec3b614fb25a6e/b0e4780f952163abbfec3b614fb25a6e.jpg",
+                    movie["coverImg"],
                     fit: BoxFit.cover,
                     filterQuality: FilterQuality.high,
                     height: 180,
@@ -60,10 +58,10 @@ class _RatingState extends State<Rating> {
               );
             },
             separatorBuilder: (BuildContext context, int index) {
-              return Divider();
+              return const Divider();
             },
             itemCount: rating_data.length,
           )
-        : SizedBox(height: 190);
+        : const SizedBox(height: 190);
   }
 }

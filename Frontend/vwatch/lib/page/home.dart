@@ -87,11 +87,11 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(height: 45),
               const SizedBox(height: 140, child: Rating(contenttype: 'movie',)),
 
-              // const SizedBox(height: 45),
-              // const SizedBox(height: 140, child: Rating(contenttype: 'show',)),
+              const SizedBox(height: 45),
+              const SizedBox(height: 140, child: Rating(contenttype: 'show',)),
 
-              // const SizedBox(height: 45),
-              // const SizedBox(height: 140, child: Rating(contenttype: 'anime',)),
+              const SizedBox(height: 45),
+              const SizedBox(height: 140, child: Rating(contenttype: 'anime',)),
 
 
               // Center(
