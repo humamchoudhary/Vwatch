@@ -34,12 +34,15 @@ class LinkedList:
         itr = self.head
         while itr:
             if itr.next.data['epNo'] == eps_no:
-                return itr.data["url"]
+                eps_id = itr.data["id"]
+                r = requests.get(
+                f"https://api.consumet.org/movies/flixhq/watch?episodeId={eps_id}&mediaId={id}")
+                return {"id":id,"epsid":eps_id,"url": r.json()["sources"][0]["url"]}
                 
             itr = itr.next
 
     def nextep(self,token,profilename,id,eps_no):
-
+        print(eps_no)
         if self.head == None:
             return "List is empty"
             
@@ -73,7 +76,8 @@ class LinkedList:
             pickle.dump(usertree,w)
 
         return 
-              
+
+#Previous Episode              
 def nextepisode(content_type,token,profilename,id,eps_no):
     
     with open(f'{content_type}.pkl', 'rb') as f:
@@ -82,6 +86,16 @@ def nextepisode(content_type,token,profilename,id,eps_no):
     obj = Llist[id]
     info = obj.nextep(token,profilename,id,eps_no)
     return info[0]
+
+#Next Episode
+def prevepisode(content_type,token,profilename,id,eps_no):
+    
+    with open(f'{content_type}.pkl', 'rb') as f:
+        Llist = pickle.load(f)
+
+    obj = Llist[id]
+    info = obj.prevep(token,profilename,id,eps_no)
+    return info
     
 
 
