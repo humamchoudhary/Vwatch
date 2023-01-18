@@ -159,10 +159,15 @@
                     "season": 1,
                     "epNo": 24,
                     "url": "https://t-eu-3.onthecloudcdn.com/_v9/49d32c156c0a8f9dbc20a259d3a7bdd1c4c3eea4485d0d54bd04df151a27a17df2d92cc7a3a7c3d0cc1e942af90f033d0ecffd6667c890eb27703e9c9b4c9d7b2b42b6bfb5057caf0ad972eae298b6d45b20e18ce350bf6709dfbdf1ced30d030bd14d88c483817a50314f50a58b9ce809d11408858e5719668637ca244eaaf2/playlist.m3u8"
+                },
+                {
+                    "id": "928225",
+                    "season": 1,
+                    "epNo": 25,
+                    "url": "https://t-eu-2.magnewscontent.org/_v9/3ee4bef4d75d713c5798dbd8b279b2782f6ca138f5369353c95a13a3638e5f86fc431c5027b530e8adf61ec85de763f0f5d6631668cf11383fe1680d2e37df4ded07f4d00d6ba44b0a75fe7400e299c3c05005b15138bdb6aca1d5d4638339bf17f2b58fe89ca11327b0ad0710732b42ce7f1462e8bbce29926fd163754b1a33/playlist.m3u8"
                 }
             ]
         },
-        
         "3": {
             "id": "tv/watch-fullmetal-alchemist-38185",
             "title": "Fullmetal Alchemist",
@@ -696,7 +701,6 @@
                 }
             ]
         },
-       
         "7": {
             "id": "tv/watch-hunter-x-hunter-36456",
             "title": "Hunter x Hunter",
@@ -1365,8 +1369,6 @@
                 }
             ]
         }
-
-
     },
     "Show_data": {
         "1": {

@@ -30,7 +30,7 @@ class _VideoPlayerState extends State<VideoPlayer> {
   void initState() {
     super.initState();
     print(widget.url);
-    initPlayer();
+    initPlayer(widget.url);
   }
 
   @override
@@ -39,7 +39,6 @@ class _VideoPlayerState extends State<VideoPlayer> {
     super.dispose();
   }
 
-  int curr_eps = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -48,69 +47,13 @@ class _VideoPlayerState extends State<VideoPlayer> {
         AspectRatio(
             aspectRatio: 16 / 9,
             child: FlickVideoPlayer(flickManager: flickManager)),
-        SizedBox(
-          height: 10,
-        ),
-        Row(
-          children: [
-            ElevatedButton(
-              onPressed: () {},
-              child: Text(
-                "Prev",
-                softWrap: true,
-                textAlign: TextAlign.justify,
-                style: GoogleFonts.poppins(
-                  textStyle: TextStyle(
-                    color: WhiteColor,
-                    fontSize: 10,
-                  ),
-                ),
-                maxLines: 10,
-              ),
-            ),
-            SizedBox(
-              width: 20,
-            ),
-            ElevatedButton(
-              onPressed: () async {
-                print(
-                    "$URL/nexteps?content_type=${widget.content_type}&token=${USER.token}&profile=${PROFILE.username}&epsno=${curr_eps}&id=${widget.id}");
-                final repsonse = await http.get(Uri.parse(
-                    "$URL/nexteps?content_type=${widget.content_type}&token=${USER.token}&profile=${PROFILE.username}&epsno=${curr_eps}&id=${widget.id}"));
-                final decode = json.decode(repsonse.body)["result"];
-                print(decode);
-
-                setState(() {
-                  widget.url = decode["url"];
-                  print(widget.url);
-                  // flickManager.dispose();
-                  // _videoplayercontoller.dispose();
-                  // _videoplayercontoller.value;
-                  initPlayer();
-                });
-              },
-              child: Text(
-                "Next",
-                softWrap: true,
-                textAlign: TextAlign.justify,
-                style: GoogleFonts.poppins(
-                  textStyle: TextStyle(
-                    color: WhiteColor,
-                    fontSize: 10,
-                  ),
-                ),
-                maxLines: 10,
-              ),
-            ),
-          ],
-        )
+        
       ],
     );
   }
 
-  void initPlayer() {
-    
-    _videoplayercontoller = VideoPlayerController.network(widget.url);
+  void initPlayer(url) {
+    _videoplayercontoller = VideoPlayerController.network(url);
     flickManager = FlickManager(videoPlayerController: _videoplayercontoller);
     flickManager.flickControlManager!.enterFullscreen();
   }

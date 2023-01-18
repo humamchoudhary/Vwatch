@@ -36,11 +36,12 @@ class InfoPage extends StatefulWidget {
 class _InfoPageState extends State<InfoPage> {
   late String url;
   bool player = false;
- 
+  int curr_eps = 1;
 
   @override
   Widget build(BuildContext context) {
     final screensize = MediaQuery.of(context).size;
+    print(url);
     return Scaffold(
       backgroundColor: BackgroundColor,
       appBar: AppBar(
@@ -120,10 +121,73 @@ class _InfoPageState extends State<InfoPage> {
                     ),
                   )
                 : VideoPlayer(
-                  content_type: widget.content_type,
-                  url: url, id: widget.id,
-
+                    content_type: widget.content_type,
+                    url: url,
+                    id: widget.id,
+                  ),
+            const SizedBox(
+              width: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () {},
+                  child: Text(
+                    "Prev",
+                    softWrap: true,
+                    textAlign: TextAlign.justify,
+                    style: GoogleFonts.poppins(
+                      textStyle: TextStyle(
+                        color: WhiteColor,
+                        fontSize: 10,
+                      ),
+                    ),
+                    maxLines: 10,
+                  ),
                 ),
+                const SizedBox(
+                  width: 20,
+                ),
+                ElevatedButton(
+                  onPressed: () async {
+                    setState(() {
+                      player = false;
+                      curr_eps += 1;
+                    });
+
+                    print(
+                        "$URL/nexteps?content_type=${widget.content_type}&token=${USER.token}&profile=${PROFILE.username}&epsno=${curr_eps}&id=${widget.id}");
+                    final repsonse = await http.get(Uri.parse(
+                        "$URL/nexteps?content_type=${widget.content_type}&token=${USER.token}&profile=${PROFILE.username}&epsno=${curr_eps}&id=${widget.id}"));
+                    final decode = json.decode(repsonse.body)["result"];
+                    print(decode);
+
+                    setState(() {
+                      url = decode["url"];
+                      print(url);
+                      player = true;
+
+                      // flickManager.dispose();
+                      // _videoplayercontoller.dispose();
+                      // _videoplayercontoller.value;
+                    });
+                  },
+                  child: Text(
+                    "Next",
+                    softWrap: true,
+                    textAlign: TextAlign.justify,
+                    style: GoogleFonts.poppins(
+                      textStyle: TextStyle(
+                        color: WhiteColor,
+                        fontSize: 10,
+                      ),
+                    ),
+                    maxLines: 10,
+                  ),
+                ),
+              ],
+            ),
             const SizedBox(
               height: 20,
             ),
@@ -142,7 +206,7 @@ class _InfoPageState extends State<InfoPage> {
                     },
                   )),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             )
           ],
