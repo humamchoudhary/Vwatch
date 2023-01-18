@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:vwatch/Components/color.dart';
+import 'package:vwatch/Components/user.dart';
 import 'package:vwatch/page/Login_form.dart';
 import 'package:vwatch/page/SignUp.dart';
 import 'package:vwatch/page/test.dart';
-
 // const URL = "http://172.24.7.96:5000";
 // const URL = "http://10.4.72.136:5000";
-const URL = "http://192.168.8.128:5000";
-// const URL = "https://vwatch-backend.et.r.appspot.com";
-
+const URL = "http://10.4.72.69:5000";
+late User USER;
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const MainApp());
