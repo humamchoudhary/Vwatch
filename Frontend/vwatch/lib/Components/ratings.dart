@@ -21,7 +21,12 @@ class _RatingState extends State<Rating> {
     decode.forEach((val) async {
       var data = await http.post(Uri.parse("$URL/search?id=$val"));
       setState(() {
+        try{
+
         rating_data.add(json.decode(data.body)[0]);
+        }catch(e){
+          print(e);
+        }
       });
     });
   }
