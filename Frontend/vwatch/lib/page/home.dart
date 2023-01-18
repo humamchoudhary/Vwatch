@@ -92,7 +92,7 @@ class _HomePageState extends State<HomePage> {
                 height: 400,
               ),
 
-              const History(),
+               History(history:widget.history ,),
             ]),
           ),
         ),

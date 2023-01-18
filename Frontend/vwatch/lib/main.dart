@@ -8,6 +8,7 @@ import 'package:vwatch/page/test.dart';
 // const URL = "http://10.4.72.136:5000";
 const URL = "http://10.4.72.69:5000";
 late User USER;
+late Profile PROFILE;
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const MainApp());

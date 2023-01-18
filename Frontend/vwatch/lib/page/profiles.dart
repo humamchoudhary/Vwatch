@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:vwatch/Components/user.dart';
 import 'package:vwatch/main.dart';
 import 'package:vwatch/page/home.dart';
 import 'package:vwatch/page/navigation_controller.dart';
@@ -54,6 +55,14 @@ class _ProfilesPageState extends State<ProfilesPage> {
                           width: 128,
                           child: InkWell(
                             onTap: () {
+                              setState(() {
+                              PROFILE =Profile(username: widget.profiles[index]["username"],
+                                            history: widget.profiles[index]["history"],
+                                            watchQueue: widget.profiles[index]["watchlist"],
+                                            img: widget.profiles[index]["img"],
+                                            ) ;
+                                
+                              });
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(

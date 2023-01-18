@@ -1,4 +1,5 @@
 import 'package:google_fonts/google_fonts.dart';
+import 'package:vwatch/Components/user.dart';
 import 'package:vwatch/main.dart';
 import 'package:vwatch/page/home.dart';
 // import 'package:modal_progress_hud/modal_progress_hud.dart';
@@ -189,7 +190,9 @@ class LoginScreenstate extends State<Login> {
                               print(decode);
 
                               // ignore: use_build_context_synchronously
-                              
+                              setState(() {
+                                USER = User(profiles: accountDetails["profiles"] , username: username);
+                              });
                               Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(

@@ -65,7 +65,7 @@ class UserTree:
         profiles = []
         profiles.append({
             "username": self.root.data.username,
-            "history": self.root.data.watch_history,
+            "history": self.root.data.watch_history.get_all(),
             "watchlist": self.root.data.watch_list,
             "img": self.root.data.img
         })

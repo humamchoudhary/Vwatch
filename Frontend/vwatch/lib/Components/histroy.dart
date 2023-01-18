@@ -8,7 +8,8 @@ import 'package:http/http.dart' as http;
 import 'package:vwatch/page/test.dart';
 
 class History extends StatefulWidget {
-  const History({super.key});
+  final List history;
+  const History({super.key, required this.history});
 
   @override
   State<History> createState() => _HistoryState();
@@ -17,7 +18,7 @@ class History extends StatefulWidget {
 class _HistoryState extends State<History> {
   @override
   void initState() {
-    get_history();
+    history = widget.history;
     super.initState();
   }
 
@@ -33,22 +34,13 @@ class _HistoryState extends State<History> {
     }
   }
 
-  get_history() async {
-    final repsonse = await http.get(
-      Uri.parse("$URL/get_history"),
-    );
-    final decode = json.decode(repsonse.body) as Map<String, dynamic>;
-    setState(() {
-      // print(decode);
-      decode["data"];
-    });
-  }
+  
 
   List history = [];
   @override
   Widget build(BuildContext context) {
     final screensize = MediaQuery.of(context).size;
-
+    
     return history.isNotEmpty
         ? Column(
             mainAxisAlignment: MainAxisAlignment.start,

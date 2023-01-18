@@ -10,16 +10,13 @@ class Watch_history:
 
 
     def get_all(self):
-        
+    
         listhistory=list(self.history)
         listhistory.reverse()
         return listhistory
     def reset(self):
         self.history = deque()
-    
-    def __repr__(self) -> str:
-        print("..")
-        return "hello"
+
         
 
 if __name__ == "__main__":

@@ -30,10 +30,10 @@ def LoginRoute():
     global response
 
     if (request.method == 'POST'):
-        # request_data = request.data
-        # request_data = json.loads(request_data.decode('utf-8'))
+        request_data = request.data
+        request_data = json.loads(request_data.decode('utf-8'))
 
-        request_data = request.args
+        # request_data = request.args
 
         username = request_data['username']
         password = request_data['password']
@@ -42,7 +42,6 @@ def LoginRoute():
             account = Login(username, password)
             account = account.account
             w = Watch_history()
-            print(jsonify({"s": w}))
             response = jsonify({"error": "Logged in", "account": {
                                "username": account.account.username, "profiles": account.get_all_profiles()}})
             return make_response(response, 200)

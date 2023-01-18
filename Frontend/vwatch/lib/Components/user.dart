@@ -9,5 +9,6 @@ class Profile {
   String username;
   List history;
   List watchQueue;
-  Profile({required this.history,required this.username,required this.watchQueue});
+  String img;
+  Profile({required this.history,required this.username,required this.watchQueue,required this.img});
 }
