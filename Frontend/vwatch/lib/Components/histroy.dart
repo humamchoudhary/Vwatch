@@ -59,6 +59,9 @@ class _HistoryState extends State<History> {
   Widget historyBuilder(BuildContext context, int index) {
     final screensize = MediaQuery.of(context).size;
     return ListTile(
+      onTap:() {
+        
+      },
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       tileColor: AccentColor,
       title: Padding(
@@ -95,42 +98,28 @@ class _HistoryState extends State<History> {
                     ),
                   ),
                   SizedBox(
-                    width: screensize.width - 70,
-                    child: Row(children: [
-                      // for (var i in history[index]["genres"])
-                        Flexible(
-                          child: Text(
-                            " ${history[index]["genres"].join(" | ")}",
-                            overflow: TextOverflow.ellipsis,
-                            style: GoogleFonts.poppins(
-                              textStyle: TextStyle(
-                                  color: HexColor("#AAB1C2"),
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.w300),
-                            ),
-                          ),
-                        )
-                    ]),
+                    width: screensize.width/2,
+                    child: Flexible(
+                      child: Text(
+                        " ${history[index]["genres"].join(" | ")}",
+                        overflow: TextOverflow.ellipsis,
+                        style: GoogleFonts.poppins(
+                          textStyle: TextStyle(
+                              color: HexColor("#AAB1C2"),
+                              fontSize: 10,
+                              fontWeight: FontWeight.w300),
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),
             ]),
-            Padding(
-              padding: const EdgeInsets.only(right: 20),
-              child: IconButton(
-                icon: Icon(Icons.play_arrow_rounded, color: CTAColor),
-                onPressed: () {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              Mytest(url: history[index]["url"])));
-                },
-              ),
-            ),
+            
           ],
         ),
       ),
+      
     );
   }
 
