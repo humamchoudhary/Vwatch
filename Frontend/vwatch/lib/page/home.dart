@@ -5,6 +5,7 @@ import 'package:vwatch/Components/histroy.dart';
 import 'package:vwatch/Components/ratings.dart';
 import 'package:vwatch/main.dart';
 import 'package:animated_search_bar/animated_search_bar.dart';
+import 'package:vwatch/page/profileinfo.dart';
 import 'package:vwatch/page/test.dart';
 
 class HomePage extends StatefulWidget {
@@ -69,16 +70,28 @@ class _HomePageState extends State<HomePage> {
                           fontWeight: FontWeight.w400),
                     ),
                   ),
+                  trailing: IconButton(
+                    icon: Icon(
+                      Icons.info_outline_rounded,
+                      color: HexColor("#AAB1C2"),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ProfileInfo()));
+                    },
+                  ),
                 ),
               ),
-              SizedBox(height: 45),
-              SizedBox(height: 140, child: const Rating()),
+              const SizedBox(height: 45),
+              const SizedBox(height: 140, child: Rating()),
 
-              SizedBox(height: 45),
-              SizedBox(height: 140, child: const Rating()),
+              const SizedBox(height: 45),
+              const SizedBox(height: 140, child: Rating()),
 
-              SizedBox(height: 45),
-              SizedBox(height: 140, child: const Rating()),
+              const SizedBox(height: 45),
+              const SizedBox(height: 140, child: Rating()),
               // Center(
               //   child: ElevatedButton(
               //       onPressed: () {
@@ -104,7 +117,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               History(

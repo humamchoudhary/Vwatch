@@ -37,11 +37,11 @@ def LoginRoute():
 
         username = request_data['username']
         password = request_data['password']
+        print(username,password)
 
         try:
             account = Login(username, password)
             account = account.account
-            w = Watch_history()
             response = jsonify({"error": "Logged in", "account": {
                                     "token":f"{account.account}",
                                "username": account.account.username, "profiles": account.get_all_profiles()}})
@@ -349,6 +349,78 @@ def Add_history():
         return make_response(jsonify(result))
     else:
         return make_response(jsonify({"msg": "no data found!"}), 400)
+
+@app.route("/add_watchlist")
+def watch_later():
+    request_data = request.args
+    id = request_data["id"]
+    token = request_data["token"]
+    profile = request_data["profile"]
+    with open(f'{token}.pkl', 'rb') as f:
+        usertree = pickle.load(f)
+
+    userprofile = usertree.load_profile(profile)
+    
+    result = []
+    # print(movies_table.all())
+    for data in movies_table.all():
+        if id == data["id"]:
+            result.append(data)
+
+    for data in anime_table.all():
+        if id == data["id"]:
+            result.append(data)
+
+    for data in show_table.all():
+        if id == data["id"]:
+            result.append(data)
+
+    if result:
+        for i in result:
+            userprofile.watch_list.enqueue(i)
+
+        usertree.save_user()
+        return make_response(jsonify(result))
+    else:
+        return make_response(jsonify({"msg": "no data found!"}), 400)
+    usertree.save_user()
+    return "ok"
+
+@app.route("/get_watchlist")
+def watch_later2():
+    request_data = request.args
+    token = request_data["token"]
+    profile = request_data["profile"]
+    with open(f'{token}.pkl', 'rb') as f:
+        usertree = pickle.load(f)
+
+    userprofile = usertree.load_profile(profile)
+    return make_response(jsonify({"watchlist":list(userprofile.watch_list.l)}))
+@app.route("/clean_watchlist")
+def watchclear():
+    request_data = request.args
+    token = request_data["token"]
+    profile = request_data["profile"]
+    with open(f'{token}.pkl', 'rb') as f:
+        usertree = pickle.load(f)
+
+    userprofile = usertree.load_profile(profile)
+    userprofile.watch_list.clean()
+    usertree.save_user()
+    return "ok"
+@app.route("/del_watchlist")
+def watch_later3():
+    request_data = request.args
+    s_id = request_data["id"]
+    token = request_data["token"]
+    profile = request_data["profile"]
+    with open(f'{token}.pkl', 'rb') as f:
+        usertree = pickle.load(f)
+
+    userprofile = usertree.load_profile(profile)
+    userprofile.watch_list.delete(s_id)
+    usertree.save_user()
+    return "ok"
 
 
 if __name__ == "__main__":

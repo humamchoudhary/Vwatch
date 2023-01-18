@@ -1,6 +1,7 @@
 from Essentials.history import Watch_history
 from Exceptions import *
 from collections import defaultdict
+from Essentials.Queue import queue
 import random
 import pickle
 imgs = ['randimage0.png', 'randimage1.png', 'randimage2.png', 'randimage3.png', 'randimage4.png', 'randimage5.png',
@@ -12,7 +13,7 @@ class UserProfile:
         self.username = username
         self.watch_history = Watch_history()
         self.watched = defaultdict(list)
-        self.watch_list = []
+        self.watch_list = queue()
         
     def add_to_watch_history(self, content_id):
         self.watch_history.push(content_id)
@@ -66,7 +67,7 @@ class UserTree:
         profiles.append({
             "username": self.root.data.username,
             "history": self.root.data.watch_history.get_all(),
-            "watchlist": self.root.data.watch_list,
+            "watchlist": list(self.root.data.watch_list.l),
             "img": self.root.data.img
         })
         for profile in self.root.children:
