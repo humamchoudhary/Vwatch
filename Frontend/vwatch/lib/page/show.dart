@@ -55,6 +55,11 @@ class _ShowPageState extends State<ShowPage> {
         : Scaffold(
             backgroundColor: BackgroundColor,
             appBar: AppBar(
+              actions: [
+                IconButton(onPressed: (){
+                  
+                }, icon: Icon(Icons.more_vert,color: WhiteColor,))
+              ],
               leading: Container(),
               backgroundColor: BackgroundColor,
               title: Text(

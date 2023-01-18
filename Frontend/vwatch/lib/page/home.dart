@@ -85,14 +85,25 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               const SizedBox(height: 20),
-              const SizedBox(height: 140, child: Rating(contenttype: 'movie',)),
+              const SizedBox(
+                  height: 140,
+                  child: Rating(
+                    contenttype: 'movie',
+                  )),
 
               const SizedBox(height: 20),
-              const SizedBox(height: 140, child: Rating(contenttype: 'show',)),
+              const SizedBox(
+                  height: 140,
+                  child: Rating(
+                    contenttype: 'show',
+                  )),
 
               const SizedBox(height: 20),
-              const SizedBox(height: 140, child: Rating(contenttype: 'anime',)),
-
+              const SizedBox(
+                  height: 140,
+                  child: Rating(
+                    contenttype: 'anime',
+                  )),
 
               // Center(
               //   child: ElevatedButton(
@@ -122,9 +133,7 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(
                 height: 20,
               ),
-              const History(
-                
-              ),
+              const History(),
             ]),
           ),
         ),

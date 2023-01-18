@@ -252,7 +252,10 @@ def gen_get_show():
 
 @app.route("/get_gen_anime")
 def gen_get_anime():
-
+    request_data = request.data
+    request_data = json.loads(request_data.decode('utf-8'))
+    gen = request_data["gen"]
+    print(gen);
     result = []
     with open(f'Anime gen.pkl', 'rb') as enc_file:
         gen_anime = pickle.load(enc_file)

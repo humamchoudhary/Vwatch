@@ -47,7 +47,7 @@ class _HistoryState extends State<History> {
               // separatorBuilder: historyseparatorBuilder,
               itemCount: history.length,
               separatorBuilder: (BuildContext context, int index) {
-                return SizedBox(
+                return const SizedBox(
                   height: 20,
                 );
               },
@@ -69,52 +69,50 @@ class _HistoryState extends State<History> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(children: [
-              Card(
-                clipBehavior: Clip.antiAlias,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
-                child: Image.network(
-                  history[index]["coverImg"],
-                  fit: BoxFit.cover,
-                  height: 120,
-                  width: 120 * 0.625,
-                ),
+            Card(
+              clipBehavior: Clip.antiAlias,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+              child: Image.network(
+                history[index]["coverImg"],
+                fit: BoxFit.cover,
+                height: 120,
+                width: 120 * 0.625,
               ),
-              SizedBox(
-                width: 20,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    history[index]["title"],
-                    overflow: TextOverflow.ellipsis,
-                    style: GoogleFonts.poppins(
-                      textStyle: TextStyle(
-                          color: HexColor("#AAB1C2"),
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold),
-                    ),
+            ),
+            const SizedBox(
+              width: 20,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  history[index]["title"],
+                  overflow: TextOverflow.ellipsis,
+                  style: GoogleFonts.poppins(
+                    textStyle: TextStyle(
+                        color: HexColor("#AAB1C2"),
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(
-                    width: screensize.width/2,
-                    child: Flexible(
-                      child: Text(
-                        " ${history[index]["genres"].join(" | ")}",
-                        overflow: TextOverflow.ellipsis,
-                        style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                              color: HexColor("#AAB1C2"),
-                              fontSize: 10,
-                              fontWeight: FontWeight.w300),
-                        ),
+                ),
+                SizedBox(
+                  width: screensize.width/2,
+                  child: Flexible(
+                    child: Text(
+                      " ${history[index]["genres"].join(" | ")}",
+                      overflow: TextOverflow.ellipsis,
+                      style: GoogleFonts.poppins(
+                        textStyle: TextStyle(
+                            color: HexColor("#AAB1C2"),
+                            fontSize: 10,
+                            fontWeight: FontWeight.w300),
                       ),
                     ),
                   ),
-                ],
-              ),
-            ]),
+                ),
+              ],
+            ),
             
           ],
         ),
