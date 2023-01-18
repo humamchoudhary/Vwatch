@@ -33,7 +33,7 @@ class LinkedList:
             
         itr = self.head
         while itr:
-            if itr.next.data['epNo'] == eps_no:
+            if itr.data['epNo'] == eps_no:
                 eps_id = itr.data["id"]
                 r = requests.get(
                 f"https://api.consumet.org/movies/flixhq/watch?episodeId={eps_id}&mediaId={id}")
@@ -42,7 +42,6 @@ class LinkedList:
             itr = itr.next
 
     def nextep(self,token,profilename,id,eps_no):
-        print(eps_no)
         if self.head == None:
             return "List is empty"
             
@@ -50,7 +49,7 @@ class LinkedList:
         itr = self.head
         while itr:
             if itr.data['epNo'] == eps_no:
-                eps_id = itr.next.data["id"]
+                eps_id = itr.data["id"]
                 r = requests.get(
                 f"https://api.consumet.org/movies/flixhq/watch?episodeId={eps_id}&mediaId={id}")
                 return ({"id":id,"epsid":eps_id,"url": r.json()["sources"][0]["url"]},self.complete(token,profilename,id,eps_no))
@@ -69,8 +68,8 @@ class LinkedList:
             usertree = pickle.load(f)
 
         userprofile = usertree.load_profile(profilename)
-        userprofile.watched[id][eps_no-1] = True
-
+        userprofile.watched[id][eps_no-2] = True
+        print(userprofile.watched)
 
         with open(f'{token}.pkl', 'wb') as w:
             pickle.dump(usertree,w)

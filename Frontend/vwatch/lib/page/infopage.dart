@@ -44,16 +44,17 @@ class _InfoPageState extends State<InfoPage> {
     return Scaffold(
       backgroundColor: BackgroundColor,
       appBar: AppBar(
-
         elevation: 0,
         // leading: Container(),
         backgroundColor: BackgroundColor,
         centerTitle: true,
         actions: [
-          IconButton(onPressed: () async {
-            await http.get(Uri.parse(
-        "$URL/add_watchlist?token=${USER.token}&id=${widget.id}&profile=${PROFILE.username}"));
-          }, icon: const Icon(Icons.favorite))
+          IconButton(
+              onPressed: () async {
+                await http.get(Uri.parse(
+                    "$URL/add_watchlist?token=${USER.token}&id=${widget.id}&profile=${PROFILE.username}"));
+              },
+              icon: const Icon(Icons.favorite))
         ],
         title: Text(
           widget.name,
@@ -141,11 +142,14 @@ class _InfoPageState extends State<InfoPage> {
                   onPressed: () async {
                     setState(() {
                       player = false;
-                      curr_eps += 1;
+                      curr_eps -= 1;
+                      if(curr_eps == 0){
+                        curr_eps =1;
+                      }
                     });
 
                     final repsonse = await http.get(Uri.parse(
-                        "$URL/preveps?content_type=${widget.content_type}&token=${USER.token}&profile=${PROFILE.username}&epsno=${curr_eps}&id=${widget.id}"));
+                        "$URL/preveps?content_type=${widget.content_type}&token=${USER.token}&profile=${PROFILE.username}&epsno=$curr_eps&id=${widget.id}"));
                     final decode = json.decode(repsonse.body)["result"];
 
                     setState(() {
@@ -156,7 +160,6 @@ class _InfoPageState extends State<InfoPage> {
                       // _videoplayercontoller.dispose();
                       // _videoplayercontoller.value;
                     });
-                    
                   },
                   child: Text(
                     "Prev",
@@ -180,7 +183,8 @@ class _InfoPageState extends State<InfoPage> {
                       player = false;
                       curr_eps += 1;
                     });
-
+                    print(
+                        "$URL/nexteps?content_type=${widget.content_type}&token=${USER.token}&profile=${PROFILE.username}&epsno=${curr_eps}&id=${widget.id}");
                     final repsonse = await http.get(Uri.parse(
                         "$URL/nexteps?content_type=${widget.content_type}&token=${USER.token}&profile=${PROFILE.username}&epsno=${curr_eps}&id=${widget.id}"));
                     final decode = json.decode(repsonse.body)["result"];
@@ -252,7 +256,6 @@ class _InfoPageState extends State<InfoPage> {
       trailing: IconButton(
         icon: const Icon(Icons.play_circle_outline_rounded),
         onPressed: () async {
-          
           final repsonse = await http.get(Uri.parse(
               "$URL/getlink?epsid=${widget.eps[index]['id']}&id=${widget.id}&profile=${PROFILE.username}&token=${USER.token}"));
           final decode = json.decode(repsonse.body);
