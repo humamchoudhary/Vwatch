@@ -220,6 +220,51 @@ def fileget():
     # return send_file(f"files/{file}",mimetype='application/x-mpegURL')
 
 
+#-----------------------------------------------------------------------------------------------------------------------------------------
+#                                                --- Genre call functions ---
+#-----------------------------------------------------------------------------------------------------------------------------------------
+
+@app.route("/get_gen_movie")
+def gen_get_mov():
+
+    result = []
+    with open(f'Movies gen.pkl', 'rb') as enc_file:
+        gen_mov = pickle.load(enc_file)
+
+
+    result = gen_mov.choose_by_gen_mov("Music")
+    return make_response(jsonify(result))
+
+
+@app.route("/get_gen_show")
+def gen_get_show():
+
+    result = []
+    with open(f'Tv Show gen.pkl', 'rb') as enc_file:
+        gen_tv = pickle.load(enc_file)
+
+
+    result = gen_tv.choose_by_gen_show("Action")
+    print(result)
+    return make_response(jsonify(result))
+
+
+@app.route("/get_gen_anime")
+def gen_get_anime():
+
+    result = []
+    with open(f'Anime gen.pkl', 'rb') as enc_file:
+        gen_anime = pickle.load(enc_file)
+
+
+    result = gen_anime.choose_by_gen_anime("Comedy")
+    return make_response(jsonify(result))
+
+
+
+#-----------------------------------------------------------------------------------------------------------------------------------------
+#                                                --- Rating call functions ---
+#-----------------------------------------------------------------------------------------------------------------------------------------
 @app.route("/get_rating_movie")
 def rat_get_mov():
     # request_data = request.args
