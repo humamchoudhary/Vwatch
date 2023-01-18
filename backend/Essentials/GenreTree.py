@@ -137,7 +137,7 @@ class Genre:
         new = []
  
         for i in self.root.ids:
-            if i.data == chose:
+            if i.data in chose:
                 for ck in half:
                     if ck in i.ids:
                         new.append(ck)
