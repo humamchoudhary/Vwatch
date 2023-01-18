@@ -82,13 +82,13 @@ class Genre:
             return i.ids
 
 
-    def choose_by_gen_mov_2(self , cho1 , cho2):
+    def choose_by_gen_mov_2(self , chose):
 
-        half = self.choose_by_gen_mov(cho1)
+        half = self.choose_by_gen_mov(chose.pop())
         new = []
         
         for i in self.root.ids:
-            if i.data == cho2:
+            if i.data in chose:
                 for ck in half:
                     if ck in i.ids:
                         new.append(ck)
@@ -131,13 +131,13 @@ class Genre:
             return i.ids
 
 
-    def choose_by_gen_show_2(self , cho1 , cho2):
+    def choose_by_gen_show_2(self , chose):
 
-        half = self.choose_by_gen_show(cho1)
+        half = self.choose_by_gen_show(chose.pop())
         new = []
  
         for i in self.root.ids:
-            if i.data == cho2:
+            if i.data in chose:
                 for ck in half:
                     if ck in i.ids:
                         new.append(ck)
@@ -180,13 +180,13 @@ class Genre:
             return i.ids
 
 
-    def choose_by_gen_anime_2(self , cho1 , cho2):
+    def choose_by_gen_anime_2(self , chose):
 
-        half = self.choose_by_gen_anime(cho1)
+        half = self.choose_by_gen_anime(chose.pop())
         new = []
  
         for i in self.root.ids:
-            if i.data == cho2:
+            if i.data in chose:
                 for ck in half:
                     if ck in i.ids:
                         new.append(ck)
@@ -222,14 +222,18 @@ class Genre:
 if __name__ == "__main__":
 
     movie_gen = Genre("Movies gen")
-    # movie_gen.make_genre(movie_gen)
+    movie_gen.make_genre(movie_gen)
+    movie_gen.gen_add_mov()
+    print(movie_gen.choose_by_gen_mov_2(["Action" , "Thriller"]))
 
-    tv_gen = Genre("Tv Show gen")
+    # tv_gen = Genre("Tv Show gen")
     # tv_gen.make_genre(tv_gen)
+    # tv_gen.gen_add_show()
 
 
-    anime_gen = Genre("Anime gen")
+    # anime_gen = Genre("Anime gen")
     # anime_gen.make_genre(anime_gen)
+    # anime_gen.gen_add_anime()
 
 
     # movie_gen.save()
