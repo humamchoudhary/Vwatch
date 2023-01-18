@@ -307,13 +307,14 @@ def add():
 
             data = table.search(query.id == id)[0]
             curr_ep = data["episodes"][-1]["epNo"]
+            title = data["title"]
             if data["episodes"][-1]["epNo"] == epsno-1:
                 data["episodes"].append({'id': epsid,
                 'epNo': epsno}
                 )
                 table.upsert(data,query.id == "tv/watch-initial-d-fourth-stage-project-d-20269")
                 create_linkedlist(content_type,table)
-                success = "Episode added"
+                success = f"Episode no {epsno} added to {content}: {title}"
             else:
                 error = f"The latest episode is {curr_ep}, Please add the next episode"
                 return render_template("add.html", error=error)
