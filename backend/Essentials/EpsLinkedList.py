@@ -85,7 +85,24 @@ def nextepisode(content_type,token,profilename,id,eps_no):
     
 
 
+# For making linked list or overwriting it
 
+def create_linkedlist(content_type,table):
+
+    dict = {}
+    for content in table.all():
+        content_list = LinkedList()
+        for eps in content["episodes"]:
+            content_list.insert(eps)
+        dict[content["id"]] = content_list
+
+    if content_type == "anime":
+        with open('anime.pkl', 'wb') as f:
+            pickle.dump(dict, f)
+
+    else:
+        with open('tvshow.pkl', 'wb') as f:
+            pickle.dump(dict, f)
 
 # if __name__=="__main__":
 #     list = LinkedList()
