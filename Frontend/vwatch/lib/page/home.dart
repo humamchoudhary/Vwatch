@@ -91,8 +91,25 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(
                 height: 400,
               ),
-
-               History(history:widget.history ,),
+              Container(
+                width: screensize.width,
+                child: Text(
+                  "Continue Watching",
+                  textAlign: TextAlign.start,
+                  style: GoogleFonts.poppins(
+                    textStyle: TextStyle(
+                        color: HexColor("#AAB1C2"),
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              History(
+                history: widget.history,
+              ),
             ]),
           ),
         ),

@@ -178,8 +178,9 @@ class LoginScreenstate extends State<Login> {
                                 }));
                             final decode = json.decode(repsonse.body)
                                 as Map<String, dynamic>;
-                                
+
                             final accountDetails = decode["account"];
+                            final token = accountDetails["token"];
                             final username = accountDetails["username"];
                             // print(username);
                             if (decode['error'] != 'Logged in') {
@@ -191,7 +192,10 @@ class LoginScreenstate extends State<Login> {
 
                               // ignore: use_build_context_synchronously
                               setState(() {
-                                USER = User(profiles: accountDetails["profiles"] , username: username);
+                                USER = User(
+                                    profiles: accountDetails["profiles"],
+                                    username: username,
+                                    token: token);
                               });
                               Navigator.pushReplacement(
                                   context,

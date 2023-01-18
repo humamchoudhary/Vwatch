@@ -42,41 +42,20 @@ class _HistoryState extends State<History> {
     final screensize = MediaQuery.of(context).size;
     
     return history.isNotEmpty
-        ? Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(
-                width: screensize.width,
-                child: Text(
-                  "Continue Watching",
-                  textAlign: TextAlign.start,
-                  style: GoogleFonts.poppins(
-                    textStyle: TextStyle(
-                        color: HexColor("#AAB1C2"),
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
-              SizedBox(
+        ? SizedBox(
+          width: screensize.width,
+          height: screensize.height,
+          child: ListView.separated(
+            itemBuilder: historyBuilder,
+            // separatorBuilder: historyseparatorBuilder,
+            itemCount: history.length,
+            separatorBuilder: (BuildContext context, int index) {
+              return SizedBox(
                 height: 20,
-              ),
-              SizedBox(
-                width: screensize.width,
-                height: screensize.height,
-                child: ListView.separated(
-                  itemBuilder: historyBuilder,
-                  // separatorBuilder: historyseparatorBuilder,
-                  itemCount: history.length,
-                  separatorBuilder: (BuildContext context, int index) {
-                    return SizedBox(
-                      height: 20,
-                    );
-                  },
-                ),
-              ),
-            ],
-          )
+              );
+            },
+          ),
+        )
         : Container();
   }
 
@@ -109,17 +88,18 @@ class _HistoryState extends State<History> {
                 children: [
                   Text(
                     history[index]["title"],
+                    overflow: TextOverflow.ellipsis,
                     style: GoogleFonts.poppins(
                       textStyle: TextStyle(
                           color: HexColor("#AAB1C2"),
-                          fontSize: 14,
+                          fontSize: 13,
                           fontWeight: FontWeight.bold),
                     ),
                   ),
                   Row(children: [
                     for (var i in history[index]["genres"])
                       Text(
-                        " $i |",
+                        " $i ",
                         style: GoogleFonts.poppins(
                           textStyle: TextStyle(
                               color: HexColor("#AAB1C2"),

@@ -1,7 +1,8 @@
 class User{
   String username;
   List profiles;
-  User({required this.profiles,required this.username});
+  String token;
+  User({required this.profiles,required this.username, required this.token});
 
 }
 

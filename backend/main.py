@@ -43,6 +43,7 @@ def LoginRoute():
             account = account.account
             w = Watch_history()
             response = jsonify({"error": "Logged in", "account": {
+                                    "token":f"{account.account}",
                                "username": account.account.username, "profiles": account.get_all_profiles()}})
             return make_response(response, 200)
         except Exception as e:
@@ -173,15 +174,15 @@ def search():
         for data in movies_table.all():
             if id == data["id"]:
                 result.append(data)
-            
+
         for data in anime_table.all():
             if id == data["id"]:
                 result.append(data)
-            
+
         for data in show_table.all():
             if id == data["id"]:
                 result.append(data)
-            
+
         if result:
             return make_response(jsonify(result))
         else:
@@ -331,15 +332,15 @@ def Add_history():
     for data in movies_table.all():
         if id == data["id"]:
             result.append(data)
-        
+
     for data in anime_table.all():
         if id == data["id"]:
             result.append(data)
-        
+
     for data in show_table.all():
         if id == data["id"]:
             result.append(data)
-        
+
     if result:
         for i in result:
             profile.add_to_watch_history(i)

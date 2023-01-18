@@ -57,67 +57,113 @@ class _InfoPageState extends State<InfoPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            !player?
-            Container(
-              color: AccentColor,
-              width: screensize.width,
-              height: 250,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Card(
-                      color: AccentColor,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
-                      clipBehavior: Clip.antiAlias,
-                      child: SizedBox(
-                        child: Image.network(
-                          widget.cover,
-                          fit: BoxFit.contain,
-                          filterQuality: FilterQuality.high,
-                        ),
+            !player
+                ? Container(
+                    color: AccentColor,
+                    width: screensize.width,
+                    height: 250,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Card(
+                            color: AccentColor,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5)),
+                            clipBehavior: Clip.antiAlias,
+                            child: SizedBox(
+                              child: Image.network(
+                                widget.cover,
+                                fit: BoxFit.contain,
+                                filterQuality: FilterQuality.high,
+                              ),
+                            ),
+                          ),
+                          Center(
+                            child: SizedBox(
+                              width: screensize.width / 2,
+                              child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      widget.name,
+                                      textAlign: TextAlign.center,
+                                      style: GoogleFonts.poppins(
+                                        textStyle: TextStyle(
+                                            color: WhiteColor,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                    Flexible(
+                                      child: Text(
+                                        widget.desc,
+                                        softWrap: true,
+                                        textAlign: TextAlign.justify,
+                                        style: GoogleFonts.poppins(
+                                          textStyle: TextStyle(
+                                            color: WhiteColor,
+                                            fontSize: 10,
+                                          ),
+                                        ),
+                                        maxLines: 10,
+                                      ),
+                                    ),
+                                  ]),
+                            ),
+                          )
+                        ],
                       ),
                     ),
-                    Center(
-                      child: SizedBox(
-                        width: screensize.width / 2,
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                widget.name,
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.poppins(
-                                  textStyle: TextStyle(
-                                      color: WhiteColor,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                              Flexible(
-                                child: Text(
-                                  widget.desc,
-                                  softWrap: true,
-                                  textAlign: TextAlign.justify,
-                                  style: GoogleFonts.poppins(
-                                    textStyle: TextStyle(
-                                      color: WhiteColor,
-                                      fontSize: 10,
-                                    ),
-                                  ),
-                                  maxLines: 10,
-                                ),
-                              ),
-                            ]),
+                  )
+                : Column(
+                    children: [
+                      VideoPlayer(
+                        url: url,
                       ),
-                    )
-                  ],
-                ),
-              ),
-            ):VideoPlayer(
-            url: url,
-          ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+
+                            },
+                            child: Text(
+                              "Prev",
+                              softWrap: true,
+                              textAlign: TextAlign.justify,
+                              style: GoogleFonts.poppins(
+                                textStyle: TextStyle(
+                                  color: WhiteColor,
+                                  fontSize: 10,
+                                ),
+                              ),
+                              maxLines: 10,
+                            ),
+                          ),
+                          SizedBox(width: 20,),
+                          ElevatedButton(
+                            onPressed: () {},
+                            child: Text(
+                              "Next",
+                              softWrap: true,
+                              textAlign: TextAlign.justify,
+                              style: GoogleFonts.poppins(
+                                textStyle: TextStyle(
+                                  color: WhiteColor,
+                                  fontSize: 10,
+                                ),
+                              ),
+                              maxLines: 10,
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
             const SizedBox(
               height: 20,
             ),
@@ -151,7 +197,7 @@ class _InfoPageState extends State<InfoPage> {
       title: Padding(
         padding: const EdgeInsets.only(top: 20, bottom: 20),
         child: Text(
-          widget.eps.length == 1 ? widget.name : "Episode ${index+1}",
+          widget.eps.length == 1 ? widget.name : "Episode ${index + 1}",
           style: GoogleFonts.poppins(
             textStyle: TextStyle(
                 color: WhiteColor, fontSize: 14, fontWeight: FontWeight.w400),
@@ -160,10 +206,12 @@ class _InfoPageState extends State<InfoPage> {
       ),
       trailing: IconButton(
         icon: const Icon(Icons.play_circle_outline_rounded),
-        onPressed: ()async{
-          print("$URL/getlink?epsid=${widget.eps[index]['id']}&id=${widget.id}");
-          final repsonse = await http.get(Uri.parse("$URL/getlink?epsid=${widget.eps[index]['id']}&id=${widget.id}"));
-        final decode = json.decode(repsonse.body);
+        onPressed: () async {
+          print(
+              "$URL/getlink?epsid=${widget.eps[index]['id']}&id=${widget.id}&${PROFILE.username}&${USER.token}");
+          final repsonse = await http.get(Uri.parse(
+              "$URL/getlink?epsid=${widget.eps[index]['id']}&id=${widget.id}&profile=${PROFILE.username}&token=${USER.token}"));
+          final decode = json.decode(repsonse.body);
 
           setState(() {
             url = decode["url"];
