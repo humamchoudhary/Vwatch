@@ -119,10 +119,10 @@ class Binarytree():
         if data == root.data:
             
             if ids in root.ids:
-                print(f"{data}-----{root.data}")
-                print(root.ids)
+
+
                 root.ids.remove(ids)
-                print(root.ids)
+
 
 
         elif data < root.data:
@@ -369,10 +369,10 @@ class Binarytree():
 #-----------------------------------------------------------------------------------------------------------------------------------------
 
 
-# # tree_mov = Binarytree("Movies")
+tree_mov = Binarytree("Movies")
 # tree_show = Binarytree("Tv Show")
 # tree_anime = Binarytree("Animation")
-# # tree_mov.insert_mov(5.0 , tree_mov.root)
+# tree_mov.insert_mov(5.0 , tree_mov.root)
 # tree_show.insert_show(5.0 , tree_show.root)
 # tree_anime.insert_anime(5.0 , tree_anime.root)
 
@@ -408,13 +408,13 @@ class Binarytree():
 
 
 # for i in rat_above_5:
-#     #tree_mov.insert_mov(i , tree_mov.root)
+#     tree_mov.insert_mov(i , tree_mov.root)
 #     tree_show.insert_show(i , tree_show.root)
 #     tree_anime.insert_anime(i , tree_anime.root)
 
 
 # for i in rat_below_5:
-#     #tree_mov.insert_mov(i , tree_mov.root)
+#     tree_mov.insert_mov(i , tree_mov.root)
 #     tree_show.insert_show(i , tree_show.root)
 #     tree_anime.insert_anime(i , tree_anime.root)
     
