@@ -19,40 +19,51 @@ class _RatingState extends State<Rating> {
     final repsonse =
         await http.get(Uri.parse("$URL/get_rating_${widget.contenttype}"));
     final decode = json.decode(repsonse.body);
+    //
     decode.forEach((val) async {
-      var data = await http.get(Uri.parse("$URL/search?id=$val"));
-      print(data);
-      rating_data.add(data);
+      var data = await http.post(Uri.parse("$URL/search?id=$val"));
+      setState(() {
+        print(json.decode(data.body));
+        rating_data.add(json.decode(data.body)[0]);
+      });
     });
   }
 
   List rating_data = [];
   @override
+  void initState() {
+    get_data();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      scrollDirection: Axis.horizontal,
-      itemBuilder: (BuildContext context, int index) {
-        var movie = rating_data[index];
-        return Card(
-          color: AccentColor,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          clipBehavior: Clip.antiAlias,
-          child: InkWell(
-            child: Image.network(
-              movie["coverImg"],
-              fit: BoxFit.cover,
-              filterQuality: FilterQuality.high,
-              height: 180,
-              width: 180 * 0.625,
-            ),
-          ),
-        );
-      },
-      separatorBuilder: (BuildContext context, int index) {
-        return Divider();
-      },
-      itemCount: 3,
-    );
+    return rating_data.isNotEmpty
+        ? ListView.separated(
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (BuildContext context, int index) {
+              var movie = rating_data[index];
+              return Card(
+                color: AccentColor,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+                clipBehavior: Clip.antiAlias,
+                child: InkWell(
+                  child: Image.network(
+               "https://img.flixhq.to/xxrz/250x400/379/b0/e4/b0e4780f952163abbfec3b614fb25a6e/b0e4780f952163abbfec3b614fb25a6e.jpg",
+                    fit: BoxFit.cover,
+                    filterQuality: FilterQuality.high,
+                    height: 180,
+                    width: 180 * 0.625,
+                  ),
+                ),
+              );
+            },
+            separatorBuilder: (BuildContext context, int index) {
+              return Divider();
+            },
+            itemCount: rating_data.length,
+          )
+        : SizedBox(height: 190);
   }
 }
