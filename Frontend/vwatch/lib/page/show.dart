@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:modal_progress_hud_alt/modal_progress_hud_alt.dart';
+import 'package:vwatch/Components/gen_checkbok.dart';
 import 'dart:convert';
-
 import 'package:vwatch/main.dart';
 import 'package:vwatch/page/infopage.dart';
 
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import '../Components/color.dart';
 
 class ShowPage extends StatefulWidget {
@@ -17,6 +18,8 @@ class ShowPage extends StatefulWidget {
 }
 
 class _ShowPageState extends State<ShowPage> {
+  List genres = ["hello"];
+  List selectedgen = [];
   List movie_data = [];
   _getData() async {
     final repsonse = await http.get(Uri.parse("$URL/getAllShow"));
@@ -47,6 +50,8 @@ class _ShowPageState extends State<ShowPage> {
 
   @override
   Widget build(BuildContext context) {
+    final screensize = MediaQuery.of(context).size;
+
     return movie_data.isEmpty
         ? ModalProgressHUD(
             inAsyncCall: true,
@@ -56,9 +61,50 @@ class _ShowPageState extends State<ShowPage> {
             backgroundColor: BackgroundColor,
             appBar: AppBar(
               actions: [
-                IconButton(onPressed: (){
-                  
-                }, icon: Icon(Icons.more_vert,color: WhiteColor,))
+                IconButton(
+                    onPressed: () {
+                      print('object');
+
+                      showMaterialModalBottomSheet(
+                        context: context,
+                        builder: (context) => Container(
+                          color: BackgroundColor,
+                          height: screensize.height / 2 - 50,
+                          child: ListView.separated(
+                              itemBuilder: genBuilder,
+                              separatorBuilder:
+                                  (BuildContext context, int index) {
+                                return const Divider(
+                                  height: 2,
+                                );
+                              },
+                              itemCount: genres.length),
+                        ),
+                      );
+                      // CupertinoScaffold.showCupertinoModalBottomSheet(
+                      //     expand: true,
+                      //     context: context,
+                      //     backgroundColor: Colors.transparent,
+                      //     builder: (context) => Stack(children: <Widget>[
+                      //           ModalWithScroll(),
+                      //           Positioned(
+                      //             height: 40,
+                      //             left: 40,
+                      //             right: 40,
+                      //             bottom: 20,
+                      //             child: MaterialButton(
+                      //               onPressed: () => Navigator.of(context)
+                      //                   .popUntil((route) =>
+                      //                       route.settings.name == '/'),
+                      //               child: Text('Pop back home'),
+                      //             ),
+                      //           )
+                      //         ]));
+                    },
+                    icon: Icon(
+                      Icons.more_vert,
+                      color: WhiteColor,
+                    ))
               ],
               leading: Container(),
               backgroundColor: BackgroundColor,
@@ -102,7 +148,7 @@ class _ShowPageState extends State<ShowPage> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => InfoPage(
-                                          content_type : "tvshow",
+                                          content_type: "tvshow",
                                           name: movie["title"],
                                           id: movie["id"],
                                           eps: movie["episodes"],
@@ -141,5 +187,10 @@ class _ShowPageState extends State<ShowPage> {
               }),
             ),
           );
+  }
+
+  Widget genBuilder(BuildContext context, int index,) {
+    print('object');
+    return CheckBox(index: index);
   }
 }
