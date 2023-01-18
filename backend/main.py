@@ -306,6 +306,7 @@ def add():
         if table.search(query.id == id):
 
             data = table.search(query.id == id)[0]
+            curr_ep = data["episodes"][-1]["epNo"]
             if data["episodes"][-1]["epNo"] == epsno-1:
                 data["episodes"].append({'id': epsid,
                 'epNo': epsno}
@@ -314,7 +315,7 @@ def add():
                 create_linkedlist(content_type,table)
                 success = "Episode added"
             else:
-                error = "Add episodes in order"
+                error = f"The latest episode is {curr_ep}, Please add the next episode"
                 return render_template("add.html", error=error)
         else:
             error = f"{content} with this ID doesnt exist"
