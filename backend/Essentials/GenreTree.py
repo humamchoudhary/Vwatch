@@ -223,13 +223,16 @@ if __name__ == "__main__":
 
     movie_gen = Genre("Movies gen")
     # movie_gen.make_genre(movie_gen)
+    # movie_gen.gen_add_mov()
 
-    tv_gen = Genre("Tv Show gen")
+    # tv_gen = Genre("Tv Show gen")
     # tv_gen.make_genre(tv_gen)
+    # tv_gen.gen_add_show()
 
 
-    anime_gen = Genre("Anime gen")
+    # anime_gen = Genre("Anime gen")
     # anime_gen.make_genre(anime_gen)
+    # anime_gen.gen_add_anime()
 
 
     # movie_gen.save()
