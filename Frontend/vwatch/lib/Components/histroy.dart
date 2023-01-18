@@ -8,8 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:vwatch/page/test.dart';
 
 class History extends StatefulWidget {
-  final List history;
-  const History({super.key, required this.history});
+  const History({super.key});
 
   @override
   State<History> createState() => _HistoryState();
@@ -18,7 +17,7 @@ class History extends StatefulWidget {
 class _HistoryState extends State<History> {
   @override
   void initState() {
-    history = widget.history;
+    get_history();
     super.initState();
   }
 
@@ -34,28 +33,26 @@ class _HistoryState extends State<History> {
     }
   }
 
-  
-
   List history = [];
   @override
   Widget build(BuildContext context) {
     final screensize = MediaQuery.of(context).size;
-    
+
     return history.isNotEmpty
         ? SizedBox(
-          width: screensize.width,
-          height: screensize.height,
-          child: ListView.separated(
-            itemBuilder: historyBuilder,
-            // separatorBuilder: historyseparatorBuilder,
-            itemCount: history.length,
-            separatorBuilder: (BuildContext context, int index) {
-              return SizedBox(
-                height: 20,
-              );
-            },
-          ),
-        )
+            width: screensize.width,
+            height: screensize.height,
+            child: ListView.separated(
+              itemBuilder: historyBuilder,
+              // separatorBuilder: historyseparatorBuilder,
+              itemCount: history.length,
+              separatorBuilder: (BuildContext context, int index) {
+                return SizedBox(
+                  height: 20,
+                );
+              },
+            ),
+          )
         : Container();
   }
 
@@ -128,5 +125,14 @@ class _HistoryState extends State<History> {
         ),
       ),
     );
+  }
+
+  get_history() async {
+    final repsonse = await http.get(Uri.parse(
+        "$URL/get_history?token=${USER.token}&profile=${PROFILE.username}"));
+    final decode = json.decode(repsonse.body);
+    setState(() {
+      history = decode["data"];
+    });
   }
 }

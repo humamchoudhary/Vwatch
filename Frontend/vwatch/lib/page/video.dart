@@ -28,6 +28,7 @@ class _VideoPlayerState extends State<VideoPlayer> {
   late VideoPlayerController _videoplayercontoller;
   @override
   void initState() {
+    add_history();
     super.initState();
     initPlayer(widget.url);
   }
@@ -38,7 +39,6 @@ class _VideoPlayerState extends State<VideoPlayer> {
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -46,7 +46,6 @@ class _VideoPlayerState extends State<VideoPlayer> {
         AspectRatio(
             aspectRatio: 16 / 9,
             child: FlickVideoPlayer(flickManager: flickManager)),
-        
       ],
     );
   }
@@ -55,5 +54,12 @@ class _VideoPlayerState extends State<VideoPlayer> {
     _videoplayercontoller = VideoPlayerController.network(url);
     flickManager = FlickManager(videoPlayerController: _videoplayercontoller);
     flickManager.flickControlManager!.enterFullscreen();
+  }
+
+  add_history() async {
+    final repsonse = await http.get(Uri.parse(
+        "$URL/add_history?token=${USER.token}&id=${widget.id}&profile=${PROFILE.username}"));
+    final decode = json.decode(repsonse.body);
+    print(decode);
   }
 }
