@@ -10,7 +10,7 @@
     <div class="title">Add Episodes</div>
     <div class="content">
     {%if error %}
-      <p class="error"><strong>Note: </strong>{{error}}
+      <p class="error"><strong>Error: </strong>{{error}}
     {% endif %}
     {%if success %}
       <p class="success"><strong>Note: </strong>{{success}}
@@ -41,7 +41,9 @@
         <div class="button">
           <input type="submit" value="Add">
         </div>
+
       </form>
+      <div style="text-align:center"> <a class="link" type="link" href="/adminlogin">Log Out</a></div>
     </div>
   </div>
 

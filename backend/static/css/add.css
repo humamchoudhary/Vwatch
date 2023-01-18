@@ -94,10 +94,10 @@ form .input-box span.details{
 
 }
 
+
 a {
     color: #000000;
-    position: relative;
-    padding-left: 268px;
+    display: inline-block;
 }
 
 a:hover {

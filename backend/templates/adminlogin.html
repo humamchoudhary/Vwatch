@@ -18,8 +18,8 @@
         <div class="form__padding-right">
           <form method="POST" action="/adminlogin">
             <h1 class="form__title">Admin Login</h1>
-            <input class="form__email" type="username" placeholder="Username" name="username" required/>
-            <input class="form__password" type="password" placeholder="Password" name="password" required/>
+            <input class="form__email" type="username" placeholder="Username" name="username" autocomplete="off" required/>
+            <input class="form__password" type="password" placeholder="Password" name="password" autocomplete="off" required/>
             <input class="form__submit-btn" type="submit" value="Login"/>
           {%if error %}
             <p class="error"><strong>Error: </strong>{{error}}
