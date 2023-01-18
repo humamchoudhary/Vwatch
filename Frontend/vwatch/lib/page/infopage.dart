@@ -44,10 +44,17 @@ class _InfoPageState extends State<InfoPage> {
     return Scaffold(
       backgroundColor: BackgroundColor,
       appBar: AppBar(
+
         elevation: 0,
         // leading: Container(),
         backgroundColor: BackgroundColor,
         centerTitle: true,
+        actions: [
+          IconButton(onPressed: () async {
+            await http.get(Uri.parse(
+        "$URL/add_watchlist?token=${USER.token}&id=${widget.id}&profile=${PROFILE.username}"));
+          }, icon: const Icon(Icons.favorite))
+        ],
         title: Text(
           widget.name,
           textAlign: TextAlign.center,

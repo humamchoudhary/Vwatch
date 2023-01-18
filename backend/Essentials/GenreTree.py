@@ -86,7 +86,7 @@ class Genre:
 
         half = self.choose_by_gen_mov(cho1)
         new = []
-        print(half)
+        
         for i in self.root.ids:
             if i.data == cho2:
                 for ck in half:
@@ -135,7 +135,7 @@ class Genre:
 
         half = self.choose_by_gen_show(cho1)
         new = []
-        print(half)
+ 
         for i in self.root.ids:
             if i.data == cho2:
                 for ck in half:
@@ -184,7 +184,7 @@ class Genre:
 
         half = self.choose_by_gen_anime(cho1)
         new = []
-        print(half)
+ 
         for i in self.root.ids:
             if i.data == cho2:
                 for ck in half:
@@ -221,19 +221,23 @@ class Genre:
 
 if __name__ == "__main__":
 
-    movie_gen = Genre("Movies")
-    movie_gen.make_genre(movie_gen)
-    movie_gen.gen_add_mov()
-    print(movie_gen.choose_by_gen_mov("Music"))
-    print(movie_gen.choose_by_gen_mov_2("Thriller","Action"))
+    movie_gen = Genre("Movies gen")
+    # movie_gen.make_genre(movie_gen)
 
-    movie_gen.gen_add_mov_1("movie/watch-mission-impossible-rogue-nation-19603")
-    movie_gen.save()
-    
-    
-    # anime_gen = Genre("Anime")
+    tv_gen = Genre("Tv Show gen")
+    # tv_gen.make_genre(tv_gen)
+
+
+    anime_gen = Genre("Anime gen")
     # anime_gen.make_genre(anime_gen)
-    # anime_gen.gen_add_anime()
+
+
+    # movie_gen.save()
+    # tv_gen.save()
+    # anime_gen.save()
+
+    
+    
 
 
 
