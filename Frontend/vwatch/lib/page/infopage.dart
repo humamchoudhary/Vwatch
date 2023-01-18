@@ -120,6 +120,7 @@ class _InfoPageState extends State<InfoPage> {
                     ),
                   )
                 : VideoPlayer(
+                  content_type: widget.content_type,
                   url: url, id: widget.id,
 
                 ),
@@ -167,16 +168,13 @@ class _InfoPageState extends State<InfoPage> {
         icon: const Icon(Icons.play_circle_outline_rounded),
         onPressed: () async {
           print(
-              "$URL/getlink?epsid=${widget.eps[index]['id']}&id=${widget.id}&${PROFILE.username}&${USER.token}");
+              "$URL/getlink?epsid=${widget.eps[index]['id']}&id=${widget.id}&profile=${PROFILE.username}&token=${USER.token}");
           final repsonse = await http.get(Uri.parse(
               "$URL/getlink?epsid=${widget.eps[index]['id']}&id=${widget.id}&profile=${PROFILE.username}&token=${USER.token}"));
           final decode = json.decode(repsonse.body);
-
           setState(() {
-            
             url = decode["url"];
             print(url);
-
             player = true;
           });
         },
