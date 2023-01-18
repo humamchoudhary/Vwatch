@@ -11,6 +11,7 @@ from rafay.history import *
 import os
 from string import punctuation
 from Essentials.Ratingtree import Binarytree
+from Essentials.GenreTree import Genre
 
 response = ''
 app = Flask(__name__)
