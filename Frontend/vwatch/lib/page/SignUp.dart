@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:vwatch/main.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -6,7 +7,6 @@ import 'package:modal_progress_hud_alt/modal_progress_hud_alt.dart';
 
 // import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 // import 'package:modal_progress_hud/modal_progress_hud.dart';
-
 
 class SignUp extends StatefulWidget {
   @override
@@ -34,7 +34,18 @@ class SignUpScreenstate extends State<SignUp> {
 
   Widget _buildUserNameField() {
     return TextFormField(
-      decoration: InputDecoration(labelText: "Username"),
+      style: GoogleFonts.poppins(
+        textStyle: const TextStyle(color: Colors.white),
+      ),
+      
+      decoration: InputDecoration(
+        enabledBorder:
+            OutlineInputBorder(borderSide: BorderSide(color: WhiteColor)),
+        labelText: "Username",
+        labelStyle: GoogleFonts.poppins(
+          textStyle: const TextStyle(color: Colors.white),
+        ),
+      ),
       validator: (String? value) {
         if (value!.isEmpty) {
           return 'Username is required';
@@ -48,7 +59,18 @@ class SignUpScreenstate extends State<SignUp> {
 
   Widget _buildEmailField() {
     return TextFormField(
-      decoration: InputDecoration(labelText: "Email"),
+      style: GoogleFonts.poppins(
+        textStyle: const TextStyle(color: Colors.white),
+      ),
+      
+      decoration: InputDecoration(
+        enabledBorder:
+            OutlineInputBorder(borderSide: BorderSide(color: WhiteColor)),
+        labelText: "Email",
+        labelStyle: GoogleFonts.poppins(
+          textStyle: const TextStyle(color: Colors.white),
+        ),
+      ),
       validator: (String? value) {
         if (value!.isEmpty) {
           return 'Email is required';
@@ -62,7 +84,17 @@ class SignUpScreenstate extends State<SignUp> {
 
   Widget _buildNameField() {
     return TextFormField(
-      decoration: InputDecoration(labelText: "Name"),
+      style: GoogleFonts.poppins(
+        textStyle: const TextStyle(color: Colors.white),
+      ),
+      decoration: InputDecoration(
+        enabledBorder:
+            OutlineInputBorder(borderSide: BorderSide(color: WhiteColor)),
+        labelText: "Name",
+        labelStyle: GoogleFonts.poppins(
+          textStyle: const TextStyle(color: Colors.white),
+        ),
+      ),
       validator: (String? value) {
         if (value!.isEmpty) {
           return 'Name is required';
@@ -76,8 +108,18 @@ class SignUpScreenstate extends State<SignUp> {
 
   Widget _buildPasswordField() {
     return TextFormField(
+      style: GoogleFonts.poppins(
+        textStyle: const TextStyle(color: Colors.white),
+      ),
       controller: _pass,
-      decoration: InputDecoration(labelText: "Password"),
+      decoration: InputDecoration(
+        enabledBorder:
+            OutlineInputBorder(borderSide: BorderSide(color: WhiteColor)),
+        labelText: "Password",
+        labelStyle: GoogleFonts.poppins(
+          textStyle: const TextStyle(color: Colors.white),
+        ),
+      ),
       keyboardType: TextInputType.visiblePassword,
       obscureText: true,
       enableSuggestions: false,
@@ -101,8 +143,18 @@ class SignUpScreenstate extends State<SignUp> {
 
   Widget _buildPasswordConfField() {
     return TextFormField(
+      style: GoogleFonts.poppins(
+        textStyle: const TextStyle(color: Colors.white),
+      ),
       controller: _confirmPass,
-      decoration: InputDecoration(labelText: "Password Confirmation"),
+      decoration: InputDecoration(
+        enabledBorder:
+            OutlineInputBorder(borderSide: BorderSide(color: WhiteColor)),
+        labelText: "Confrm Password",
+        labelStyle: GoogleFonts.poppins(
+          textStyle: const TextStyle(color: Colors.white),
+        ),
+      ),
       keyboardType: TextInputType.visiblePassword,
       obscureText: true,
       enableSuggestions: false,
@@ -144,131 +196,129 @@ class SignUpScreenstate extends State<SignUp> {
     return ModalProgressHUD(
         inAsyncCall: Loading,
         child: Scaffold(
+            backgroundColor: BackgroundColor,
             appBar: AppBar(
-              title: Text("Handy Man"),
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              title: const Text("VWatch"),
               centerTitle: true,
             ),
             body: SingleChildScrollView(
               child: Padding(
-                padding: EdgeInsets.only(bottom: 50),
-                child: Center(
-                  child: Container(
-                    child: Padding(
-                        padding: EdgeInsets.only(left: 10, right: 10),
-                        child: Form(
-                          key: _formkey,
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Text(_error,
-                                    style: TextStyle(color: _error_color)),
-                                SizedBox(height: 20),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    SizedBox(
-                                        width: _finalwidth,
-                                        child: _buildNameField())
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    SizedBox(
-                                        width: _finalwidth,
-                                        child: _buildEmailField())
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
+                  padding: const EdgeInsets.only(left: 10, right: 10,bottom: 50),
+                  child: Form(
+                    key: _formkey,
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Text(_error,
+                              style: TextStyle(color: _error_color)),
+                          const SizedBox(height: 20),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                  width: _finalwidth,
+                                  child: _buildNameField())
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                  width: _finalwidth,
+                                  child: _buildEmailField())
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
 
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    SizedBox(
-                                        width: _finalwidth,
-                                        child: _buildUserNameField())
-                                  ],
-                                ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                  width: _finalwidth,
+                                  child: _buildUserNameField())
+                            ],
+                          ),
 
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    SizedBox(
-                                      width: (_finalwidth / 2) - 15,
-                                      child: _buildPasswordField(),
-                                    ),
-                                    SizedBox(
-                                      width: 30,
-                                    ),
-                                    SizedBox(
-                                      width: (_finalwidth / 2) - 15,
-                                      child: _buildPasswordConfField(),
-                                    ),
-                                  ],
-                                ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                width: (_finalwidth / 2) - 15,
+                                child: _buildPasswordField(),
+                              ),
+                              const SizedBox(
+                                width: 30,
+                              ),
+                              SizedBox(
+                                width: (_finalwidth / 2) - 15,
+                                child: _buildPasswordConfField(),
+                              ),
+                            ],
+                          ),
 
-                                // SizedBox(height: 10),
+                          // SizedBox(height: 10),
 
-                                SizedBox(
-                                  height: 100,
-                                ),
-                                ElevatedButton(
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 12.0, horizontal: 12),
-                                    child: Text('SignUp'),
-                                  ),
-                                  onPressed: () async {
-                                    setState(() {
-                                      Loading = true;
-                                    });
-                                    if (_formkey.currentState!.validate()) {
-                                      _save();
-
-                                      final url = Uri.parse("$URL/signup");
-                                      final response = await http.post(url,
-                                          body: json.encode({
-                                            "username": _username,
-                                            "password": _password,
-                                            "name": _name,
-                                            "email": _email,
-                                          }));
-                                      // final repsonse = await http.get(url);
-                                      final decode = json.decode(response.body)
-                                          as Map<String, dynamic>;
-                                      if (decode['error'] != 'None') {
-                                        setState(() {
-                                          _error = decode['error'];
-                                          _error_color = Colors.red;
-                                        });
-                                      }
-                                      if (decode["error"] == "None") {
-                                        setState(() {
-                                          _error = "Signed in";
-                                          _error_color = Colors.green;
-                                          Navigator.pop(context, '/signup');
-                                        });
-                                      }
-                                    } else {
-                                    }
-                                    setState(() {
-                                      Loading = false;
-                                    });
-                                  },
-                                ),
-                              ]),
-                        )),
-                  ),
-                ),
-              ),
+                          const SizedBox(
+                            height: 100,
+                          ),
+                          ElevatedButton(
+                            style:
+                    ElevatedButton.styleFrom(backgroundColor: CTAColor),
+                            child: const Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 12.0, horizontal: 12),
+                              child: Text('SignUp'),
+                            ),
+                            onPressed: () async {
+                              setState(() {
+                                Loading = true;
+                              });
+                              if (_formkey.currentState!.validate()) {
+                                _save();
+                                
+                                final url = Uri.parse("$URL/signup");
+                                final response = await http.post(url,
+                                    body: json.encode({
+                                      "username": _username,
+                                      "password": _password,
+                                      "name": _name,
+                                      "email": _email,
+                                    }));
+                                // final repsonse = await http.get(url);
+                                final decode = json.decode(response.body)
+                                    as Map<String, dynamic>;
+                                if (decode['error'] != 'None') {
+                                  setState(() {
+                                    _error = decode['error'];
+                                    _error_color = Colors.red;
+                                  });
+                                }
+                                if (decode["error"] == "None") {
+                                  setState(() {
+                                    _error = "Signed in";
+                                    _error_color = Colors.green;
+                                    Navigator.pop(context, '/signup');
+                                  });
+                                }
+                              } else {}
+                              setState(() {
+                                Loading = false;
+                              });
+                            },
+                          ),
+                        ]),
+                  )),
             )));
   }
 }

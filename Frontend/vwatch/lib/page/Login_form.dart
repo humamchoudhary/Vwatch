@@ -197,6 +197,7 @@ class LoginScreenstate extends State<Login> {
                                     username: username,
                                     token: token);
                               });
+                              // ignore: use_build_context_synchronously
                               Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(

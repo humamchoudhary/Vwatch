@@ -72,6 +72,7 @@ def SignUpRoute():
             signup = Signup(name, email, username, password)
             response = jsonify({"error": "None"})
             signup.Print_Account_Details()
+            signup.tree.save_user()
             return make_response(response, 200)
         except Exception as e:
             response = jsonify({"error": str(e)})
@@ -383,8 +384,6 @@ def watch_later():
         return make_response(jsonify(result))
     else:
         return make_response(jsonify({"msg": "no data found!"}), 400)
-    usertree.save_user()
-    return "ok"
 
 @app.route("/get_watchlist")
 def watch_later2():
