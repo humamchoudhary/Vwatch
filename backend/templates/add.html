@@ -9,6 +9,9 @@
   <div class="container">
     <div class="title">Add Episodes</div>
     <div class="content">
+    {%if error %}
+      <p class="error"><strong>Note: </strong>{{error}}
+    {% endif %}
     {%if success %}
       <p class="success"><strong>Note: </strong>{{success}}
     {% endif %}
