@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, make_response, request, send_file, render_template,redirect, Response
+from flask import Flask, jsonify, make_response, request, send_file, render_template, redirect, Response
 import json
 import requests
 from tinydb import TinyDB, Query
@@ -98,44 +98,9 @@ def next_eps():
     id = "tv/watch-initial-d-fourth-stage-project-d-20269"
     epsno = 3
 
-    response = jsonify({"result": nextepisode(type,token,profile,id,epsno)})
+    response = jsonify(
+        {"result": nextepisode(type, token, profile, id, epsno)})
     return make_response(response)
-
-
-@app.route("/get_history")
-def get_history():
-    player = Watch_history()
-    player.Add_history({
-        "id": "movie/watch-avengers-age-of-ultron-19729",
-        "title": "Avengers: Age of Ultron",
-        "coverImg":
-        "https://img.flixhq.to/xxrz/250x400/379/76/e8/76e8bc195d6dff37d1fbbf815ce467e9/76e8bc195d6dff37d1fbbf815ce467e9.jpg",
-        "genres": ["Action", "Adventure", "Science Fiction"],
-    })
-    player.Add_history({
-        "id": "movie/watch-avengers-age-of-ultron-19729",
-        "title": "Avengers: Age of Ultron",
-        "coverImg":
-        "https://img.flixhq.to/xxrz/250x400/379/76/e8/76e8bc195d6dff37d1fbbf815ce467e9/76e8bc195d6dff37d1fbbf815ce467e9.jpg",
-        "genres": ["Action", "Adventure", "Science Fiction"],
-    })
-    player.Add_history({
-        "id": "movie/watch-avengers-age-of-ultron-19729",
-        "title": "Avengers: Age of Ultron",
-        "coverImg":
-        "https://img.flixhq.to/xxrz/250x400/379/76/e8/76e8bc195d6dff37d1fbbf815ce467e9/76e8bc195d6dff37d1fbbf815ce467e9.jpg",
-        "genres": ["Action", "Adventure", "Science Fiction"],
-    })
-    player.Add_history({
-        "id": "movie/watch-avengers-age-of-ultron-19729",
-        "title": "Avengers: Age of Ultron",
-        "coverImg":
-        "https://img.flixhq.to/xxrz/250x400/379/76/e8/76e8bc195d6dff37d1fbbf815ce467e9/76e8bc195d6dff37d1fbbf815ce467e9.jpg",
-        "genres": ["Action", "Adventure", "Science Fiction"],
-    })
-
-    response = jsonify({"data": player.get_all()})
-    return make_response(response)  # prints "video3.mp4"
 
 
 @app.route("/", methods=["GET"])
@@ -201,10 +166,30 @@ def search():
             return make_response(jsonify({"msg": "no data found!"}), 400)
 
     if "id" in request_data.keys():
-        print(request_data["id"])
+        id = request_data["id"]
+        result = []
+        # print(movies_table.all())
+        for data in movies_table.all():
+            if id == data["id"]:
+                result.append(data)
+            
+        for data in anime_table.all():
+            if id == data["id"]:
+                result.append(data)
+            
+        for data in show_table.all():
+            if id == data["id"]:
+                result.append(data)
+            
+        if result:
+            return make_response(jsonify(result))
+        else:
+            return make_response(jsonify({"msg": "no data found!"}), 400)
+
     if "id" not in request_data.keys() and "name" not in request_data.keys():
         return make_response(jsonify({"msg": "id or name is required"}), 400)
     return "search"
+
 
 @app.route("/getlink")
 def getlink():
@@ -216,10 +201,11 @@ def getlink():
     token = request_data["token"]
     profile = request_data["profile"]
     anime_data = anime_table.all()
-    r = requests.get(f"https://api.consumet.org/movies/flixhq/watch?episodeId={eps_id}&mediaId={s_id}")
-    create_watched(anime_data,token,profile,s_id)
+    r = requests.get(
+        f"https://api.consumet.org/movies/flixhq/watch?episodeId={eps_id}&mediaId={s_id}")
+    create_watched(anime_data, token, profile, s_id)
     return make_response(r.json()["sources"][0])
-    
+
 
 @app.route("/files")
 def fileget():
@@ -227,6 +213,7 @@ def fileget():
     # file = request_data["file"]
     return "sda"
     # return send_file(f"files/{file}",mimetype='application/x-mpegURL')
+
 
 @app.route("/get_rating_movie")
 def rat_get_mov():
@@ -236,13 +223,13 @@ def rat_get_mov():
     with open(f'Movies.pkl', 'rb') as enc_file:
         tree_mov = pickle.load(enc_file)
 
-    
     result += tree_mov.find_mov(8.1)
     result += tree_mov.find_mov(7.8)
     result += tree_mov.find_mov(7.4)
     result += tree_mov.find_mov(7.3)
-    
+
     return make_response(jsonify(result))
+
 
 @app.route("/get_rating_show")
 def rat_get_show():
@@ -252,14 +239,12 @@ def rat_get_show():
     with open(f'Tv Show.pkl', 'rb') as enc_file:
         tree_show = pickle.load(enc_file)
 
-    
     result += tree_show.find_show(8.4)
     result += tree_show.find_show(7.3)
     result += tree_show.find_show(6.6)
-  
-    
+
     return make_response(jsonify(result))
-    
+
 
 @app.route("/get_rating_anime")
 def rat_get_anime():
@@ -269,15 +254,15 @@ def rat_get_anime():
     with open(f'Animation.pkl', 'rb') as enc_file:
         tree_anime = pickle.load(enc_file)
 
-    
     result += tree_anime.find_anime(8.8)
     result += tree_anime.find_anime(8.6)
     result += tree_anime.find_anime(8.5)
     result += tree_anime.find_anime(8.2)
-    
+
     return make_response(jsonify(result))
 
-@app.route("/adminlogin",methods=["GET","POST"])
+
+@app.route("/adminlogin", methods=["GET", "POST"])
 def adminlogin():
 
     error = None
@@ -294,11 +279,10 @@ def adminlogin():
         else:
             error = "Invalid Username"
 
+    return render_template("adminlogin.html", error=error)
 
-    return render_template("adminlogin.html",error=error)
 
-
-@app.route("/add",methods=["GET","POST"])
+@app.route("/add", methods=["GET", "POST"])
 def add():
 
     error = None
@@ -309,8 +293,60 @@ def add():
         epsno = request.form["epsno"]
         pass
 
+    return render_template("add.html", error=error)
 
-    return render_template("add.html",error=error)
+
+@app.route("/get_history")
+def get_history():
+    request_data = request.args
+
+    response = None
+    token = request_data["token"]
+    profile = request_data["profile"]
+    file = open(f'{token}.pkl', 'rb')
+    user_tree = pickle.load(file)
+    file.close()
+    profile = user_tree.load_profile(profile)
+    r = requests.get("http://127.0.0.1:5000/search")
+    # profile.watch_history.reset()
+    # user_tree.save_user()
+    response = jsonify({"data": profile.watch_history.get_all()})
+    return make_response(response)
+
+
+@app.route("/add_history")
+def Add_history():
+    request_data = request.args
+    token = request_data["token"]
+    response = None
+    id = request_data["id"]
+    profile = request_data["profile"]
+    file = open(f'{token}.pkl', 'rb')
+    user_tree = pickle.load(file)
+    file.close()
+    profile = user_tree.load_profile(profile)
+    result = []
+    # print(movies_table.all())
+    for data in movies_table.all():
+        if id == data["id"]:
+            result.append(data)
+        
+    for data in anime_table.all():
+        if id == data["id"]:
+            result.append(data)
+        
+    for data in show_table.all():
+        if id == data["id"]:
+            result.append(data)
+        
+    if result:
+        for i in result:
+            profile.add_to_watch_history(i)
+
+        user_tree.save_user()
+        return make_response(jsonify(result))
+    else:
+        return make_response(jsonify({"msg": "no data found!"}), 400)
 
 
 if __name__ == "__main__":

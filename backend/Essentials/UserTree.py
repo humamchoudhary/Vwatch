@@ -1,3 +1,4 @@
+from Essentials.history import Watch_history
 from Exceptions import *
 from collections import defaultdict
 import random
@@ -9,13 +10,12 @@ imgs = ['randimage0.png', 'randimage1.png', 'randimage2.png', 'randimage3.png', 
 class UserProfile:
     def __init__(self, username):
         self.username = username
-        self.watch_history = [
-
-        ]  # Replace with stack later
+        self.watch_history = Watch_history()
         self.watched = defaultdict(list)
         self.watch_list = []
+        
     def add_to_watch_history(self, content_id):
-        self.watch_history.append(content_id)
+        self.watch_history.push(content_id)
 
     def get_Img(self):
         self.img = random.choice(imgs)
