@@ -29,7 +29,6 @@ class _VideoPlayerState extends State<VideoPlayer> {
   @override
   void initState() {
     super.initState();
-    print(widget.url);
     initPlayer(widget.url);
   }
 

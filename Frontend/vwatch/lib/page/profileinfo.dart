@@ -17,7 +17,6 @@ class ProfileInfo extends StatefulWidget {
 
 class _ProfileInfoState extends State<ProfileInfo> {
   getwatchlist() async {
-    print("$URL/get_watchlist?profile=${PROFILE.username}&token=${USER.token}");
     final repsonse = await http.get(Uri.parse(
         "$URL/get_watchlist?profile=${PROFILE.username}&token=${USER.token}"));
     final decode = json.decode(repsonse.body);
@@ -105,7 +104,6 @@ class _ProfileInfoState extends State<ProfileInfo> {
                                     // ignore: prefer_typing_uninitialized_variables
                                     var profile;
                                     profile = USER.profiles[index];
-                                    print(profile);
                                     setState(() {
                                       PROFILE = Profile(
                                         username: profile["username"],
@@ -172,7 +170,6 @@ class _ProfileInfoState extends State<ProfileInfo> {
   }
 
   Widget itemBuilder(BuildContext context, int index) {
-    print(PROFILE.watchQueue[index]["title"]);
     return ListTile(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       tileColor: AccentColor,

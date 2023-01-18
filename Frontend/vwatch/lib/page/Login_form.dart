@@ -167,7 +167,6 @@ class LoginScreenstate extends State<Login> {
                         });
                         if (_formkey.currentState!.validate()) {
                           _save();
-                          print('$URL/login');
 
                           final url = Uri.parse("$URL/login");
                           try {
@@ -182,13 +181,11 @@ class LoginScreenstate extends State<Login> {
                             final accountDetails = decode["account"];
                             final token = accountDetails["token"];
                             final username = accountDetails["username"];
-                            // print(username);
                             if (decode['error'] != 'Logged in') {
                               setState(() {
                                 _error = decode['error'];
                               });
                             } else {
-                              print(decode);
 
                               // ignore: use_build_context_synchronously
                               setState(() {
@@ -209,7 +206,6 @@ class LoginScreenstate extends State<Login> {
                             setState(() {
                               _error =
                                   "Could not login please try again later!";
-                              print("$e.runtimeType, $e");
                             });
                           }
                         }
@@ -228,7 +224,6 @@ class LoginScreenstate extends State<Login> {
                         ),
                       ),
                       onPressed: () {
-                        print(const ValueKey("signup"));
                         Navigator.pushNamed(context, '/signup');
                       },
                     )

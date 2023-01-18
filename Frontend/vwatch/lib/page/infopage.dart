@@ -41,7 +41,6 @@ class _InfoPageState extends State<InfoPage> {
   @override
   Widget build(BuildContext context) {
     final screensize = MediaQuery.of(context).size;
-    print(url);
     return Scaffold(
       backgroundColor: BackgroundColor,
       appBar: AppBar(
@@ -156,16 +155,12 @@ class _InfoPageState extends State<InfoPage> {
                       curr_eps += 1;
                     });
 
-                    print(
-                        "$URL/nexteps?content_type=${widget.content_type}&token=${USER.token}&profile=${PROFILE.username}&epsno=${curr_eps}&id=${widget.id}");
                     final repsonse = await http.get(Uri.parse(
                         "$URL/nexteps?content_type=${widget.content_type}&token=${USER.token}&profile=${PROFILE.username}&epsno=${curr_eps}&id=${widget.id}"));
                     final decode = json.decode(repsonse.body)["result"];
-                    print(decode);
 
                     setState(() {
                       url = decode["url"];
-                      print(url);
                       player = true;
 
                       // flickManager.dispose();
@@ -231,14 +226,12 @@ class _InfoPageState extends State<InfoPage> {
       trailing: IconButton(
         icon: const Icon(Icons.play_circle_outline_rounded),
         onPressed: () async {
-          print(
-              "$URL/getlink?epsid=${widget.eps[index]['id']}&id=${widget.id}&profile=${PROFILE.username}&token=${USER.token}");
+          
           final repsonse = await http.get(Uri.parse(
               "$URL/getlink?epsid=${widget.eps[index]['id']}&id=${widget.id}&profile=${PROFILE.username}&token=${USER.token}"));
           final decode = json.decode(repsonse.body);
           setState(() {
             url = decode["url"];
-            print(url);
             player = true;
           });
         },
