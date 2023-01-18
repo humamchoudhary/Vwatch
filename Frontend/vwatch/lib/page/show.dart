@@ -97,6 +97,7 @@ class _ShowPageState extends State<ShowPage> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => InfoPage(
+                                          content_type : "tvshow",
                                           name: movie["title"],
                                           id: movie["id"],
                                           eps: movie["episodes"],

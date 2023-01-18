@@ -1,4 +1,5 @@
 import pickle
+import requests
 
 class Node:
 
@@ -46,8 +47,10 @@ class LinkedList:
         itr = self.head
         while itr:
             if itr.data['epNo'] == eps_no:
-                # print(itr.next.data["id"])
-                return self.complete(token,profilename,id,eps_no)
+                eps_id = itr.next.data["id"]
+                r = requests.get(
+                f"https://api.consumet.org/movies/flixhq/watch?episodeId={eps_id}&mediaId={id}")
+                return ({"id":id,"epsid":eps_id,"url": r.json()["sources"][0]["url"]},self.complete(token,profilename,id,eps_no))
             itr = itr.next
             
         return "Episode doesn't exist"
@@ -71,14 +74,15 @@ class LinkedList:
 
         return 
               
-def nextepisode(type,token,profilename,id,eps_no):
+def nextepisode(content_type,token,profilename,id,eps_no):
     
-    with open(f'{type}.pkl', 'rb') as f:
+    with open(f'{content_type}.pkl', 'rb') as f:
         Llist = pickle.load(f)
 
     obj = Llist[id]
-    obj.nextep(token,profilename,id,eps_no)
-    return id
+    info = obj.nextep(token,profilename,id,eps_no)
+    return info[0]
+    
 
 
 
