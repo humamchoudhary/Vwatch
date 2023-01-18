@@ -138,7 +138,26 @@ class _InfoPageState extends State<InfoPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    setState(() {
+                      player = false;
+                      curr_eps += 1;
+                    });
+
+                    final repsonse = await http.get(Uri.parse(
+                        "$URL/preveps?content_type=${widget.content_type}&token=${USER.token}&profile=${PROFILE.username}&epsno=${curr_eps}&id=${widget.id}"));
+                    final decode = json.decode(repsonse.body)["result"];
+
+                    setState(() {
+                      url = decode["url"];
+                      player = true;
+
+                      // flickManager.dispose();
+                      // _videoplayercontoller.dispose();
+                      // _videoplayercontoller.value;
+                    });
+                    
+                  },
                   child: Text(
                     "Prev",
                     softWrap: true,
