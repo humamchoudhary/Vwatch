@@ -291,14 +291,36 @@ def adminlogin():
 def add():
 
     error = None
+    success = None
     if request.method == "POST":
-        type = request.form["type"]
+        content_type = request.form["type"]
         id = request.form["id"]
         epsid = request.form["epsid"]
-        epsno = request.form["epsno"]
-        pass
+        epsno = int(request.form["epsno"])
+        if content_type == 'anime':
+            table = anime_table
+            content = "Anime"
+        else:
+            table = show_table
+            content = "TV Show"
+        if table.search(query.id == id):
 
-    return render_template("add.html", error=error)
+            data = table.search(query.id == id)[0]
+            if data["episodes"][-1]["epNo"] == epsno-1:
+                data["episodes"].append({'id': epsid,
+                'epNo': epsno}
+                )
+                table.upsert(data,query.id == "tv/watch-initial-d-fourth-stage-project-d-20269")
+                create_linkedlist(content_type,table)
+                success = "Episode added"
+            else:
+                error = "Add episodes in order"
+                return render_template("add.html", error=error)
+        else:
+            error = f"{content} with this ID doesnt exist"
+            return render_template("add.html", error=error)
+
+    return render_template("add.html", error=error,success = success)
 
 
 @app.route("/get_history")
