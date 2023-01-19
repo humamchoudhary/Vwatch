@@ -35,6 +35,7 @@ class _ProfileInfoState extends State<ProfileInfo> {
 
   @override
   Widget build(BuildContext context) {
+    final screensize = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: BackgroundColor,
       appBar: AppBar(
@@ -80,67 +81,69 @@ class _ProfileInfoState extends State<ProfileInfo> {
                 height: 10,
               ),
               // Expanded(child: ListView.separated(itemBuilder: profileitemBuilder, separatorBuilder: separatorBuilder, ))
-              Expanded(
-                  child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      // crossAxisSpacing: 20.0,
-                      shrinkWrap: true,
-                      children: List.generate(USER.profiles.length, (index) {
-                        return Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            SizedBox(
-                              height: 128,
-                              width: 128,
-                              child: Card(
-                                clipBehavior: Clip.antiAlias,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10)),
-                                color: AccentColor,
-                                child: InkWell(
-                                  onTap: () {
-                                    // ignore: prefer_typing_uninitialized_variables
-                                    var profile;
-                                    profile = USER.profiles[index];
-                                    setState(() {
-                                      PROFILE = Profile(
-                                        username: profile["username"],
-                                        history: profile["history"],
-                                        watchQueue: profile["watchlist"],
-                                        img: profile["img"],
-                                      );
-                                    });
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                NavigationPage(
-                                                  username: profile["username"],
-                                                  history: profile["history"],
-                                                  watchQueue:
-                                                      profile["watchlist"],
-                                                  img: profile["img"],
-                                                )));
-                                  },
-                                  child: Image.network(
-                                    "$URL/getimages?img=${USER.profiles[index]["img"]}",
-                                    fit: BoxFit.cover,
+              SizedBox(
+                height: 158,
+                child: Expanded(
+                    child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        // crossAxisSpacing: 20.0,
+                        children: List.generate(USER.profiles.length, (index) {
+                          return Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              SizedBox(
+                                height: 128,
+                                width: 128,
+                                child: Card(
+                                  clipBehavior: Clip.antiAlias,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10)),
+                                  color: AccentColor,
+                                  child: InkWell(
+                                    onTap: () {
+                                      // ignore: prefer_typing_uninitialized_variables
+                                      var profile;
+                                      profile = USER.profiles[index];
+                                      setState(() {
+                                        PROFILE = Profile(
+                                          username: profile["username"],
+                                          history: profile["history"],
+                                          watchQueue: profile["watchlist"],
+                                          img: profile["img"],
+                                        );
+                                      });
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  NavigationPage(
+                                                    username: profile["username"],
+                                                    history: profile["history"],
+                                                    watchQueue:
+                                                        profile["watchlist"],
+                                                    img: profile["img"],
+                                                  )));
+                                    },
+                                    child: Image.network(
+                                      "$URL/getimages?img=${USER.profiles[index]["img"]}",
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              USER.profiles[index]["username"],
-                              style: GoogleFonts.poppins(
-                                textStyle: const TextStyle(color: Colors.white),
+                              const SizedBox(
+                                height: 5,
                               ),
-                            ),
-                          ],
-                        );
-                      }))),
+                              Text(
+                                USER.profiles[index]["username"],
+                                style: GoogleFonts.poppins(
+                                  textStyle: const TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ],
+                          );
+                        }))),
+              ),
 
               const SizedBox(
                 height: 80,
@@ -158,16 +161,19 @@ class _ProfileInfoState extends State<ProfileInfo> {
                 height: 20,
               ),
               Expanded(
-                  child: ListView.separated(
-                      itemBuilder: itemBuilder,
-                      separatorBuilder: separatorBuilder,
-                      itemCount: PROFILE.watchQueue.length)),
+                child: ListView.separated(
+                    itemBuilder: itemBuilder,
+                    separatorBuilder: separatorBuilder,
+                    itemCount: PROFILE.watchQueue.length),
+              ),
             ],
           )),
     );
   }
 
   Widget itemBuilder(BuildContext context, int index) {
+    final screensize = MediaQuery.of(context).size;
+
     return ListTile(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       tileColor: AccentColor,
@@ -204,18 +210,21 @@ class _ProfileInfoState extends State<ProfileInfo> {
                           fontWeight: FontWeight.bold),
                     ),
                   ),
-                  Row(children: [
-                    for (var i in PROFILE.watchQueue[index]["genres"])
-                      Text(
-                        " $i ",
-                        style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                              color: HexColor("#AAB1C2"),
-                              fontSize: 10,
-                              fontWeight: FontWeight.w300),
-                        ),
-                      )
-                  ]),
+                  SizedBox(
+                  width: screensize.width/2,
+                  child: Flexible(
+                    child: Text(
+                      " ${PROFILE.watchQueue[index]["genres"].join(" | ")}",
+                      overflow: TextOverflow.ellipsis,
+                      style: GoogleFonts.poppins(
+                        textStyle: TextStyle(
+                            color: HexColor("#AAB1C2"),
+                            fontSize: 10,
+                            fontWeight: FontWeight.w300),
+                      ),
+                    ),
+                  ),
+                ),
                 ],
               ),
             ]),

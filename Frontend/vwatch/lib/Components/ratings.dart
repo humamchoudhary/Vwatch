@@ -52,8 +52,9 @@ class _RatingState extends State<Rating> {
                 clipBehavior: Clip.antiAlias,
                 child: InkWell(
                   child: Image.network( 
+                    movie.isNotEmpty?movie["coverImg"]:"$URL/getimages?img=index.png",
                     // "https://img.flixhq.to/xxrz/250x400/379/b0/e4/b0e4780f952163abbfec3b614fb25a6e/b0e4780f952163abbfec3b614fb25a6e.jpg",
-                    movie["coverImg"],
+                    
                     fit: BoxFit.cover,
                     filterQuality: FilterQuality.high,
                     height: 180,
