@@ -19,13 +19,13 @@ class AnimePage extends StatefulWidget {
 }
 
 class _AnimePageState extends State<AnimePage> {
-  List movie_data = [];
+  List anime_data = [];
   _getData() async {
     final repsonse = await http.get(Uri.parse("$URL/getAllAnime"));
     final decode = json.decode(repsonse.body);
     setState(() {
       
-      movie_data = decode["result"];
+      anime_data = decode["result"];
     });
   }
 
@@ -53,7 +53,7 @@ class _AnimePageState extends State<AnimePage> {
   Widget build(BuildContext context) {
         final screensize = MediaQuery.of(context).size;
 
-    return movie_data.isEmpty
+    return anime_data.isEmpty
         ? ModalProgressHUD(
             inAsyncCall: true,
             child: Container(),
@@ -82,12 +82,26 @@ class _AnimePageState extends State<AnimePage> {
                               itemCount: genres.length),
                         ),
                       ).then((value) async {
-                        final repsonse = await http.post(Uri.parse("$URL/get_gen_show"),
+                        final repsonse = await http.post(Uri.parse("$URL/get_gen_anime"),
                                 body: json.encode({
                                   "gen":selectedgen
                                 }));
                             final decode = json.decode(repsonse.body);
-                            
+                            setState(() {
+                          anime_data = [];
+                        });
+                        decode.forEach((val) async {
+                          var data =
+                              await http.post(Uri.parse("$URL/search?id=$val"));
+                          setState(() {
+                            try {
+                              anime_data.add(json.decode(data.body)[0]);
+                            } catch (e) {
+                              print(e);
+                            }
+                            print(anime_data);
+                          });
+                        });
                       });
                       // CupertinoScaffold.showCupertinoModalBottomSheet(
                       //     expand: true,
@@ -134,8 +148,8 @@ class _AnimePageState extends State<AnimePage> {
               padding: const EdgeInsets.all(20),
               crossAxisCount: 2,
               childAspectRatio: 0.65,
-              children: List.generate(movie_data.length, (index) {
-                var movie = movie_data[index];
+              children: List.generate(anime_data.length, (index) {
+                var movie = anime_data[index];
                 return Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [

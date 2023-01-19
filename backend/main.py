@@ -278,6 +278,7 @@ def gen_get_mov():
         gen_mov = pickle.load(enc_file)
 
     result = gen_mov.choose_by_gen_mov_2(gen)
+    print(result)
     return make_response(jsonify(result))
 
 

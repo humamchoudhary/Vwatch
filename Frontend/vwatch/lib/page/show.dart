@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
@@ -18,14 +20,24 @@ class ShowPage extends StatefulWidget {
 }
 
 class _ShowPageState extends State<ShowPage> {
-  List genres = ['Action', 'Sci-Fi', 'Animation', 'Comedy', 'Crime', 'Fantasy', 'Drama', 'Mystery', 'Adventure'];
+  List genres = [
+    'Action',
+    'Sci-Fi',
+    'Animation',
+    'Comedy',
+    'Crime',
+    'Fantasy',
+    'Drama',
+    'Mystery',
+    'Adventure'
+  ];
   List selectedgen = [];
-  List movie_data = [];
+  List show_data = [];
   _getData() async {
     final repsonse = await http.get(Uri.parse("$URL/getAllShow"));
     final decode = json.decode(repsonse.body);
     setState(() {
-      movie_data = decode["result"];
+      show_data = decode["result"];
     });
   }
 
@@ -52,7 +64,7 @@ class _ShowPageState extends State<ShowPage> {
   Widget build(BuildContext context) {
     final screensize = MediaQuery.of(context).size;
 
-    return movie_data.isEmpty
+    return show_data.isEmpty
         ? ModalProgressHUD(
             inAsyncCall: true,
             child: Container(),
@@ -81,12 +93,25 @@ class _ShowPageState extends State<ShowPage> {
                               itemCount: genres.length),
                         ),
                       ).then((value) async {
-                        final repsonse = await http.post(Uri.parse("$URL/get_gen_show"),
-                                body: json.encode({
-                                  "gen":selectedgen
-                                }));
-                            final decode = json.decode(repsonse.body);
-                            
+                        final repsonse = await http.post(
+                            Uri.parse("$URL/get_gen_show"),
+                            body: json.encode({"gen": selectedgen}));
+                        final decode = json.decode(repsonse.body);
+                        setState(() {
+                          show_data = [];
+                        });
+                        decode.forEach((val) async {
+                          var data =
+                              await http.post(Uri.parse("$URL/search?id=$val"));
+                          setState(() {
+                            try {
+                              show_data.add(json.decode(data.body)[0]);
+                            } catch (e) {
+                              print(e);
+                            }
+                            print(show_data);
+                          });
+                        });
                       });
                       // CupertinoScaffold.showCupertinoModalBottomSheet(
                       //     expand: true,
@@ -133,8 +158,8 @@ class _ShowPageState extends State<ShowPage> {
               padding: const EdgeInsets.all(20),
               crossAxisCount: 2,
               childAspectRatio: 0.65,
-              children: List.generate(movie_data.length, (index) {
-                var movie = movie_data[index];
+              children: List.generate(show_data.length, (index) {
+                var movie = show_data[index];
                 return Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -196,8 +221,11 @@ class _ShowPageState extends State<ShowPage> {
           );
   }
 
-  Widget genBuilder(BuildContext context, int index,) {
+  Widget genBuilder(
+    BuildContext context,
+    int index,
+  ) {
     print('object');
-    return CheckBox(index: index,list:selectedgen);
+    return CheckBox(index: index, list: selectedgen);
   }
 }

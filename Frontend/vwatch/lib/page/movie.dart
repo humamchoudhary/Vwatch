@@ -84,11 +84,26 @@ class _MoviePageState extends State<MoviePage> {
                               itemCount: genres.length),
                         ),
                       ).then((value) async {
-                        final repsonse = await http.post(Uri.parse("$URL/get_gen_show"),
+                        final repsonse = await http.post(Uri.parse("$URL/get_gen_movie"),
                                 body: json.encode({
                                   "gen":selectedgen
                                 }));
                             final decode = json.decode(repsonse.body);
+                            setState(() {
+                          movie_data = [];
+                        });
+                        decode.forEach((val) async {
+                          var data =
+                              await http.post(Uri.parse("$URL/search?id=$val"));
+                          setState(() {
+                            try {
+                              movie_data.add(json.decode(data.body)[0]);
+                            } catch (e) {
+                              print(e);
+                            }
+                            print(movie_data);
+                          });
+                        });
                             
                       });
                       // CupertinoScaffold.showCupertinoModalBottomSheet(
@@ -129,7 +144,7 @@ class _MoviePageState extends State<MoviePage> {
                 ),
               ),
             ),
-            body: GridView.count(
+            body: movie_data.isNotEmpty? GridView.count(
               shrinkWrap: true,
               mainAxisSpacing: 0,
               crossAxisSpacing: 0,
@@ -190,8 +205,9 @@ class _MoviePageState extends State<MoviePage> {
                   ],
                 );
               }),
-            ),
-          );
+            ):Container(),
+          
+           );
   
   }
   
