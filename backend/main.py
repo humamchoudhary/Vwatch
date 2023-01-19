@@ -129,6 +129,24 @@ def next_eps():
     return make_response(response)
 
 
+@app.route("/completed_eps")
+def resume():
+    request_data = request.args
+    content_type = request_data["content_type"]
+    token = request_data['token']
+    profile = request_data['profile']
+    id = request_data['id']
+    if content_type == "anime":
+        data = anime_table.all()
+    else:
+        data = show_table.all()
+    response = jsonify(
+        {"result": completed_eps(data,token,profile,id)})
+
+    return make_response(response)
+    
+
+
 @app.route("/", methods=["GET"])
 def main():
     return render_template("index.html")
@@ -222,14 +240,18 @@ def getlink():
     # https://api.consumet.org/movies/flixhq/watch?episodeId=928225&mediaId=tv/watch-initial-d-fourth-stage-project-d-20269
 
     request_data = request.args
+    content_type = request_data["content_type"]
     s_id = request_data["id"]
     eps_id = request_data["epsid"]
     token = request_data["token"]
     profile = request_data["profile"]
-    anime_data = anime_table.all()
+    if content_type == "anime":
+        data = anime_table.all()
+    else:
+        data = show_table.all()
     r = requests.get(
         f"https://api.consumet.org/movies/flixhq/watch?episodeId={eps_id}&mediaId={s_id}")
-    create_watched(anime_data, token, profile, s_id)
+    create_watched(data, token, profile, s_id)
     return make_response(r.json()["sources"][0])
 
 
