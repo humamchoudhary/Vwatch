@@ -240,15 +240,21 @@ def getlink():
     # https://api.consumet.org/movies/flixhq/watch?episodeId=928225&mediaId=tv/watch-initial-d-fourth-stage-project-d-20269
 
     request_data = request.args
-    content_type = request_data["content_type"]
     s_id = request_data["id"]
     eps_id = request_data["epsid"]
     token = request_data["token"]
     profile = request_data["profile"]
+    content_type = request_data["content_type"]
+    data = []
     if content_type == "anime":
         data = anime_table.all()
-    else:
+    elif content_type == "tvshow":
         data = show_table.all()
+    else:
+        data.extend(anime_table.all())
+        data.extend(show_table.all())
+        data.extend(movies_table.all())
+
     r = requests.get(
         f"https://api.consumet.org/movies/flixhq/watch?episodeId={eps_id}&mediaId={s_id}")
     create_watched(data, token, profile, s_id)

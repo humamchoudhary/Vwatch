@@ -34,16 +34,26 @@ class InfoPage extends StatefulWidget {
 }
 
 class _InfoPageState extends State<InfoPage> {
-  List completed_list=[];
+  List completed_list = [];
   late String url;
   bool player = false;
   int curr_eps = 1;
   _getData() async {
-    final repsonse = await http.get(Uri.parse("$URL/completed_eps?content_type=${widget.content_type}&token=${USER.token}&profile=${PROFILE.username}&id=${widget.id}"));
+    final repsonse = await http.get(Uri.parse(
+        "$URL/completed_eps?content_type=${widget.content_type}&token=${USER.token}&profile=${PROFILE.username}&id=${widget.id}"));
     final decode = json.decode(repsonse.body);
-    setState(() {
-      completed_list = decode["result"];
-    });
+    if (decode["result"] != null) {
+      setState(() {
+        completed_list = decode["result"];
+        print(completed_list);
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    _getData();
+    super.initState();
   }
 
   @override
@@ -135,91 +145,100 @@ class _InfoPageState extends State<InfoPage> {
                       ),
                     ),
                   )
-                : VideoPlayer(
-                    content_type: widget.content_type,
-                    url: url,
-                    id: widget.id,
+                : Column(
+                    children: [
+                      VideoPlayer(
+                        content_type: widget.content_type,
+                        url: url,
+                        id: widget.id,
+                      ),
+                      widget.content_type != "movie"
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                ElevatedButton(
+                                  onPressed: () async {
+                                    setState(() {
+                                      player = false;
+                                      curr_eps -= 1;
+                                      if (curr_eps == 0) {
+                                        curr_eps = 1;
+                                      }
+                                    });
+
+                                    final repsonse = await http.get(Uri.parse(
+                                        "$URL/preveps?content_type=${widget.content_type}&token=${USER.token}&profile=${PROFILE.username}&epsno=$curr_eps&id=${widget.id}"));
+                                    final decode =
+                                        json.decode(repsonse.body)["result"];
+
+                                    setState(() {
+                                      url = decode["url"];
+                                      player = true;
+
+                                      // flickManager.dispose();
+                                      // _videoplayercontoller.dispose();
+                                      // _videoplayercontoller.value;
+                                    });
+                                  },
+                                  child: Text(
+                                    "Prev",
+                                    softWrap: true,
+                                    textAlign: TextAlign.justify,
+                                    style: GoogleFonts.poppins(
+                                      textStyle: TextStyle(
+                                        color: WhiteColor,
+                                        fontSize: 10,
+                                      ),
+                                    ),
+                                    maxLines: 10,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 20,
+                                ),
+                                ElevatedButton(
+                                  onPressed: () async {
+                                    setState(() {
+                                      player = false;
+                                      curr_eps += 1;
+                                    });
+                                    print(
+                                        "$URL/nexteps?content_type=${widget.content_type}&token=${USER.token}&profile=${PROFILE.username}&epsno=${curr_eps}&id=${widget.id}");
+                                    final repsonse = await http.get(Uri.parse(
+                                        "$URL/nexteps?content_type=${widget.content_type}&token=${USER.token}&profile=${PROFILE.username}&epsno=${curr_eps}&id=${widget.id}"));
+                                    final decode =
+                                        json.decode(repsonse.body)["result"];
+
+                                    setState(() {
+                                      _getData();
+                                      url = decode["url"];
+                                      player = true;
+
+                                      // flickManager.dispose();
+                                      // _videoplayercontoller.dispose();
+                                      // _videoplayercontoller.value;
+                                    });
+                                  },
+                                  child: Text(
+                                    "Next",
+                                    softWrap: true,
+                                    textAlign: TextAlign.justify,
+                                    style: GoogleFonts.poppins(
+                                      textStyle: TextStyle(
+                                        color: WhiteColor,
+                                        fontSize: 10,
+                                      ),
+                                    ),
+                                    maxLines: 10,
+                                  ),
+                                ),
+                              ],
+                            )
+                          : Container(),
+                    ],
                   ),
             const SizedBox(
               width: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: () async {
-                    setState(() {
-                      player = false;
-                      curr_eps -= 1;
-                      if (curr_eps == 0) {
-                        curr_eps = 1;
-                      }
-                    });
-
-                    final repsonse = await http.get(Uri.parse(
-                        "$URL/preveps?content_type=${widget.content_type}&token=${USER.token}&profile=${PROFILE.username}&epsno=$curr_eps&id=${widget.id}"));
-                    final decode = json.decode(repsonse.body)["result"];
-
-                    setState(() {
-                      url = decode["url"];
-                      player = true;
-
-                      // flickManager.dispose();
-                      // _videoplayercontoller.dispose();
-                      // _videoplayercontoller.value;
-                    });
-                  },
-                  child: Text(
-                    "Prev",
-                    softWrap: true,
-                    textAlign: TextAlign.justify,
-                    style: GoogleFonts.poppins(
-                      textStyle: TextStyle(
-                        color: WhiteColor,
-                        fontSize: 10,
-                      ),
-                    ),
-                    maxLines: 10,
-                  ),
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                ElevatedButton(
-                  onPressed: () async {
-                    setState(() {
-                      player = false;
-                      curr_eps += 1;
-                    });
-                    print(
-                        "$URL/nexteps?content_type=${widget.content_type}&token=${USER.token}&profile=${PROFILE.username}&epsno=${curr_eps}&id=${widget.id}");
-                    final repsonse = await http.get(Uri.parse(
-                        "$URL/nexteps?content_type=${widget.content_type}&token=${USER.token}&profile=${PROFILE.username}&epsno=${curr_eps}&id=${widget.id}"));
-                    final decode = json.decode(repsonse.body)["result"];
-
-                    setState(() {
-                      url = decode["url"];
-                      player = true;
-
-                      // flickManager.dispose();
-                      // _videoplayercontoller.dispose();
-                      // _videoplayercontoller.value;
-                    });
-                  },
-                  child: Text(
-                    "Next",
-                    softWrap: true,
-                    textAlign: TextAlign.justify,
-                    style: GoogleFonts.poppins(
-                      textStyle: TextStyle(
-                        color: WhiteColor,
-                        fontSize: 10,
-                      ),
-                    ),
-                    maxLines: 10,
-                  ),
-                ),
-              ],
             ),
             const SizedBox(
               height: 20,
@@ -245,6 +264,50 @@ class _InfoPageState extends State<InfoPage> {
           ],
         ),
       ),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.all(20),
+        child: FloatingActionButton.extended(
+          backgroundColor: CTAColor,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          onPressed: () async {
+            {
+              setState(() {
+                player = false;
+                curr_eps += 1;
+              });
+              print(
+                  "$URL/nexteps?content_type=${widget.content_type}&token=${USER.token}&profile=${PROFILE.username}&epsno=${curr_eps}&id=${widget.id}");
+              final repsonse = await http.get(Uri.parse(
+                  "$URL/nexteps?content_type=${widget.content_type}&token=${USER.token}&profile=${PROFILE.username}&epsno=${curr_eps}&id=${widget.id}"));
+              final decode = json.decode(repsonse.body)["result"];
+
+              setState(() {
+                _getData();
+                url = decode["url"];
+                player = true;
+
+                // flickManager.dispose();
+                // _videoplayercontoller.dispose();
+                // _videoplayercontoller.value;
+              });
+            }
+          },
+          label: Text(
+            "Resume",
+            softWrap: true,
+            textAlign: TextAlign.justify,
+            style: GoogleFonts.poppins(
+              textStyle: TextStyle(
+                color: BackgroundColor,
+                fontSize: 18,
+                fontWeight: FontWeight.w700
+              ),
+            ),
+          ),
+          icon: Icon(Icons.play_arrow_rounded,color: BackgroundColor,),
+        ),
+      ),
     );
   }
 
@@ -257,19 +320,28 @@ class _InfoPageState extends State<InfoPage> {
           widget.eps.length == 1 ? widget.name : "Episode ${index + 1}",
           style: GoogleFonts.poppins(
             textStyle: TextStyle(
-                color: WhiteColor, fontSize: 14, fontWeight: FontWeight.w400),
+                color: completed_list.isNotEmpty && completed_list[index]
+                    ? Colors.grey
+                    : WhiteColor,
+                fontSize: 14,
+                fontWeight: FontWeight.w400),
           ),
         ),
       ),
       trailing: IconButton(
         icon: const Icon(Icons.play_circle_outline_rounded),
         onPressed: () async {
-          print("$URL/getlink?epsid=${widget.eps[index]['id']}&id=${widget.id}&profile=${PROFILE.username}&token=${USER.token}");
+          print(
+              "$URL/getlink?epsid=${widget.eps[index]['id']}&id=${widget.id}&profile=${PROFILE.username}&token=${USER.token}&content_type=${widget.content_type}");
           final repsonse = await http.get(Uri.parse(
-              "$URL/getlink?epsid=${widget.eps[index]['id']}&id=${widget.id}&profile=${PROFILE.username}&token=${USER.token}"));
+              "$URL/getlink?epsid=${widget.eps[index]['id']}&id=${widget.id}&profile=${PROFILE.username}&token=${USER.token}&content_type=${widget.content_type}"));
           final decode = json.decode(repsonse.body);
           setState(() {
             url = decode["url"];
+            setState(() {
+              curr_eps = index + 1;
+            });
+            print(url);
             player = true;
           });
         },

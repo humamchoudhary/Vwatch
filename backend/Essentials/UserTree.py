@@ -97,7 +97,7 @@ class UserTree:
 
 #---Func for creating list for watched eps
 def create_watched(data,token,profilename,id):
-
+        
     with open(f'{token}.pkl', 'rb') as f:
         usertree = pickle.load(f)
 
@@ -105,10 +105,14 @@ def create_watched(data,token,profilename,id):
     
     if id in userprofile.watched:
         return
-
+    print(id)
     for show in data:
+        print(show["id"])
         if show["id"] == id:
-            totaleps = len(show["episodes"])
+            try:
+                totaleps = len(show["episodes"])
+            except:
+                totaleps = 1
 
     [userprofile.watched[id].append(False) for x in range(totaleps)]            
     
