@@ -48,7 +48,7 @@ def LoginRoute():
                                "username": account.account.username, "profiles": account.get_all_profiles()}})
             return make_response(response, 200)
         except Exception as e:
-
+            print(str(e))
             response = jsonify({"error": str(e), "account": 'None'})
             return make_response(response, 400)
     else:

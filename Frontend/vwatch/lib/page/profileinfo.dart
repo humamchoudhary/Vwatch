@@ -81,24 +81,22 @@ class _ProfileInfoState extends State<ProfileInfo> {
               ),
               // Expanded(child: ListView.separated(itemBuilder: profileitemBuilder, separatorBuilder: separatorBuilder, ))
               Expanded(
-                  child: GridView.count(
+                  child: ListView(
                       scrollDirection: Axis.horizontal,
-                      crossAxisCount: USER.profiles.length,
                       // crossAxisSpacing: 20.0,
-                      // mainAxisSpacing: 20.0,
                       shrinkWrap: true,
                       children: List.generate(USER.profiles.length, (index) {
                         return Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Card(
-                              clipBehavior: Clip.antiAlias,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10)),
-                              color: AccentColor,
-                              child: SizedBox(
-                                height: 128,
-                                width: 128,
+                            SizedBox(
+                              height: 128,
+                              width: 128,
+                              child: Card(
+                                clipBehavior: Clip.antiAlias,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                color: AccentColor,
                                 child: InkWell(
                                   onTap: () {
                                     // ignore: prefer_typing_uninitialized_variables
@@ -145,7 +143,7 @@ class _ProfileInfoState extends State<ProfileInfo> {
                       }))),
 
               const SizedBox(
-                height: 20,
+                height: 80,
               ),
               Text(
                 "Watch List",

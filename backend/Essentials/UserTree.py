@@ -74,8 +74,8 @@ class UserTree:
             print(profile.data.username)
             profiles.append({
                 "username": profile.data.username,
-                "history": profile.data.watch_history,
-                "watchlist": profile.data.watch_list,
+                "history": profile.data.watch_history.get_all(),
+                "watchlist": list(profile.data.watch_list.l),
                 "img": profile.data.img
             })
         return profiles
@@ -116,3 +116,6 @@ def create_watched(data,token,profilename,id):
         pickle.dump(usertree,w)
 
     return    
+
+
+
