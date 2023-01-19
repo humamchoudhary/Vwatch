@@ -3,7 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:modal_progress_hud_alt/modal_progress_hud_alt.dart';
+import 'package:vwatch/Components/gen_checkbok.dart';
 import 'dart:convert';
 
 import 'package:vwatch/main.dart';
@@ -20,6 +22,8 @@ class MoviePage extends StatefulWidget {
 
 class _MoviePageState extends State<MoviePage> {
   List movie_data = [];
+  List genres = ['Action', 'Sci-Fi', 'Animation', 'Comedy', 'Crime', 'Fantasy', 'Drama', 'Mystery', 'Adventure'];
+  List selectedgen = [];
   _getData() async {
     final repsonse = await http.get(Uri.parse("$URL/getAllMovies"));
     final decode = json.decode(repsonse.body);
@@ -49,6 +53,8 @@ class _MoviePageState extends State<MoviePage> {
 
   @override
   Widget build(BuildContext context) {
+    final screensize = MediaQuery.of(context).size;
+
     return movie_data.isEmpty
         ? ModalProgressHUD(
             inAsyncCall: true,
@@ -57,6 +63,59 @@ class _MoviePageState extends State<MoviePage> {
         : Scaffold(
             backgroundColor: BackgroundColor,
             appBar: AppBar(
+              actions: [
+                IconButton(
+                    onPressed: () {
+                      print('object');
+
+                      showMaterialModalBottomSheet(
+                        context: context,
+                        builder: (context) => Container(
+                          color: BackgroundColor,
+                          height: screensize.height / 2 - 50,
+                          child: ListView.separated(
+                              itemBuilder: genBuilder,
+                              separatorBuilder:
+                                  (BuildContext context, int index) {
+                                return const Divider(
+                                  height: 2,
+                                );
+                              },
+                              itemCount: genres.length),
+                        ),
+                      ).then((value) async {
+                        final repsonse = await http.post(Uri.parse("$URL/get_gen_show"),
+                                body: json.encode({
+                                  "gen":selectedgen
+                                }));
+                            final decode = json.decode(repsonse.body);
+                            
+                      });
+                      // CupertinoScaffold.showCupertinoModalBottomSheet(
+                      //     expand: true,
+                      //     context: context,
+                      //     backgroundColor: Colors.transparent,
+                      //     builder: (context) => Stack(children: <Widget>[
+                      //           ModalWithScroll(),
+                      //           Positioned(
+                      //             height: 40,
+                      //             left: 40,
+                      //             right: 40,
+                      //             bottom: 20,
+                      //             child: MaterialButton(
+                      //               onPressed: () => Navigator.of(context)
+                      //                   .popUntil((route) =>
+                      //                       route.settings.name == '/'),
+                      //               child: Text('Pop back home'),
+                      //             ),
+                      //           )
+                      //         ]));
+                    },
+                    icon: Icon(
+                      Icons.more_vert,
+                      color: WhiteColor,
+                    ))
+              ],
               leading: Container(),
               backgroundColor: BackgroundColor,
               title: Text(
@@ -133,5 +192,11 @@ class _MoviePageState extends State<MoviePage> {
               }),
             ),
           );
+  
+  }
+  
+  Widget genBuilder(BuildContext context, int index,) {
+    print('object');
+    return CheckBox(index: index,list:selectedgen);
   }
 }

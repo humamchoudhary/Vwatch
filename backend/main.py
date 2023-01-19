@@ -38,13 +38,13 @@ def LoginRoute():
 
         username = request_data['username']
         password = request_data['password']
-        print(username,password)
+        print(username, password)
 
         try:
             account = Login(username, password)
             account = account.account
             response = jsonify({"error": "Logged in", "account": {
-                                    "token":f"{account.account}",
+                "token": f"{account.account}",
                                "username": account.account.username, "profiles": account.get_all_profiles()}})
             return make_response(response, 200)
         except Exception as e:
@@ -108,6 +108,7 @@ def prev_eps():
         {"result": nextepisode(content_type, token, profile, id, epsno)})
     return make_response(response)
 
+
 @app.route('/nexteps')
 def next_eps():
     request_data = request.args
@@ -116,7 +117,7 @@ def next_eps():
     profile = request_data['profile']
     epsno = int(request_data['epsno'])
     id = request_data['id']
-    
+
     # type = "anime"
     # token = "9d228589-8dfd-11ed-a1bc-507b9d7ca8a6"
     # profile = "humam02"
@@ -240,54 +241,57 @@ def fileget():
     # return send_file(f"files/{file}",mimetype='application/x-mpegURL')
 
 
-#-----------------------------------------------------------------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------------------------------------------------------------------
 #                                                --- Genre call functions ---
-#-----------------------------------------------------------------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------------------------------------------------------------------
 
-@app.route("/get_gen_movie")
+@app.route("/get_gen_movie",methods=["GET","POST"])
 def gen_get_mov():
-
+    request_data = request.data
+    request_data = json.loads(request_data.decode('utf-8'))
+    gen = request_data["gen"]
+    print(gen)
     result = []
     with open(f'Movies gen.pkl', 'rb') as enc_file:
         gen_mov = pickle.load(enc_file)
 
-
-    result = gen_mov.choose_by_gen_mov("Music")
+    result = gen_mov.choose_by_gen_mov_2(gen)
     return make_response(jsonify(result))
 
 
-@app.route("/get_gen_show")
+@app.route("/get_gen_show",methods=["GET","POST"])
 def gen_get_show():
+    request_data = request.data
+    request_data = json.loads(request_data.decode('utf-8'))
+    gen = request_data["gen"]
+    print(gen)
 
     result = []
     with open(f'Tv Show gen.pkl', 'rb') as enc_file:
         gen_tv = pickle.load(enc_file)
 
-
-    result = gen_tv.choose_by_gen_show("Action")
+    result = gen_tv.choose_by_gen_show_2(gen)
     print(result)
     return make_response(jsonify(result))
 
 
-@app.route("/get_gen_anime")
+@app.route("/get_gen_anime",methods=["GET","POST"])
 def gen_get_anime():
     request_data = request.data
     request_data = json.loads(request_data.decode('utf-8'))
     gen = request_data["gen"]
-    print(gen);
+    print(gen)
     result = []
     with open(f'Anime gen.pkl', 'rb') as enc_file:
         gen_anime = pickle.load(enc_file)
 
-
-    result = gen_anime.choose_by_gen_anime("Comedy")
+    result = gen_anime.choose_by_gen_anime_2(gen)
     return make_response(jsonify(result))
 
 
-
-#-----------------------------------------------------------------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------------------------------------------------------------------
 #                                                --- Rating call functions ---
-#-----------------------------------------------------------------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------------------------------------------------------------------
 @app.route("/get_rating_movie")
 def rat_get_mov():
     # request_data = request.args
@@ -378,10 +382,11 @@ def add():
             title = data["title"]
             if data["episodes"][-1]["epNo"] == epsno-1:
                 data["episodes"].append({'id': epsid,
-                'epNo': epsno}
-                )
-                table.upsert(data,query.id == "tv/watch-initial-d-fourth-stage-project-d-20269")
-                create_linkedlist(content_type,table)
+                                         'epNo': epsno}
+                                        )
+                table.upsert(data, query.id ==
+                             "tv/watch-initial-d-fourth-stage-project-d-20269")
+                create_linkedlist(content_type, table)
                 success = f"Episode no {epsno} added to {content}: {title}"
             else:
                 error = f"The latest episode is {curr_ep}, Please add the next episode"
@@ -390,7 +395,7 @@ def add():
             error = f"{content} with this ID doesnt exist"
             return render_template("add.html", error=error)
 
-    return render_template("add.html", error=error,success = success)
+    return render_template("add.html", error=error, success=success)
 
 
 @app.route("/get_history")
@@ -445,6 +450,7 @@ def Add_history():
     else:
         return make_response(jsonify({"msg": "no data found!"}), 400)
 
+
 @app.route("/add_watchlist")
 def watch_later():
     request_data = request.args
@@ -455,7 +461,7 @@ def watch_later():
         usertree = pickle.load(f)
 
     userprofile = usertree.load_profile(profile)
-    
+
     result = []
     # print(movies_table.all())
     for data in movies_table.all():
@@ -479,6 +485,7 @@ def watch_later():
     else:
         return make_response(jsonify({"msg": "no data found!"}), 400)
 
+
 @app.route("/get_watchlist")
 def watch_later2():
     request_data = request.args
@@ -488,7 +495,9 @@ def watch_later2():
         usertree = pickle.load(f)
 
     userprofile = usertree.load_profile(profile)
-    return make_response(jsonify({"watchlist":list(userprofile.watch_list.l)}))
+    return make_response(jsonify({"watchlist": list(userprofile.watch_list.l)}))
+
+
 @app.route("/clean_watchlist")
 def watchclear():
     request_data = request.args
@@ -501,6 +510,8 @@ def watchclear():
     userprofile.watch_list.clean()
     usertree.save_user()
     return "ok"
+
+
 @app.route("/del_watchlist")
 def watch_later3():
     request_data = request.args

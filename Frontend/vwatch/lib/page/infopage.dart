@@ -256,6 +256,7 @@ class _InfoPageState extends State<InfoPage> {
       trailing: IconButton(
         icon: const Icon(Icons.play_circle_outline_rounded),
         onPressed: () async {
+          print("$URL/getlink?epsid=${widget.eps[index]['id']}&id=${widget.id}&profile=${PROFILE.username}&token=${USER.token}");
           final repsonse = await http.get(Uri.parse(
               "$URL/getlink?epsid=${widget.eps[index]['id']}&id=${widget.id}&profile=${PROFILE.username}&token=${USER.token}"));
           final decode = json.decode(repsonse.body);

@@ -18,7 +18,7 @@ class ShowPage extends StatefulWidget {
 }
 
 class _ShowPageState extends State<ShowPage> {
-  List genres = ["hello"];
+  List genres = ['Action', 'Sci-Fi', 'Animation', 'Comedy', 'Crime', 'Fantasy', 'Drama', 'Mystery', 'Adventure'];
   List selectedgen = [];
   List movie_data = [];
   _getData() async {
@@ -80,7 +80,14 @@ class _ShowPageState extends State<ShowPage> {
                               },
                               itemCount: genres.length),
                         ),
-                      );
+                      ).then((value) async {
+                        final repsonse = await http.post(Uri.parse("$URL/get_gen_show"),
+                                body: json.encode({
+                                  "gen":selectedgen
+                                }));
+                            final decode = json.decode(repsonse.body);
+                            
+                      });
                       // CupertinoScaffold.showCupertinoModalBottomSheet(
                       //     expand: true,
                       //     context: context,
@@ -109,7 +116,7 @@ class _ShowPageState extends State<ShowPage> {
               leading: Container(),
               backgroundColor: BackgroundColor,
               title: Text(
-                "Movies",
+                "Tv Shows",
                 textAlign: TextAlign.center,
                 style: GoogleFonts.poppins(
                   textStyle: TextStyle(
@@ -191,6 +198,6 @@ class _ShowPageState extends State<ShowPage> {
 
   Widget genBuilder(BuildContext context, int index,) {
     print('object');
-    return CheckBox(index: index);
+    return CheckBox(index: index,list:selectedgen);
   }
 }

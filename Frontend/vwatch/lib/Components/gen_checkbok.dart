@@ -5,7 +5,8 @@ import 'package:vwatch/main.dart';
 
 class CheckBox extends StatefulWidget {
   final int index;
-  CheckBox({super.key, required this.index});
+  List list; 
+  CheckBox({super.key, required this.index,required this.list});
 
   @override
   State<CheckBox> createState() => _CheckBoxState();
@@ -13,13 +14,13 @@ class CheckBox extends StatefulWidget {
 
 class _CheckBoxState extends State<CheckBox> {
   bool check = false;
-  List genres = ["hello"];
-  List selectedgen = [];
+  List genres = ['Action', 'Sci-Fi', 'Animation', 'Comedy', 'Crime', 'Fantasy', 'Drama', 'Mystery', 'Adventure'];
+  // List widget.list = [];
   @override
   Widget build(BuildContext context) {
-    return CheckboxListTile(
-      activeColor: WhiteColor,
-      checkColor: CTAColor,
+    return ListTile(
+      // checkboxShape:
+      // RoundedRectangleBorder(side: BorderSide(color: WhiteColor)),
       // checkboxShape: Outlined,
       title: Text(
         genres[widget.index],
@@ -30,14 +31,23 @@ class _CheckBoxState extends State<CheckBox> {
               fontWeight: FontWeight.bold),
         ),
       ),
-      tileColor: CTAColor,
-      onChanged: (bool? value) {
-        print(value);
-        setState(() {
-          check = value!;
-        });
-      },
-      value: check,
+      leading: Checkbox(
+        fillColor:  MaterialStateProperty.all(WhiteColor),
+        checkColor: CTAColor,
+        onChanged: (bool? value) {
+          print(value);
+          setState(() {
+            check = value!;
+          });
+          if(check){
+            widget.list.add(genres[widget.index]);
+          }else{
+            widget.list.remove(genres[widget.index]);
+          }
+          print(widget.list);
+        },
+        value: check,
+      ),
     );
   }
 }
