@@ -34,9 +34,17 @@ class InfoPage extends StatefulWidget {
 }
 
 class _InfoPageState extends State<InfoPage> {
+  List completed_list=[];
   late String url;
   bool player = false;
   int curr_eps = 1;
+  _getData() async {
+    final repsonse = await http.get(Uri.parse("$URL/completed_eps?content_type=${widget.content_type}&token=${USER.token}&profile=${PROFILE.username}&id=${widget.id}"));
+    final decode = json.decode(repsonse.body);
+    setState(() {
+      completed_list = decode["result"];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -143,8 +151,8 @@ class _InfoPageState extends State<InfoPage> {
                     setState(() {
                       player = false;
                       curr_eps -= 1;
-                      if(curr_eps == 0){
-                        curr_eps =1;
+                      if (curr_eps == 0) {
+                        curr_eps = 1;
                       }
                     });
 

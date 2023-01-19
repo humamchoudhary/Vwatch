@@ -118,4 +118,15 @@ def create_watched(data,token,profilename,id):
     return    
 
 
+#Function for calling a list where the episodes that user already watched is stored
+def completed_eps(data,token,profilename,id):
+    with open(f'{token}.pkl', 'rb') as f:
+        usertree = pickle.load(f)
+
+    userprofile = usertree.load_profile(profilename)
+
+    if id not in userprofile.watched:
+        return
+
+    return userprofile.watched[id]
 
