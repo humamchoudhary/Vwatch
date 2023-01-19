@@ -107,14 +107,16 @@ class _SearchPageState extends State<SearchPage> {
                   ),
                 ),
                 tiles.length == 0
-                    ? Center(
-                      child: Text(
-                        "No data found",
-                        style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                              color: HexColor("#AAB1C2"),
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400),
+                    ? Expanded(
+                      child: Center(
+                        child: Text(
+                          "No data found",
+                          style: GoogleFonts.poppins(
+                            textStyle: TextStyle(
+                                color: HexColor("#AAB1C2"),
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400),
+                          ),
                         ),
                       ),
                     )
@@ -197,7 +199,6 @@ class _SearchPageState extends State<SearchPage> {
         });
       }
     } catch (e) {
-      print(e);
       setState(() {
           tiles = [];
         });

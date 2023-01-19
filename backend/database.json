@@ -1,8 +1,22 @@
 {
+    "Admin_Data": {
+        "1": {
+            "username": "marzh",
+            "password": "03688"
+        }
+    },
     "User_Data": {
         "1": {
-            "username": "humam02",
-            "token": "9d228589-8dfd-11ed-a1bc-507b9d7ca8a6"
+            "username": "humam",
+            "token": "9e8f4740-96f4-11ed-86c8-088fc321660a"
+        },
+        "2": {
+            "username": "humam2",
+            "token": "5a1448bc-96f7-11ed-ad38-088fc321660a"
+        },
+        "3": {
+            "username": "ash",
+            "token": "cb21863d-9716-11ed-8e08-088fc321660a"
         }
     },
     "Anime_data": {
@@ -162,7 +176,7 @@
                 }
             ]
         },
-        "3": {
+        "2": {
             "id": "tv/watch-fullmetal-alchemist-38185",
             "title": "Fullmetal Alchemist",
             "coverImg": "https://img.flixhq.to/xxrz/250x400/379/43/09/4309afc8c8bd47defec3dc73efbf6abc/4309afc8c8bd47defec3dc73efbf6abc.jpg",
@@ -414,10 +428,14 @@
                     "id": "194392",
                     "epNo": 51,
                     "url": "https://t-ca-2.24hoursuptodatecdn.net/_v9/dbf23807d093bb8b48772f89ea35a4d5d863f5cee46140f8fb80fa8a33642ec5ce27343edd93dc9c717d27222cfdf665412e1bfa17dd7c3bf3b51211b712025afcd2edfd92a5bb2a7d941a74f3bbbfdbf1e15bde31980d7f3729ddf10eae2546c48c55863825debb617d747989c3a720832b0b5c316aa39b03c89fe37962d4cb/playlist.m3u8"
+                },
+                {
+                    "id": "194393",
+                    "epNo": 52
                 }
             ]
         },
-        "4": {
+        "3": {
             "id": "tv/watch-kaguyasama-love-is-war-33764",
             "title": "Kaguya-sama: Love is War",
             "coverImg": "https://img.flixhq.to/xxrz/250x400/379/97/2f/972f55823a466cf1c6dead94c9fa33ba/972f55823a466cf1c6dead94c9fa33ba.jpg",
@@ -556,7 +574,7 @@
                 }
             ]
         },
-        "5": {
+        "4": {
             "id": "tv/watch-steinsgate-39362",
             "title": "Steins;Gate",
             "coverImg": "https://img.flixhq.to/xxrz/250x400/379/c3/04/c30451490c24721f40ac91a57b271869/c30451490c24721f40ac91a57b271869.jpg",
@@ -695,7 +713,7 @@
                 }
             ]
         },
-        "7": {
+        "5": {
             "id": "tv/watch-hunter-x-hunter-36456",
             "title": "Hunter x Hunter",
             "coverImg": "https://img.flixhq.to/xxrz/250x400/379/f2/13/f213cf9d2e6d1e7d53a00bc5235db3f3/f213cf9d2e6d1e7d53a00bc5235db3f3.jpg",

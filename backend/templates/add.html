@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Buy Tickets</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/add.css">
+</head>
+<body>
+  <div class="container">
+    <div class="title">Add Episodes</div>
+    <div class="content">
+    {%if error %}
+      <p class="error"><strong>Error: </strong>{{error}}
+    {% endif %}
+    {%if success %}
+      <p class="success"><strong>Note: </strong>{{success}}
+    {% endif %}
+      <form method="POST" action="/add">
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">Content's ID</span>
+            <input type="text" placeholder="Enter the ID of the Content" name="id" required >
+          </div>
+          <div class="input-box">
+            <span class="details">Episode ID</span>
+            <input type="text" placeholder="Enter the ID of Episode" name="epsid" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Content Type</span>
+            <select name="type" id="lang" required>
+                <option value="select">Select Content Type</option>
+                <option value="anime">Anime</option>
+                <option value="tvshow">TV Show</option>
+            </select>
+          </div>
+          <div class="input-box">
+            <span class="details">Episode No</span>
+            <input type="number" placeholder="Enter the Episode No" name="epsno"  required>
+          </div>
+        </div>
+        <div class="button">
+          <input type="submit" value="Add">
+        </div>
+
+      </form>
+      <div style="text-align:center"> <a class="link" type="link" href="/adminlogin">Log Out</a></div>
+    </div>
+  </div>
+
+</body>
+</html>

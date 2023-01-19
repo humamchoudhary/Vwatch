@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:vwatch/Components/color.dart';
 import 'package:vwatch/Components/histroy.dart';
+import 'package:vwatch/Components/ratings.dart';
 import 'package:vwatch/main.dart';
 import 'package:animated_search_bar/animated_search_bar.dart';
+import 'package:vwatch/page/profileinfo.dart';
 import 'package:vwatch/page/test.dart';
 
 class HomePage extends StatefulWidget {
@@ -24,7 +26,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   @override
   Widget build(BuildContext context) {
     final screensize = MediaQuery.of(context).size;
@@ -69,23 +70,69 @@ class _HomePageState extends State<HomePage> {
                           fontWeight: FontWeight.w400),
                     ),
                   ),
+                  trailing: IconButton(
+                    icon: Icon(
+                      Icons.info_outline_rounded,
+                      color: HexColor("#AAB1C2"),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ProfileInfo()));
+                    },
+                  ),
                 ),
               ),
+              const SizedBox(height: 20),
+              const SizedBox(
+                  height: 140,
+                  child: Rating(
+                    contenttype: 'movie',
+                  )),
 
-              Center(
-                child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (context) => Mytest( url: '',)));
-                    },
-                    child: const Text("player")),
-              ),
-              
+              const SizedBox(height: 20),
+              const SizedBox(
+                  height: 140,
+                  child: Rating(
+                    contenttype: 'show',
+                  )),
+
+              const SizedBox(height: 20),
+              const SizedBox(
+                  height: 140,
+                  child: Rating(
+                    contenttype: 'anime',
+                  )),
+
+              // Center(
+              //   child: ElevatedButton(
+              //       onPressed: () {
+              //         Navigator.pushReplacement(context,
+              //             MaterialPageRoute(builder: (context) => Mytest()));
+              //       },
+              //       child: const Text("player")),
+              // ),
 
               const SizedBox(
-                height: 400,
+                height: 20,
               ),
-
+              Container(
+                width: screensize.width,
+                child: Text(
+                  "Continue Watching",
+                  textAlign: TextAlign.start,
+                  style: GoogleFonts.poppins(
+                    textStyle: TextStyle(
+                        color: HexColor("#AAB1C2"),
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
               const History(),
             ]),
           ),

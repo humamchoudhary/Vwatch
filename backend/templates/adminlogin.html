@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Vwatch Admin Login</title>
+</head>
+<body>
+
+<div><head>
+    <link rel="stylesheet" type="text/css" href="../static/css/login.css">
+</head></div>
+<div class="form">
+    <div class="form__box">
+      <div class="form__left">
+        <div class="form__padding"><img class="form__image" src="{{url_for('static',filename = 'pics/vwatch.png')}}"></div>
+      </div>
+      <div class="form__right">
+        <div class="form__padding-right">
+          <form method="POST" action="/adminlogin">
+            <h1 class="form__title">Admin Login</h1>
+            <input class="form__email" type="username" placeholder="Username" name="username" autocomplete="off" required/>
+            <input class="form__password" type="password" placeholder="Password" name="password" autocomplete="off" required/>
+            <input class="form__submit-btn" type="submit" value="Login"/>
+          {%if error %}
+            <p class="error"><strong>Error: </strong>{{error}}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+        

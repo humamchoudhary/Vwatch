@@ -1,4 +1,5 @@
 import 'package:google_fonts/google_fonts.dart';
+import 'package:vwatch/Components/user.dart';
 import 'package:vwatch/main.dart';
 import 'package:vwatch/page/home.dart';
 // import 'package:modal_progress_hud/modal_progress_hud.dart';
@@ -166,7 +167,6 @@ class LoginScreenstate extends State<Login> {
                         });
                         if (_formkey.currentState!.validate()) {
                           _save();
-                          print('$URL/login');
 
                           final url = Uri.parse("$URL/login");
                           try {
@@ -177,19 +177,24 @@ class LoginScreenstate extends State<Login> {
                                 }));
                             final decode = json.decode(repsonse.body)
                                 as Map<String, dynamic>;
-                                
+
                             final accountDetails = decode["account"];
+                            final token = accountDetails["token"];
                             final username = accountDetails["username"];
-                            // print(username);
                             if (decode['error'] != 'Logged in') {
                               setState(() {
                                 _error = decode['error'];
                               });
                             } else {
-                              print(decode);
 
                               // ignore: use_build_context_synchronously
-                              
+                              setState(() {
+                                USER = User(
+                                    profiles: accountDetails["profiles"],
+                                    username: username,
+                                    token: token);
+                              });
+                              // ignore: use_build_context_synchronously
                               Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
@@ -201,7 +206,6 @@ class LoginScreenstate extends State<Login> {
                             setState(() {
                               _error =
                                   "Could not login please try again later!";
-                              print("$e.runtimeType, $e");
                             });
                           }
                         }
@@ -220,7 +224,6 @@ class LoginScreenstate extends State<Login> {
                         ),
                       ),
                       onPressed: () {
-                        print(const ValueKey("signup"));
                         Navigator.pushNamed(context, '/signup');
                       },
                     )

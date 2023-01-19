@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:modal_progress_hud_alt/modal_progress_hud_alt.dart';
+import 'package:vwatch/Components/gen_checkbok.dart';
 import 'dart:convert';
 
 import 'package:vwatch/main.dart';
@@ -17,12 +19,13 @@ class AnimePage extends StatefulWidget {
 }
 
 class _AnimePageState extends State<AnimePage> {
-  List movie_data = [];
+  List anime_data = [];
   _getData() async {
     final repsonse = await http.get(Uri.parse("$URL/getAllAnime"));
     final decode = json.decode(repsonse.body);
     setState(() {
-      movie_data = decode["result"];
+      
+      anime_data = decode["result"];
     });
   }
 
@@ -44,10 +47,13 @@ class _AnimePageState extends State<AnimePage> {
     // TODO: implement initState
     super.initState();
   }
-
+  List genres = ['Action', 'Sci-Fi', 'Animation', 'Comedy', 'Crime', 'Fantasy', 'Drama', 'Mystery', 'Adventure'];
+  List selectedgen = [];
   @override
   Widget build(BuildContext context) {
-    return movie_data.isEmpty
+        final screensize = MediaQuery.of(context).size;
+
+    return anime_data.isEmpty
         ? ModalProgressHUD(
             inAsyncCall: true,
             child: Container(),
@@ -55,6 +61,73 @@ class _AnimePageState extends State<AnimePage> {
         : Scaffold(
             backgroundColor: BackgroundColor,
             appBar: AppBar(
+              actions: [
+                IconButton(
+                    onPressed: () {
+                      print('object');
+
+                      showMaterialModalBottomSheet(
+                        context: context,
+                        builder: (context) => Container(
+                          color: BackgroundColor,
+                          height: screensize.height / 2 - 50,
+                          child: ListView.separated(
+                              itemBuilder: genBuilder,
+                              separatorBuilder:
+                                  (BuildContext context, int index) {
+                                return const Divider(
+                                  height: 2,
+                                );
+                              },
+                              itemCount: genres.length),
+                        ),
+                      ).then((value) async {
+                        final repsonse = await http.post(Uri.parse("$URL/get_gen_anime"),
+                                body: json.encode({
+                                  "gen":selectedgen
+                                }));
+                            final decode = json.decode(repsonse.body);
+                            setState(() {
+                          anime_data = [];
+                        });
+                        decode.forEach((val) async {
+                          var data =
+                              await http.post(Uri.parse("$URL/search?id=$val"));
+                          setState(() {
+                            try {
+                              anime_data.add(json.decode(data.body)[0]);
+                            } catch (e) {
+                              print(e);
+                            }
+                            print(anime_data);
+                          });
+                        });
+                      });
+                      // CupertinoScaffold.showCupertinoModalBottomSheet(
+                      //     expand: true,
+                      //     context: context,
+                      //     backgroundColor: Colors.transparent,
+                      //     builder: (context) => Stack(children: <Widget>[
+                      //           ModalWithScroll(),
+                      //           Positioned(
+                      //             height: 40,
+                      //             left: 40,
+                      //             right: 40,
+                      //             bottom: 20,
+                      //             child: MaterialButton(
+                      //               onPressed: () => Navigator.of(context)
+                      //                   .popUntil((route) =>
+                      //                       route.settings.name == '/'),
+                      //               child: Text('Pop back home'),
+                      //             ),
+                      //           )
+                      //         ]));
+                    },
+                    icon: Icon(
+                      Icons.more_vert,
+                      color: WhiteColor,
+                    ))
+              ],
               leading: Container(),
               backgroundColor: BackgroundColor,
               title: Text(
@@ -75,8 +148,8 @@ class _AnimePageState extends State<AnimePage> {
               padding: const EdgeInsets.all(20),
               crossAxisCount: 2,
               childAspectRatio: 0.65,
-              children: List.generate(movie_data.length, (index) {
-                var movie = movie_data[index];
+              children: List.generate(anime_data.length, (index) {
+                var movie = anime_data[index];
                 return Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -97,6 +170,7 @@ class _AnimePageState extends State<AnimePage> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => InfoPage(
+                                          content_type : "anime",
                                           name: movie["title"],
                                           id: movie["id"],
                                           eps: movie["episodes"],
@@ -135,5 +209,9 @@ class _AnimePageState extends State<AnimePage> {
               }),
             ),
           );
+  }
+  Widget genBuilder(BuildContext context, int index,) {
+    print('object');
+    return CheckBox(index: index,list:selectedgen);
   }
 }
