@@ -117,7 +117,8 @@ class _ProfileInfoState extends State<ProfileInfo> {
                                           MaterialPageRoute(
                                               builder: (context) =>
                                                   NavigationPage(
-                                                    username: profile["username"],
+                                                    username:
+                                                        profile["username"],
                                                     history: profile["history"],
                                                     watchQueue:
                                                         profile["watchlist"],
@@ -137,7 +138,8 @@ class _ProfileInfoState extends State<ProfileInfo> {
                               Text(
                                 USER.profiles[index]["username"],
                                 style: GoogleFonts.poppins(
-                                  textStyle: const TextStyle(color: Colors.white),
+                                  textStyle:
+                                      const TextStyle(color: Colors.white),
                                 ),
                               ),
                             ],
@@ -167,7 +169,8 @@ class _ProfileInfoState extends State<ProfileInfo> {
                     itemCount: PROFILE.watchQueue.length),
               ),
             ],
-          )),
+          )
+          ),
     );
   }
 
@@ -200,36 +203,58 @@ class _ProfileInfoState extends State<ProfileInfo> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    PROFILE.watchQueue[index]["title"],
-                    overflow: TextOverflow.ellipsis,
-                    style: GoogleFonts.poppins(
-                      textStyle: TextStyle(
-                          color: HexColor("#AAB1C2"),
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
                   SizedBox(
-                  width: screensize.width/2,
-                  child: Flexible(
-                    child: Text(
-                      " ${PROFILE.watchQueue[index]["genres"].join(" | ")}",
-                      overflow: TextOverflow.ellipsis,
-                      style: GoogleFonts.poppins(
-                        textStyle: TextStyle(
-                            color: HexColor("#AAB1C2"),
-                            fontSize: 10,
-                            fontWeight: FontWeight.w300),
+                    width: (screensize.width / 2) - 80,
+                    child: Flexible(
+                      child: Text(
+                        PROFILE.watchQueue[index]["title"],
+                        overflow: TextOverflow.ellipsis,
+                        style: GoogleFonts.poppins(
+                          textStyle: TextStyle(
+                              color: HexColor("#AAB1C2"),
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ),
                   ),
-                ),
+                  SizedBox(
+                    width: (screensize.width / 2) - 100,
+                    child: Flexible(
+                      child: Text(
+                        " ${PROFILE.watchQueue[index]["genres"].join(" | ")}",
+                        overflow: TextOverflow.ellipsis,
+                        style: GoogleFonts.poppins(
+                          textStyle: TextStyle(
+                              color: HexColor("#AAB1C2"),
+                              fontSize: 10,
+                              fontWeight: FontWeight.w300),
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ]),
           ],
         ),
+      ),
+      trailing: IconButton(
+        icon: Icon(
+          Icons.delete,
+          color: WhiteColor,
+        ),
+        onPressed: () async {
+          var data = await http.post(Uri.parse("$URL/del_watchlist"),
+              body: json.encode({
+                "id": PROFILE.watchQueue[index],
+                "token":USER.token,
+                "profile":PROFILE.username
+                }));
+                
+          getwatchlist();
+
+        },
       ),
     );
   }

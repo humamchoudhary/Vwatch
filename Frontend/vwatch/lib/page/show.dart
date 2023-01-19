@@ -99,6 +99,7 @@ class _ShowPageState extends State<ShowPage> {
                         final decode = json.decode(repsonse.body);
                         setState(() {
                           show_data = [];
+                          
                         });
                         decode.forEach((val) async {
                           var data =
@@ -113,25 +114,7 @@ class _ShowPageState extends State<ShowPage> {
                           });
                         });
                       });
-                      // CupertinoScaffold.showCupertinoModalBottomSheet(
-                      //     expand: true,
-                      //     context: context,
-                      //     backgroundColor: Colors.transparent,
-                      //     builder: (context) => Stack(children: <Widget>[
-                      //           ModalWithScroll(),
-                      //           Positioned(
-                      //             height: 40,
-                      //             left: 40,
-                      //             right: 40,
-                      //             bottom: 20,
-                      //             child: MaterialButton(
-                      //               onPressed: () => Navigator.of(context)
-                      //                   .popUntil((route) =>
-                      //                       route.settings.name == '/'),
-                      //               child: Text('Pop back home'),
-                      //             ),
-                      //           )
-                      //         ]));
+                      
                     },
                     icon: Icon(
                       Icons.more_vert,

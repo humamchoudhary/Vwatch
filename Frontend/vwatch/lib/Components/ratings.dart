@@ -21,10 +21,9 @@ class _RatingState extends State<Rating> {
     decode.forEach((val) async {
       var data = await http.post(Uri.parse("$URL/search?id=$val"));
       setState(() {
-        try{
-
-        rating_data.add(json.decode(data.body)[0]);
-        }catch(e){
+        try {
+          rating_data.add(json.decode(data.body)[0]);
+        } catch (e) {
           print(e);
         }
       });
@@ -51,10 +50,12 @@ class _RatingState extends State<Rating> {
                     borderRadius: BorderRadius.circular(10)),
                 clipBehavior: Clip.antiAlias,
                 child: InkWell(
-                  child: Image.network( 
-                    movie.isNotEmpty?movie["coverImg"]:"$URL/getimages?img=index.png",
+                  child: Image.network(
+                    movie != null || movie.isNotEmpty
+                        ? movie["coverImg"]
+                        : "$URL/getimages?img=index.png",
                     // "https://img.flixhq.to/xxrz/250x400/379/b0/e4/b0e4780f952163abbfec3b614fb25a6e/b0e4780f952163abbfec3b614fb25a6e.jpg",
-                    
+
                     fit: BoxFit.cover,
                     filterQuality: FilterQuality.high,
                     height: 180,

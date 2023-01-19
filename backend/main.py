@@ -438,7 +438,6 @@ def get_history():
     user_tree = pickle.load(file)
     file.close()
     profile = user_tree.load_profile(profile)
-    r = requests.get("http://127.0.0.1:5000/search")
     # profile.watch_history.reset()
     # user_tree.save_user()
     response = jsonify({"data": profile.watch_history.get_all()})
@@ -457,7 +456,7 @@ def Add_history():
     file.close()
     profile = user_tree.load_profile(profile)
     result = []
-    # print(movies_table.all())
+    # print(movies_table.all()) 
     for data in movies_table.all():
         if id == data["id"]:
             result.append(data)
@@ -486,11 +485,13 @@ def watch_later():
     id = request_data["id"]
     token = request_data["token"]
     profile = request_data["profile"]
+    
     with open(f'{token}.pkl', 'rb') as f:
         usertree = pickle.load(f)
 
     userprofile = usertree.load_profile(profile)
 
+    
     result = []
     # print(movies_table.all())
     for data in movies_table.all():
@@ -540,10 +541,11 @@ def watchclear():
     usertree.save_user()
     return "ok"
 
-
-@app.route("/del_watchlist")
+@app.route("/del_watchlist",methods = ["POST"])
 def watch_later3():
-    request_data = request.args
+    # request_data = request.args
+    request_data = request.data
+    request_data = json.loads(request_data.decode('utf-8'))
     s_id = request_data["id"]
     token = request_data["token"]
     profile = request_data["profile"]
@@ -553,7 +555,7 @@ def watch_later3():
     userprofile = usertree.load_profile(profile)
     userprofile.watch_list.delete(s_id)
     usertree.save_user()
-    return "ok"
+    return make_response(jsonify(userprofile.watchlist.l))
 
 
 if __name__ == "__main__":
