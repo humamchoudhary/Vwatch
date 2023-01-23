@@ -5,6 +5,7 @@ import 'package:vwatch/main.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:vwatch/Components/color.dart';
+import 'package:vwatch/page/infopage.dart';
 import 'package:vwatch/page/navigation_controller.dart';
 import 'package:vwatch/page/test.dart';
 
@@ -83,94 +84,137 @@ class _ProfileInfoState extends State<ProfileInfo> {
               // Expanded(child: ListView.separated(itemBuilder: profileitemBuilder, separatorBuilder: separatorBuilder, ))
               SizedBox(
                 height: 158,
-                child: Expanded(
-                    child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        // crossAxisSpacing: 20.0,
-                        children: List.generate(USER.profiles.length, (index) {
-                          return Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              SizedBox(
-                                height: 128,
-                                width: 128,
-                                child: Card(
-                                  clipBehavior: Clip.antiAlias,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10)),
-                                  color: AccentColor,
-                                  child: InkWell(
-                                    onTap: () {
-                                      // ignore: prefer_typing_uninitialized_variables
-                                      var profile;
-                                      profile = USER.profiles[index];
-                                      setState(() {
-                                        PROFILE = Profile(
-                                          username: profile["username"],
-                                          history: profile["history"],
-                                          watchQueue: profile["watchlist"],
-                                          img: profile["img"],
-                                        );
-                                      });
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  NavigationPage(
-                                                    username:
-                                                        profile["username"],
-                                                    history: profile["history"],
-                                                    watchQueue:
-                                                        profile["watchlist"],
-                                                    img: profile["img"],
-                                                  )));
-                                    },
-                                    child: Image.network(
-                                      "$URL/getimages?img=${USER.profiles[index]["img"]}",
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                      children: List.generate(USER.profiles.length, (index) {
+                    return Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        SizedBox(
+                          height: 128,
+                          width: 128,
+                          child: Card(
+                            clipBehavior: Clip.antiAlias,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                            color: AccentColor,
+                            child: InkWell(
+                              onTap: () {
+                                // ignore: prefer_typing_uninitialized_variables
+                                var profile;
+                                profile = USER.profiles[index];
+                                setState(() {
+                                  PROFILE = Profile(
+                                    username: profile["username"],
+                                    history: profile["history"],
+                                    watchQueue: profile["watchlist"],
+                                    img: profile["img"],
+                                  );
+                                });
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => NavigationPage(
+                                              username: profile["username"],
+                                              history: profile["history"],
+                                              watchQueue: profile["watchlist"],
+                                              img: profile["img"],
+                                            )));
+                              },
+                              child: Image.network(
+                                "$URL/getimages?img=${USER.profiles[index]["img"]}",
+                                fit: BoxFit.cover,
                               ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Text(
-                                USER.profiles[index]["username"],
-                                style: GoogleFonts.poppins(
-                                  textStyle:
-                                      const TextStyle(color: Colors.white),
-                                ),
-                              ),
-                            ],
-                          );
-                        }))),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          USER.profiles[index]["username"],
+                          style: GoogleFonts.poppins(
+                            textStyle: const TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ],
+                    );
+                  })),
+                ),
               ),
 
               const SizedBox(
                 height: 80,
               ),
-              Text(
-                "Watch List",
-                style: GoogleFonts.poppins(
-                  textStyle: TextStyle(
-                      color: WhiteColor,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold),
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Watch List",
+                    style: GoogleFonts.poppins(
+                      textStyle: TextStyle(
+                          color: WhiteColor,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  PROFILE.watchQueue.isNotEmpty?
+                  ElevatedButton(
+                    onPressed: () async {
+                      final repsonse = await http.get(Uri.parse(
+                          "$URL/playwatchlist?profile=${PROFILE.username}&token=${USER.token}"));
+                      final decode = json.decode(repsonse.body);
+
+                      setState(() {
+                        getwatchlist();
+                      });
+                      var movie = decode;
+                      // ignore: use_build_context_synchronously
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => InfoPage(
+                                    content_type: "anime",
+                                    name: movie["title"],
+                                    id: movie["id"],
+                                    eps: movie["episodes"],
+                                    trailer: "hello",
+                                    genres: movie["genres"],
+                                    cover: movie["coverImg"],
+                                    rating: movie["rating"],
+                                    desc: movie["desc"],
+                                  )));
+                    },
+                    child: Text(
+                      "Start",
+                      style: GoogleFonts.poppins(
+                        textStyle: const TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ):Container()
+                ],
               ),
               const SizedBox(
                 height: 20,
               ),
               Expanded(
-                child: ListView.separated(
+                child:PROFILE.watchQueue.isNotEmpty? ListView.separated(
                     itemBuilder: itemBuilder,
                     separatorBuilder: separatorBuilder,
-                    itemCount: PROFILE.watchQueue.length),
+                    itemCount: PROFILE.watchQueue.length):Center(child: Text(
+                "Watch List is empty :(",
+                textAlign: TextAlign.start,
+                style: GoogleFonts.poppins(
+                  textStyle: TextStyle(
+                    color: AccentColor2,
+                    fontSize: 12,
+                  ),
+                ),
+              ),),
               ),
             ],
-          )
-          ),
+          )),
     );
   }
 
@@ -205,31 +249,27 @@ class _ProfileInfoState extends State<ProfileInfo> {
                 children: [
                   SizedBox(
                     width: (screensize.width / 2) - 80,
-                    child: Flexible(
-                      child: Text(
-                        PROFILE.watchQueue[index]["title"],
-                        overflow: TextOverflow.ellipsis,
-                        style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                              color: HexColor("#AAB1C2"),
-                              fontSize: 13,
-                              fontWeight: FontWeight.bold),
-                        ),
+                    child: Text(
+                      PROFILE.watchQueue[index]["title"],
+                      overflow: TextOverflow.ellipsis,
+                      style: GoogleFonts.poppins(
+                        textStyle: TextStyle(
+                            color: HexColor("#AAB1C2"),
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
                   SizedBox(
                     width: (screensize.width / 2) - 100,
-                    child: Flexible(
-                      child: Text(
-                        " ${PROFILE.watchQueue[index]["genres"].join(" | ")}",
-                        overflow: TextOverflow.ellipsis,
-                        style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                              color: HexColor("#AAB1C2"),
-                              fontSize: 10,
-                              fontWeight: FontWeight.w300),
-                        ),
+                    child: Text(
+                      " ${PROFILE.watchQueue[index]["genres"].join(" | ")}",
+                      overflow: TextOverflow.ellipsis,
+                      style: GoogleFonts.poppins(
+                        textStyle: TextStyle(
+                            color: HexColor("#AAB1C2"),
+                            fontSize: 10,
+                            fontWeight: FontWeight.w300),
                       ),
                     ),
                   ),
@@ -248,12 +288,11 @@ class _ProfileInfoState extends State<ProfileInfo> {
           var data = await http.post(Uri.parse("$URL/del_watchlist"),
               body: json.encode({
                 "id": PROFILE.watchQueue[index],
-                "token":USER.token,
-                "profile":PROFILE.username
-                }));
-                
-          getwatchlist();
+                "token": USER.token,
+                "profile": PROFILE.username
+              }));
 
+          getwatchlist();
         },
       ),
     );

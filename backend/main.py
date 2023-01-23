@@ -141,10 +141,9 @@ def resume():
     else:
         data = show_table.all()
     response = jsonify(
-        {"result": completed_eps(data,token,profile,id)})
+        {"result": completed_eps(data, token, profile, id)})
 
     return make_response(response)
-    
 
 
 @app.route("/", methods=["GET"])
@@ -273,7 +272,7 @@ def fileget():
 #                                                --- Genre call functions ---
 # -----------------------------------------------------------------------------------------------------------------------------------------
 
-@app.route("/get_gen_movie",methods=["GET","POST"])
+@app.route("/get_gen_movie", methods=["GET", "POST"])
 def gen_get_mov():
     request_data = request.data
     request_data = json.loads(request_data.decode('utf-8'))
@@ -288,7 +287,7 @@ def gen_get_mov():
     return make_response(jsonify(result))
 
 
-@app.route("/get_gen_show",methods=["GET","POST"])
+@app.route("/get_gen_show", methods=["GET", "POST"])
 def gen_get_show():
     request_data = request.data
     request_data = json.loads(request_data.decode('utf-8'))
@@ -304,7 +303,7 @@ def gen_get_show():
     return make_response(jsonify(result))
 
 
-@app.route("/get_gen_anime",methods=["GET","POST"])
+@app.route("/get_gen_anime", methods=["GET", "POST"])
 def gen_get_anime():
     request_data = request.data
     request_data = json.loads(request_data.decode('utf-8'))
@@ -333,8 +332,17 @@ def rat_get_mov():
     result += tree_mov.find_mov(7.8)
     result += tree_mov.find_mov(7.4)
     result += tree_mov.find_mov(7.3)
+    print(result)
+    output = []
+    for id in result:
+        for data in movies_table.all():
+            if id == data["id"]:
+                output.append(data)
 
-    return make_response(jsonify(result))
+    if output:
+        return make_response(jsonify(output))
+    else:
+        return make_response(jsonify({"msg": "Error"}))
 
 
 @app.route("/get_rating_show")
@@ -349,7 +357,16 @@ def rat_get_show():
     result += tree_show.find_show(7.3)
     result += tree_show.find_show(6.6)
 
-    return make_response(jsonify(result))
+    print(result)
+    output = []
+    for id in result:
+        for data in show_table.all():
+            if id == data["id"]:
+                output.append(data)
+    if output:
+        return make_response(jsonify(output))
+    else:
+        return make_response(jsonify({"msg": "Error"}))
 
 
 @app.route("/get_rating_anime")
@@ -364,8 +381,16 @@ def rat_get_anime():
     result += tree_anime.find_anime(8.6)
     result += tree_anime.find_anime(8.5)
     result += tree_anime.find_anime(8.2)
+    output = []
+    for id in result:
+        for data in anime_table.all():
+            if id == data["id"]:
+                output.append(data)
 
-    return make_response(jsonify(result))
+    if output:
+        return make_response(jsonify(output))
+    else:
+        return make_response(jsonify({"msg": "Error"}))
 
 
 @app.route("/adminlogin", methods=["GET", "POST"])
@@ -456,7 +481,7 @@ def Add_history():
     file.close()
     profile = user_tree.load_profile(profile)
     result = []
-    # print(movies_table.all()) 
+    # print(movies_table.all())
     for data in movies_table.all():
         if id == data["id"]:
             result.append(data)
@@ -485,13 +510,12 @@ def watch_later():
     id = request_data["id"]
     token = request_data["token"]
     profile = request_data["profile"]
-    
+
     with open(f'{token}.pkl', 'rb') as f:
         usertree = pickle.load(f)
 
     userprofile = usertree.load_profile(profile)
 
-    
     result = []
     # print(movies_table.all())
     for data in movies_table.all():
@@ -541,7 +565,8 @@ def watchclear():
     usertree.save_user()
     return "ok"
 
-@app.route("/del_watchlist",methods = ["POST"])
+
+@app.route("/del_watchlist", methods=["POST"])
 def watch_later3():
     # request_data = request.args
     request_data = request.data
@@ -556,6 +581,34 @@ def watch_later3():
     userprofile.watch_list.delete(s_id)
     usertree.save_user()
     return make_response(jsonify(userprofile.watchlist.l))
+
+
+@app.route("/del_watchhist", methods=["POST"])
+def delhist():
+    request_data = request.args
+    token = request_data["token"]
+    profile = request_data["profile"]
+    file = open(f'{token}.pkl', 'rb')
+    user_tree = pickle.load(file)
+    file.close()
+    profile = user_tree.load_profile(profile)
+    profile.watch_history.reset()
+    user_tree.save_user()
+
+
+@app.route("/playwatchlist", methods=["GET", "POST"])
+def playlist():
+    request_data = request.args
+    token = request_data["token"]
+    profile = request_data["profile"]
+    file = open(f'{token}.pkl', 'rb')
+    user_tree = pickle.load(file)
+    file.close()
+    profile = user_tree.load_profile(profile)
+    data = jsonify(profile.watch_list.dequeue())
+
+    user_tree.save_user()
+    return make_response(data, 200)
 
 
 if __name__ == "__main__":

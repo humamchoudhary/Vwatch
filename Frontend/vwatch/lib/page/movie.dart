@@ -58,7 +58,7 @@ class _MoviePageState extends State<MoviePage> {
     return movie_data.isEmpty
         ? ModalProgressHUD(
             inAsyncCall: true,
-            child: Container(),
+            child: Container(color: BackgroundColor,),
           )
         : Scaffold(
             backgroundColor: BackgroundColor,

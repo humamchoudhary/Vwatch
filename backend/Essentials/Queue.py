@@ -10,7 +10,7 @@ class queue:
 
     def dequeue (self):
         print("Removed from queue")
-        return self.l.pop(0)
+        return self.l.popleft()
     
     def delete(self,index):
         self.l.remove(index)

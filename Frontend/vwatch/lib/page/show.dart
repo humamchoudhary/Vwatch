@@ -67,7 +67,9 @@ class _ShowPageState extends State<ShowPage> {
     return show_data.isEmpty
         ? ModalProgressHUD(
             inAsyncCall: true,
-            child: Container(),
+            child: Container(
+              color: BackgroundColor,
+            ),
           )
         : Scaffold(
             backgroundColor: BackgroundColor,
@@ -99,7 +101,6 @@ class _ShowPageState extends State<ShowPage> {
                         final decode = json.decode(repsonse.body);
                         setState(() {
                           show_data = [];
-                          
                         });
                         decode.forEach((val) async {
                           var data =
@@ -114,7 +115,6 @@ class _ShowPageState extends State<ShowPage> {
                           });
                         });
                       });
-                      
                     },
                     icon: Icon(
                       Icons.more_vert,

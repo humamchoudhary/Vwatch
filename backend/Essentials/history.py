@@ -5,7 +5,7 @@ class Watch_history:
         self.history = deque()
 
     def push(self, video):
-        if video not in self.history:
+        if video !=  self.history[0]:
             self.history.append(video)
     
 

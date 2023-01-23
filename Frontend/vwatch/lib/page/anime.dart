@@ -55,8 +55,9 @@ class _AnimePageState extends State<AnimePage> {
 
     return anime_data.isEmpty
         ? ModalProgressHUD(
+          // color: BackgroundColor,
             inAsyncCall: true,
-            child: Container(),
+            child: Container(color: BackgroundColor,),
           )
         : Scaffold(
             backgroundColor: BackgroundColor,
