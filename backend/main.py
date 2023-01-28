@@ -326,6 +326,7 @@ def rat_get_mov():
     # rat = request_data["rating"]
     result = []
     with open(f'Movies.pkl', 'rb') as enc_file:
+        
         tree_mov = pickle.load(enc_file)
 
     result += tree_mov.find_mov(8.1)
@@ -610,6 +611,13 @@ def playlist():
     user_tree.save_user()
     return make_response(data, 200)
 
-
+@app.route("/test")
+def test():
+    request_data = request.args
+    gen = request_data["gen"]
+    request_data = request.data
+    request_data = json.loads(request_data.decode('utf-8'))
+    
+    return "as"
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")

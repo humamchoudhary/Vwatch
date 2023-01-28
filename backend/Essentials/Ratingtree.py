@@ -1,6 +1,4 @@
 #from Exceptions import *
-import random
-import json
 import pickle
 from tinydb import TinyDB, Query
 
@@ -363,13 +361,13 @@ class Binarytree():
     
     def save_tree(self):
         
-        with open(f'{self.name}.pkl', 'wb') as enc_file:
+        with open(f'./{self.name}.pkl', 'wb') as enc_file:
             pickle.dump(self, enc_file, None)
 
 #-----------------------------------------------------------------------------------------------------------------------------------------
 
 
-tree_mov = Binarytree("Movies")
+# tree_mov = Binarytree("Movies")
 # tree_show = Binarytree("Tv Show")
 # tree_anime = Binarytree("Animation")
 # tree_mov.insert_mov(5.0 , tree_mov.root)

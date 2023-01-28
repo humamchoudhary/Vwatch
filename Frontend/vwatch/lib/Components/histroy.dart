@@ -39,33 +39,17 @@ class _HistoryState extends State<History> {
     final screensize = MediaQuery.of(context).size;
 
     return history.isNotEmpty
-        ? SizedBox(
-            width: screensize.width,
-            height: screensize.height,
-            child: Column(children: List.generate(history.length, historyBuilder)),
-            // child: ListView.separated(
-            //   itemBuilder: historyBuilder,
-            //   // separatorBuilder: historyseparatorBuilder,
-            //   itemCount: history.length,
-            //   separatorBuilder: (BuildContext context, int index) {
-            //     return const SizedBox(
-            //       height: 20,
-            //     );
-            //   },
-            // ),
-          )
-        : Container();
+        ? Column(children: List.generate(history.length, historyBuilder)): Container();
   }
 
-  Widget historyBuilder( int index) {
+  Widget historyBuilder(int index) {
     final screensize = MediaQuery.of(context).size;
     return Column(
       children: [
         ListTile(
-          onTap:() {
-            
-          },
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          onTap: () {},
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           tileColor: AccentColor,
           title: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -100,7 +84,7 @@ class _HistoryState extends State<History> {
                       ),
                     ),
                     SizedBox(
-                      width: screensize.width/2,
+                      width: screensize.width / 2,
                       child: Text(
                         " ${history[index]["genres"].join(" | ")}",
                         overflow: TextOverflow.ellipsis,
@@ -114,13 +98,13 @@ class _HistoryState extends State<History> {
                     ),
                   ],
                 ),
-                
               ],
             ),
           ),
-          
         ),
-        const SizedBox(height: 20,)
+        const SizedBox(
+          height: 20,
+        )
       ],
     );
   }
@@ -134,4 +118,3 @@ class _HistoryState extends State<History> {
     });
   }
 }
-

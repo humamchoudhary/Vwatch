@@ -245,7 +245,7 @@ class _InfoPageState extends State<InfoPage> {
               height: 20,
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
+              padding: const EdgeInsets.only(left: 8, right: 8, bottom: 30),
               child: Container(
                   height: screensize.height - 250,
                   child: ListView.separated(

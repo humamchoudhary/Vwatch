@@ -88,10 +88,13 @@ class _MoviePageState extends State<MoviePage> {
                                 body: json.encode({
                                   "gen":selectedgen
                                 }));
+                            
                             final decode = json.decode(repsonse.body);
                             setState(() {
+                              
                           movie_data = [];
                         });
+                        print(decode);
                         decode.forEach((val) async {
                           var data =
                               await http.post(Uri.parse("$URL/search?id=$val"));
