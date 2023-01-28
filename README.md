@@ -136,7 +136,7 @@ We have made our front-end using flutter. As flutter is a robust mobile app deve
 
 Muhammad Humam Choudhary - [@humam_cho](https://twitter.com/humam_cho) - humamchoudhary@gmail.com
 
-Project Link: [https://github.com/humamchoudhary/Vwatch](https://github.com/humamchoudhary/Vwatch/)
+Project Link: [Link](https://github.com/humamchoudhary/Vwatch/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
