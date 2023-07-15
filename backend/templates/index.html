@@ -1,30 +1,26 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Your title</title>
 
-<head>
-  <meta charset=utf-8 />
-  <title>Your title</title>
+    <script
+      src="https://cdn.jsdelivr.net/npm/hls.js@latest"
+      type="application/javascript"
+    ></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest" type="application/javascript"></script>
+    <link
+      href="https://unpkg.com/video.js/dist/video-js.css"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/video.js/dist/video.js"></script>
+    <script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script>
+  </head>
 
-  <link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
-  <script src="https://unpkg.com/video.js/dist/video.js"></script>
-  <script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script>
-
-</head>
-
-<body>
-  <video id="my_video_1" class="video-js vjs-fluid vjs-default-skin" controls preload="auto" data-setup='{}'>
-    <source
-      src='https://t-ca-1.dokicloud.one/_v9/3ee4bef4d75d713c5798dbd8b279b2782f6ca138f5369353c95a13a3638e5f86fc431c5027b530e8adf61ec85de763f0f5d6631668cf11383fe1680d2e37df4dcb8d8d4506cc8b5ecb658037d6a987e7dc68620108426380b532b2d9649c6ba5039ff4540c177e470fd35425a55dd5efb40f37b5bd7d2cb212442fb1ca6d3bf4/playlist.m3u8'
-      type="application/x-mpegURL">
-  </video>
-  <script src="main.dart.js" type="application/javascript"></script>
-  <script>
-    var player = videojs('my_video_1');
-    player.play();
-  </script>
-
-</body>
-
+  <body>
+    <iframe
+      src="https://t-ca-1.dokicloud.one/_v10/6473884104bd7bd3abca7b96c25bdbcd641509dc67f308d2fc1cf670d2ccf438428ba9a387215f3bd8f74de9f1e3f201961e7384bdb5093855810bc5957eac40c0c35395c65bd5493eb5d3633d4e85e3e5fb1a7e23a2f98e7a99f32d448207b7a927f8c711cae6a2b914df15bdf416843bc70cc10697ea725a2d29d3759f3d50/1080/index.m3u8"
+      type="application/vnd.apple.mpegurl"
+    >
+  </body>
 </html>
