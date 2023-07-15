@@ -78,10 +78,7 @@ class Genre:
 
         # new = [self.choose_by_gen_mov(chose.pop())]
         new = []
-        print(chose)
         for i in self.root.ids:
-            print(i)
-            print(i.data in chose)
             if i.data in chose:
                 new.extend(self.choose_by_gen_mov(i.data))
 

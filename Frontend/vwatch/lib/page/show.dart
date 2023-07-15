@@ -67,7 +67,9 @@ class _ShowPageState extends State<ShowPage> {
     return show_data.isEmpty
         ? ModalProgressHUD(
             inAsyncCall: true,
-            child: Container(),
+            child: Container(
+              color: BackgroundColor,
+            ),
           )
         : Scaffold(
             backgroundColor: BackgroundColor,
@@ -113,25 +115,6 @@ class _ShowPageState extends State<ShowPage> {
                           });
                         });
                       });
-                      // CupertinoScaffold.showCupertinoModalBottomSheet(
-                      //     expand: true,
-                      //     context: context,
-                      //     backgroundColor: Colors.transparent,
-                      //     builder: (context) => Stack(children: <Widget>[
-                      //           ModalWithScroll(),
-                      //           Positioned(
-                      //             height: 40,
-                      //             left: 40,
-                      //             right: 40,
-                      //             bottom: 20,
-                      //             child: MaterialButton(
-                      //               onPressed: () => Navigator.of(context)
-                      //                   .popUntil((route) =>
-                      //                       route.settings.name == '/'),
-                      //               child: Text('Pop back home'),
-                      //             ),
-                      //           )
-                      //         ]));
                     },
                     icon: Icon(
                       Icons.more_vert,

@@ -5,17 +5,20 @@ class queue:
         self.l = deque([])
 
     def enqueue (self, item):
-        self.l.append(item)
+        if item not in self.l:
+            self.l.append(item)
 
     def dequeue (self):
         print("Removed from queue")
-        return self.l.pop(0)
+        return self.l.popleft()
     
     def delete(self,index):
         self.l.remove(index)
+        print(self.l)
     
     def clean(self):
         self.l = deque([])
+        # print(self.l)
     
 # if __name__ == "__main__":   
 #     dict1 = {

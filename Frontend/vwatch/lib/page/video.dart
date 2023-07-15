@@ -59,7 +59,7 @@ class _VideoPlayerState extends State<VideoPlayer> {
   add_history() async {
     final repsonse = await http.get(Uri.parse(
         "$URL/add_history?token=${USER.token}&id=${widget.id}&profile=${PROFILE.username}"));
-    final decode = json.decode(repsonse.body);
-    print(decode);
+    // final decode = json.decode(repsonse.body);
+    // print(decode);
   }
 }

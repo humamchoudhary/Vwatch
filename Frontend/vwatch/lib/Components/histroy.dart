@@ -39,85 +39,73 @@ class _HistoryState extends State<History> {
     final screensize = MediaQuery.of(context).size;
 
     return history.isNotEmpty
-        ? SizedBox(
-            width: screensize.width,
-            height: screensize.height,
-            child: ListView.separated(
-              itemBuilder: historyBuilder,
-              // separatorBuilder: historyseparatorBuilder,
-              itemCount: history.length,
-              separatorBuilder: (BuildContext context, int index) {
-                return const SizedBox(
-                  height: 20,
-                );
-              },
-            ),
-          )
-        : Container();
+        ? Column(children: List.generate(history.length, historyBuilder)): Container();
   }
 
-  Widget historyBuilder(BuildContext context, int index) {
+  Widget historyBuilder(int index) {
     final screensize = MediaQuery.of(context).size;
-    return ListTile(
-      onTap:() {
-        
-      },
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      tileColor: AccentColor,
-      title: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Card(
-              clipBehavior: Clip.antiAlias,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
-              child: Image.network(
-                history[index]["coverImg"],
-                fit: BoxFit.cover,
-                height: 120,
-                width: 120 * 0.625,
-              ),
-            ),
-            const SizedBox(
-              width: 20,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+    return Column(
+      children: [
+        ListTile(
+          onTap: () {},
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          tileColor: AccentColor,
+          title: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  history[index]["title"],
-                  overflow: TextOverflow.ellipsis,
-                  style: GoogleFonts.poppins(
-                    textStyle: TextStyle(
-                        color: HexColor("#AAB1C2"),
-                        fontSize: 13,
-                        fontWeight: FontWeight.bold),
+                Card(
+                  clipBehavior: Clip.antiAlias,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Image.network(
+                    history[index]["coverImg"],
+                    fit: BoxFit.cover,
+                    height: 120,
+                    width: 120 * 0.625,
                   ),
                 ),
-                SizedBox(
-                  width: screensize.width/2,
-                  child: Flexible(
-                    child: Text(
-                      " ${history[index]["genres"].join(" | ")}",
+                const SizedBox(
+                  width: 20,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      history[index]["title"],
                       overflow: TextOverflow.ellipsis,
                       style: GoogleFonts.poppins(
                         textStyle: TextStyle(
                             color: HexColor("#AAB1C2"),
-                            fontSize: 10,
-                            fontWeight: FontWeight.w300),
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
-                  ),
+                    SizedBox(
+                      width: screensize.width / 2,
+                      child: Text(
+                        " ${history[index]["genres"].join(" | ")}",
+                        overflow: TextOverflow.ellipsis,
+                        style: GoogleFonts.poppins(
+                          textStyle: TextStyle(
+                              color: HexColor("#AAB1C2"),
+                              fontSize: 10,
+                              fontWeight: FontWeight.w300),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
-            
-          ],
+          ),
         ),
-      ),
-      
+        const SizedBox(
+          height: 20,
+        )
+      ],
     );
   }
 
@@ -130,4 +118,3 @@ class _HistoryState extends State<History> {
     });
   }
 }
-

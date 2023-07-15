@@ -45,6 +45,7 @@ class _InfoPageState extends State<InfoPage> {
     if (decode["result"] != null) {
       setState(() {
         completed_list = decode["result"];
+        curr_eps = completed_list.indexOf(false) + 1;
         print(completed_list);
       });
     }
@@ -244,7 +245,7 @@ class _InfoPageState extends State<InfoPage> {
               height: 20,
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
+              padding: const EdgeInsets.only(left: 8, right: 8, bottom: 30),
               child: Container(
                   height: screensize.height - 250,
                   child: ListView.separated(
@@ -274,22 +275,21 @@ class _InfoPageState extends State<InfoPage> {
             {
               setState(() {
                 player = false;
-                curr_eps += 1;
+                // curr_eps += 1;
               });
-              print(
-                  "$URL/nexteps?content_type=${widget.content_type}&token=${USER.token}&profile=${PROFILE.username}&epsno=${curr_eps}&id=${widget.id}");
-              final repsonse = await http.get(Uri.parse(
-                  "$URL/nexteps?content_type=${widget.content_type}&token=${USER.token}&profile=${PROFILE.username}&epsno=${curr_eps}&id=${widget.id}"));
-              final decode = json.decode(repsonse.body)["result"];
+              // print(object)
+              // print(
+              //     "$URL/nexteps?content_type=${widget.content_type}&token=${USER.token}&profile=${PROFILE.username}&epsno=${curr_eps}&id=${widget.id}");
+              // final repsonse = await http.get(Uri.parse(
+              //     "$URL/nexteps?content_type=${widget.content_type}&token=${USER.token}&profile=${PROFILE.username}&epsno=$curr_eps&id=${widget.id}"));
+              // final decode = json.decode(repsonse.body)["result"];
+              final repsonse_link = await http.get(Uri.parse(
+                  "$URL/getlink?epsid=${widget.eps[curr_eps - 1]['id']}&id=${widget.id}&profile=${PROFILE.username}&token=${USER.token}&content_type=${widget.content_type}"));
 
               setState(() {
                 _getData();
-                url = decode["url"];
+                url = json.decode(repsonse_link.body)["url"];
                 player = true;
-
-                // flickManager.dispose();
-                // _videoplayercontoller.dispose();
-                // _videoplayercontoller.value;
               });
             }
           },
@@ -299,13 +299,15 @@ class _InfoPageState extends State<InfoPage> {
             textAlign: TextAlign.justify,
             style: GoogleFonts.poppins(
               textStyle: TextStyle(
-                color: BackgroundColor,
-                fontSize: 18,
-                fontWeight: FontWeight.w700
-              ),
+                  color: BackgroundColor,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700),
             ),
           ),
-          icon: Icon(Icons.play_arrow_rounded,color: BackgroundColor,),
+          icon: Icon(
+            Icons.play_arrow_rounded,
+            color: BackgroundColor,
+          ),
         ),
       ),
     );

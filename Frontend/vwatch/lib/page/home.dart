@@ -7,6 +7,7 @@ import 'package:vwatch/main.dart';
 import 'package:animated_search_bar/animated_search_bar.dart';
 import 'package:vwatch/page/profileinfo.dart';
 import 'package:vwatch/page/test.dart';
+import 'package:http/http.dart' as http;
 
 class HomePage extends StatefulWidget {
   final String username;
@@ -55,7 +56,7 @@ class _HomePageState extends State<HomePage> {
                             NetworkImage("$URL/getimages?img=${widget.img}")),
                   ),
                   title: Text(
-                    "Hello, ${widget.username}",
+                    "Hello, ${PROFILE.username}",
                     style: GoogleFonts.poppins(
                       textStyle:
                           const TextStyle(color: Colors.white, fontSize: 14),
@@ -85,35 +86,73 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               const SizedBox(height: 20),
+              Container(
+                width: screensize.width,
+                child: Text(
+                  "Top Rated Movies",
+                  textAlign: TextAlign.start,
+                  style: GoogleFonts.poppins(
+                    textStyle: TextStyle(
+                        color: HexColor("#AAB1C2"),
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600),
+                  ),
+                ),
+              ),
               const SizedBox(
-                  height: 140,
+                height: 20,
+              ),
+              const SizedBox(
+                  height: 180,
                   child: Rating(
                     contenttype: 'movie',
                   )),
 
               const SizedBox(height: 20),
+              Container(
+                width: screensize.width,
+                child: Text(
+                  "Top Rated Tv Shows",
+                  textAlign: TextAlign.start,
+                  style: GoogleFonts.poppins(
+                    textStyle: TextStyle(
+                        color: HexColor("#AAB1C2"),
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600),
+                  ),
+                ),
+              ),
               const SizedBox(
-                  height: 140,
+                height: 20,
+              ),
+              const SizedBox(
+                  height: 180,
                   child: Rating(
                     contenttype: 'show',
                   )),
 
               const SizedBox(height: 20),
+              Container(
+                width: screensize.width,
+                child: Text(
+                  "Top Rated Anime",
+                  textAlign: TextAlign.start,
+                  style: GoogleFonts.poppins(
+                    textStyle: TextStyle(
+                        color: HexColor("#AAB1C2"),
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600),
+                  ),
+                ),
+              ),
               const SizedBox(
-                  height: 140,
+                height: 20,
+              ),
+              const SizedBox(
+                  height: 180,
                   child: Rating(
                     contenttype: 'anime',
                   )),
-
-              // Center(
-              //   child: ElevatedButton(
-              //       onPressed: () {
-              //         Navigator.pushReplacement(context,
-              //             MaterialPageRoute(builder: (context) => Mytest()));
-              //       },
-              //       child: const Text("player")),
-              // ),
-
               const SizedBox(
                 height: 20,
               ),
